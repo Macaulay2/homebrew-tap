@@ -6,6 +6,13 @@ class CddlibAT094k < Formula
   license "GPL-2.0-only"
   version_scheme 1
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/cddlib@0.94k-0.94k"
+    cellar :any
+    sha256 "25032f7bc1ec67beca1e0dae72627db256d745014411cca99bcd154f53efd074" => :catalina
+    sha256 "311818da60c45d1bd39a76c99cbfda99a90a487b1c46ab34fda1f6e5f583ad36" => :x86_64_linux
+  end
+
   depends_on "gmp"
 
   def install
