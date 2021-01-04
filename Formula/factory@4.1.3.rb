@@ -6,6 +6,12 @@ class FactoryAT413 < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
   revision 1
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/factory@4.1.3-4.1.3_1"
+    sha256 "cf93748710ecbcce73401767a4421c73062d2198736cab512f8334b657f367d3" => :catalina
+    sha256 "9b19d70a76f992e871101cd89f625351d7d9ed79dbaa98a283f0451d77fbbb33" => :x86_64_linux
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
