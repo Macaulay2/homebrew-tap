@@ -5,6 +5,12 @@ class Csdp < Formula
   sha256 "3d341974af1f8ed70e1a37cc896e7ae4a513375875e5b46db8e8f38b7680b32f"
   license "EPL-2.0"
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/csdp-6.2.0"
+    cellar :any_skip_relocation
+    sha256 "5a0accab8c702cde119e5c9444a5043bee73a5de7f12b10ee9380930f2a5b982" => :x86_64_linux
+  end
+
   depends_on "libomp" if OS.mac?
   depends_on "lapack" unless OS.mac?
 
