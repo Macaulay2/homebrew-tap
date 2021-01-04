@@ -6,6 +6,12 @@ class FlintAT263 < Formula
   license "LGPL-2.1-or-later"
   head "https://github.com/wbhart/flint2.git", branch: "trunk"
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/flint@2.6.3-2.6.3"
+    sha256 "36f0d62611113c0305e20a5f48e1d335001d9e5aea5002e5a7233ef529845dcf" => :catalina
+    sha256 "99c1eca00be8ba0a92f55952eb53b6ac0b7d1c45804ad7f2f7c8a923665ea892" => :x86_64_linux
+  end
+
   depends_on "gmp"
   depends_on "mpfr"
   depends_on "ntl"
