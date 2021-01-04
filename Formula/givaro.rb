@@ -5,6 +5,13 @@ class Givaro < Formula
   version "4.1.1"
   license "CECILL-B"
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/givaro-4.1.1"
+    cellar :any
+    sha256 "e0764d4480895c290baccb9dc18f2686927b68b2dc39f6b03b862c4f863f2f64" => :catalina
+    sha256 "d3a9d88527d76fe7e505020e75c74abcb09fe0273b7f9ae85814898b04206dab" => :x86_64_linux
+  end
+
   head do
     url "https://github.com/linbox-team/givaro.git", using: :git
   end
