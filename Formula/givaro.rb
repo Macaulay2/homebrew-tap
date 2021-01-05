@@ -1,9 +1,10 @@
 class Givaro < Formula
   desc "Prime field and algebraic computations"
   homepage "https://casys.gricad-pages.univ-grenoble-alpes.fr/givaro/"
-  url "https://github.com/Macaulay2/givaro.git", using: :git, branch: "master"
+  url "https://github.com/mahrud/givaro.git", using: :git, branch: "master"
   version "4.1.1"
   license "CECILL-B"
+  revision 2
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/givaro-4.1.1"
