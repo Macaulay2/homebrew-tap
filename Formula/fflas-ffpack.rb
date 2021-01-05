@@ -1,9 +1,10 @@
 class FflasFfpack < Formula
   desc "Finite Field Linear Algebra Routines"
   homepage "https://linbox-team.github.io/fflas-ffpack/"
-  url "https://github.com/Macaulay2/fflas-ffpack.git", using: :git, branch: "master"
+  url "https://github.com/mahrud/fflas-ffpack.git", using: :git, branch: "master"
   version "2.4.3"
   license "LGPL-2.1-or-later"
+  revision 1
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/fflas-ffpack-2.4.3"
