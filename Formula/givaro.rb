@@ -7,10 +7,10 @@ class Givaro < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/givaro-4.1.1"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/givaro-4.1.1_2"
     cellar :any
-    sha256 "e0764d4480895c290baccb9dc18f2686927b68b2dc39f6b03b862c4f863f2f64" => :catalina
-    sha256 "d3a9d88527d76fe7e505020e75c74abcb09fe0273b7f9ae85814898b04206dab" => :x86_64_linux
+    sha256 "7e8760fbebdee961d0cbfe788de355de24f55b9d57db339c30a10449fc13fcbb" => :catalina
+    sha256 "6679d57f0f5e2043fa132d3f8478e291ea4c0a662c72664a9169955f15757ba5" => :x86_64_linux
   end
 
   head do
