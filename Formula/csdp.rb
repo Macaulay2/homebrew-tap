@@ -6,6 +6,13 @@ class Csdp < Formula
   license "EPL-2.0"
   revision 2
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/csdp-6.2.0_2"
+    cellar :any_skip_relocation
+    sha256 "18660073ab8959fa9e30135cab2e0b173f0b346ad6f0a9787735d28456dabac7" => :catalina
+    sha256 "f1cda71df18c06e71f8faa9616756ea8185772e585bf0fba6f32cc4277a2dafe" => :x86_64_linux
+  end
+
   depends_on "libomp" if OS.mac?
   depends_on "lapack" unless OS.mac?
 
