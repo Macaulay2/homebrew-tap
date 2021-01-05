@@ -4,7 +4,7 @@ class Gfan < Formula
   url "https://users-math.au.dk/~jensen/software/gfan/gfan0.6.2.tar.gz"
   sha256 "a674d5e5dc43634397de0d55dd5da3c32bd358d05f72b73a50e62c1a1686f10a"
   license "GPL-2.0-or-later"
-  revision 1
+  revision 2
 
   depends_on "cddlib@0.94k"
   depends_on "factory@4.1.3"
