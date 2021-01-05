@@ -6,6 +6,13 @@ class Gfan < Formula
   license "GPL-2.0-or-later"
   revision 2
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/gfan-0.6.2_2"
+    cellar :any
+    sha256 "c5b2e0afafa57fe3bdbab68efa8de8cbb62cc3b6321c3a25d88f21165f42fcbe" => :catalina
+    sha256 "e1042c120fe9535956872f4427dbb3d6deeba5d2c79079421f31b0bd03bd0cc2" => :x86_64_linux
+  end
+
   depends_on "cddlib@0.94k"
   depends_on "factory@4.1.3"
   depends_on "gmp"
