@@ -7,10 +7,10 @@ class FflasFfpack < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/fflas-ffpack-2.4.3"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/fflas-ffpack-2.4.3_1"
     cellar :any_skip_relocation
-    sha256 "b06359f4f2d16a8440907443477c00a24001b270ed4a1e43a3160f8f09448a4d" => :catalina
-    sha256 "baecf5b205c4917abc2961ecff3dd64752695acd608e157578ea8dc055af5be6" => :x86_64_linux
+    sha256 "a822619253a13db1b0af6dcdaba1c8f8ae26d135343b2be523d260cf21cced2f" => :catalina
+    sha256 "b3ce316eba2ac50cf9368f5f81991ce00e38676fd553e996d38d8439ceb20a34" => :x86_64_linux
   end
 
   head do
