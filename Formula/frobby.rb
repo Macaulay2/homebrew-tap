@@ -4,7 +4,7 @@ class Frobby < Formula
   url "https://github.com/Macaulay2/frobby.git", using: :git, branch: "Macaulay2-patches"
   version "0.9.1"
   license "GPL-2.0-only"
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/frobby-0.9.1_1"
@@ -25,6 +25,8 @@ class Frobby < Formula
            "prefix=#{prefix}",
            "CXX=#{ENV.cxx}",
            "RANLIB=ranlib"
+    include.install "src/stdinc.h"
+    include.install "src/frobby.h"
     lib.install "bin/libfrobby.a"
   end
 
