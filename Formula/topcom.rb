@@ -6,6 +6,13 @@ class Topcom < Formula
   license "GPL-2.0-only"
   revision 1
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/topcom-0.17.8_1"
+    cellar :any
+    sha256 "72b3b829726e17e8685550d76000b046c75004b9063cb6c6b5eaef6e9ddb63b4" => :catalina
+    sha256 "f00148b207e779f634efe1971193f63a02ad9a1ce9f373086abfbbd4406a86a5" => :x86_64_linux
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
