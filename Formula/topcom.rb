@@ -4,6 +4,7 @@ class Topcom < Formula
   url "http://www.rambau.wm.uni-bayreuth.de/Software/TOPCOM-0.17.8.tar.gz"
   sha256 "3f83b98f51ee859ec321bacabf7b172c25884f14848ab6c628326b987bd8aaab"
   license "GPL-2.0-only"
+  revision 1
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
