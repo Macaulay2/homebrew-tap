@@ -4,7 +4,7 @@ class FflasFfpack < Formula
   url "https://github.com/mahrud/fflas-ffpack.git", using: :git, branch: "master"
   version "2.4.3"
   license "LGPL-2.1-or-later"
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/fflas-ffpack-2.4.3_1"
@@ -28,15 +28,13 @@ class FflasFfpack < Formula
   depends_on "openblas" unless OS.mac?
 
   def install
-    cblas_libs = OS.mac? ? "-framework Accelerate" : "-lopenblas"
+    ENV.cxx11
+    ENV["CBLAS_LIBS"] = ENV["LIBS"] = OS.mac? ? "-framework Accelerate" : "-lopenblas"
     system "./autogen.sh",
            "--enable-openmp",
-           "--disable-debug",
            "--disable-dependency-tracking",
            "--disable-silent-rules",
-           "--prefix=#{prefix}",
-           "LIBS=#{cblas_libs}",
-           "CBLAS_LIBS=#{cblas_libs}"
+           "--prefix=#{prefix}"
     system "make", "install"
   end
 
