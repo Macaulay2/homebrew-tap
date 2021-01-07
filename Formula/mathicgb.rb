@@ -4,6 +4,7 @@ class Mathicgb < Formula
   url "https://github.com/Macaulay2/mathicgb.git", using: :git, branch: "master"
   version "1.0"
   license "GPL-2.0-or-later"
+  revision 1
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/mathicgb-1.0"
@@ -14,14 +15,21 @@ class Mathicgb < Formula
 
   option "without-mgb", "don't build mgb"
 
+  unless OS.mac?
+    fails_with gcc: "4"
+    fails_with gcc: "5"
+    depends_on "gcc@9" => :build
+  end
+
   depends_on "cmake" => :build
 
   depends_on "mathic"
   depends_on "memtailor"
 
-  depends_on "tbb" => :optional
+  depends_on "tbb" => :recommended
 
   def install
+    ENV.cxx11
     args = std_cmake_args
     args << "-DBUILD_TESTING=off"
     args << "-DCMAKE_PREFIX_PATH=#{Formula["memtailor"].prefix};#{Formula["mathic"].prefix}"
