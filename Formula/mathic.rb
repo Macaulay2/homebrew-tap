@@ -7,10 +7,10 @@ class Mathic < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/mathic-1.0"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/mathic-1.0_1"
     cellar :any_skip_relocation
-    sha256 "3057ed79af4aa8b73d1c7253084fa36dc91aaff36103d3971b81aad2cf989d93" => :catalina
-    sha256 "37866efbbb8f72a6fd9f522b0bd0f2d50c735dd704274af6503a4d020e782591" => :x86_64_linux
+    sha256 "cbbef5fb4be900a16916e7cd305ebdcca141d4201118031b1481c0060b405419" => :catalina
+    sha256 "150d6cd52bdd8bd3e332e765e0a609414695d160de6b6ed18538958e8747642d" => :x86_64_linux
   end
 
   depends_on "cmake" => :build
