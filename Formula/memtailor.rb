@@ -4,6 +4,7 @@ class Memtailor < Formula
   url "https://github.com/Macaulay2/memtailor.git", using: :git, branch: "master"
   version "1.0"
   license "BSD-3-Clause"
+  revision 1
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/memtailor-1.0"
@@ -15,7 +16,8 @@ class Memtailor < Formula
   depends_on "cmake" => :build
 
   def install
-    system "cmake", ".", *std_cmake_args
+    ENV.cxx11
+    system "cmake", ".", "-DBUILD_TESTING=off", *std_cmake_args
     system "make", "install"
   end
 
