@@ -4,7 +4,7 @@ class Givaro < Formula
   url "https://github.com/mahrud/givaro.git", using: :git, branch: "master"
   version "4.1.1"
   license "CECILL-B"
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/givaro-4.1.1_2"
@@ -17,6 +17,12 @@ class Givaro < Formula
     url "https://github.com/linbox-team/givaro.git", using: :git
   end
 
+  unless OS.mac?
+    fails_with gcc: "4"
+    fails_with gcc: "5"
+    depends_on "gcc@9" => :build
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
@@ -24,6 +30,7 @@ class Givaro < Formula
   depends_on "gmp"
 
   def install
+    ENV.cxx11
     system "./autogen.sh",
            "--with-gmp=#{Formula["gmp"].prefix}",
            "--disable-debug",
