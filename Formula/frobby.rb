@@ -4,13 +4,19 @@ class Frobby < Formula
   url "https://github.com/Macaulay2/frobby.git", using: :git, branch: "Macaulay2-patches"
   version "0.9.1"
   license "GPL-2.0-only"
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/frobby-0.9.1_2"
     cellar :any_skip_relocation
     sha256 "77c95a20c5cb1b96b43a310359a431739a2de976c723dfe04c2f183d264dd245" => :catalina
     sha256 "2842f9dfb03115671e22e9976da9e48871450c5d9d172ea8b0ca9effcde9b085" => :x86_64_linux
+  end
+
+  unless OS.mac?
+    fails_with gcc: "4"
+    fails_with gcc: "5"
+    depends_on "gcc@9" => :build
   end
 
   depends_on "binutils" => :build
