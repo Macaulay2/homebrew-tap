@@ -4,6 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.8.9/normaliz-3.8.9.tar.gz"
   sha256 "a4c3eda39ffe42120adfd3bda9433b01d9965516e3f98e401b62752a54bee5dd"
   license "GPL-3.0-only"
+  revision 2
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
