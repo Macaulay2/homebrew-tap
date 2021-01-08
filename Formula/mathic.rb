@@ -4,7 +4,7 @@ class Mathic < Formula
   url "https://github.com/Macaulay2/mathic.git", using: :git, branch: "master"
   version "1.0"
   license "LGPL-2.0-or-later"
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/mathic-1.0_2"
@@ -16,7 +16,7 @@ class Mathic < Formula
   unless OS.mac?
     fails_with gcc: "4"
     fails_with gcc: "5"
-    depends_on "gcc@9" => :build
+    depends_on "llvm" => :build
   end
 
   depends_on "cmake" => :build
@@ -25,8 +25,10 @@ class Mathic < Formula
 
   def install
     ENV.cxx11
+    cxx = OS.mac? ? ENV.cxx : "#{Formula["llvm"].opt_bin}/clang++"
     system "cmake", ".", "-DBUILD_TESTING=off",
            "-DCMAKE_PREFIX_PATH=#{Formula["memtailor"].prefix}",
+           "-DCMAKE_CXX_COMPILER=#{cxx}",
            *std_cmake_args
     system "make", "install"
   end
