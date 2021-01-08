@@ -4,7 +4,7 @@ class FactoryAT413 < Formula
   url "https://faculty.math.illinois.edu/Macaulay2/Downloads/OtherSourceCode/factory-4.1.3.tar.gz"
   sha256 "d004dd7e3aafc9881b2bf42b7bc935afac1326f73ad29d7eef0ad33eb72ee158"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/factory@4.1.3-4.1.3_1"
@@ -16,6 +16,12 @@ class FactoryAT413 < Formula
   depends_on "automake" => :build
   depends_on "libtool" => :build
 
+  unless OS.mac?
+    fails_with gcc: "4"
+    fails_with gcc: "5"
+    depends_on "gcc@9" => :build
+  end
+
   depends_on "flint@2.6.3"
   depends_on "gmp"
   depends_on "mpfr"
@@ -24,9 +30,7 @@ class FactoryAT413 < Formula
   def install
     ENV.cxx11
     ENV["CPPFLAGS"] = "-DNDEBUG -DOM_NDEBUG -DSING_NDEBUG"
-    ENV["CFLAGS"]   = ""
     ENV["CXXFLAGS"] = "-std=c++11"
-    ENV["LDFLAGS"]  = ""
     args = %W[
       --disable-debug
       --disable-dependency-tracking
