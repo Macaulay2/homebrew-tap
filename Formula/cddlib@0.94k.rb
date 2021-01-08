@@ -4,6 +4,7 @@ class CddlibAT094k < Formula
   url "https://github.com/cddlib/cddlib/releases/download/0.94k/cddlib-0.94k.tar.gz"
   sha256 "de7397d7fe32758a6b53453a889ec7619b6c68a15d84eb132421f3d7d457be44"
   license "GPL-2.0-only"
+  revision 1
   version_scheme 1
 
   bottle do
@@ -13,11 +14,18 @@ class CddlibAT094k < Formula
     sha256 "311818da60c45d1bd39a76c99cbfda99a90a487b1c46ab34fda1f6e5f583ad36" => :x86_64_linux
   end
 
+  unless OS.mac?
+    fails_with gcc: "4"
+    fails_with gcc: "5"
+    depends_on "gcc@9" => :build
+  end
+
   depends_on "gmp"
 
   def install
-    system "./configure", "--disable-dependency-tracking",
-                          "--prefix=#{prefix}"
+    ENV.cxx11
+    system "./configure", "--prefix=#{prefix}",
+           "--disable-dependency-tracking"
     system "make", "install"
   end
 
