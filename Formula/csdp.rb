@@ -7,10 +7,10 @@ class Csdp < Formula
   revision 4
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/csdp-6.2.0_2"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/csdp-6.2.0_4"
     cellar :any_skip_relocation
-    sha256 "18660073ab8959fa9e30135cab2e0b173f0b346ad6f0a9787735d28456dabac7" => :catalina
-    sha256 "f1cda71df18c06e71f8faa9616756ea8185772e585bf0fba6f32cc4277a2dafe" => :x86_64_linux
+    sha256 "724a1fd6962dfac51604b88a699bde943da47607ada374f34befa35e868989a8" => :catalina
+    sha256 "e5ecdc3f03f8915a67fb34217e2fa8c154c9de1a4b48656641a6c0350354c8b1" => :x86_64_linux
   end
 
   depends_on "libomp" if OS.mac?
