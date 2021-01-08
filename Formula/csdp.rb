@@ -4,7 +4,7 @@ class Csdp < Formula
   url "https://github.com/coin-or/Csdp/archive/releases/6.2.0.tar.gz"
   sha256 "3d341974af1f8ed70e1a37cc896e7ae4a513375875e5b46db8e8f38b7680b32f"
   license "EPL-2.0"
-  revision 2
+  revision 4
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/csdp-6.2.0_2"
@@ -14,7 +14,7 @@ class Csdp < Formula
   end
 
   depends_on "libomp" if OS.mac?
-  depends_on "lapack" unless OS.mac?
+  depends_on "openblas" unless OS.mac?
 
   # patch for compatibility with macOS
   patch do
@@ -30,7 +30,7 @@ class Csdp < Formula
       ENV["LA_LIBRARIES"] = "-framework Accelerate"
     else
       ENV["OpenMP_C_FLAGS"] = "-fopenmp"
-      ENV["LA_LIBRARIES"] = "-llapack -lblas"
+      ENV["LA_LIBRARIES"] = "-lopenblas"
     end
 
     mkdir bin
