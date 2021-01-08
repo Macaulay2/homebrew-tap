@@ -1,10 +1,10 @@
 class Mathicgb < Formula
   desc "Compute (signature) Groebner bases using the fast datastructures from mathic"
   homepage "https://github.com/Macaulay2/mathicgb"
-  url "https://github.com/Macaulay2/mathicgb.git", using: :git, branch: "master"
+  url "https://github.com/mahrud/mathicgb.git", using: :git, branch: "quickfix/tbb"
   version "1.0"
   license "GPL-2.0-or-later"
-  revision 1
+  revision 4
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/mathicgb-1.0_1"
@@ -18,7 +18,6 @@ class Mathicgb < Formula
   unless OS.mac?
     fails_with gcc: "4"
     fails_with gcc: "5"
-    depends_on "gcc@9" => :build
   end
 
   depends_on "cmake" => :build
@@ -26,7 +25,7 @@ class Mathicgb < Formula
   depends_on "mathic"
   depends_on "memtailor"
 
-  depends_on "tbb" => :recommended
+  depends_on "tbb" => :optional
 
   def install
     ENV.cxx11
@@ -34,10 +33,7 @@ class Mathicgb < Formula
     args << "-DBUILD_TESTING=off"
     args << "-DCMAKE_PREFIX_PATH=#{Formula["memtailor"].prefix};#{Formula["mathic"].prefix}"
     args << "-Denable_mgb=off" if build.without?("mgb")
-    if build.with?("tbb")
-      args << "-Dwith_tbb=on"
-      ENV["TBBROOT"] = Formula["tbb"].prefix
-    end
+    args << "-Dwith_tbb=on" << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}" if build.with?("tbb")
     system "cmake", ".", *args
     system "make", "install"
   end
