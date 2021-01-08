@@ -7,10 +7,10 @@ class Memtailor < Formula
   revision 6
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/memtailor-1.0_4"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/memtailor-1.0_6"
     cellar :any_skip_relocation
-    sha256 "ca8ebe4bfe526d54e9dfe3e71379a568b18e4333f52ee521f650d52005fe499c" => :catalina
-    sha256 "ec932eca2858c4f066964e4a39be898e84012552382e7e139e668d77836171d7" => :x86_64_linux
+    sha256 "9eb1cdbd22f6226908ab1c6b24e6dc6a2a137a6af7711cb4eaca7828baf4f921" => :catalina
+    sha256 "910d8a411f191addc90fb2f2437fac949cbee4469521881748e355212249794a" => :x86_64_linux
   end
 
   unless OS.mac?
