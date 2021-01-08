@@ -23,8 +23,6 @@ class Csdp < Formula
   end
 
   def install
-    ENV["HOMEBREW_VERBOSE"] = "on"
-    ENV["HOMEBREW_DEBUG"] = "on"
     if OS.mac?
       libomp = Formula["libomp"]
       ENV["OpenMP_C_FLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include}"
