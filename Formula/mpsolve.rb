@@ -7,10 +7,10 @@ class Mpsolve < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/mpsolve-3.2.1_1"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/mpsolve-3.2.1_2"
     cellar :any
-    sha256 "b4194163683950de0d7694e32afe230a26fdad0f12f814f88de5439d0a843801" => :catalina
-    sha256 "14686408194c4991035f64caf5f2ad29768d203055fd18438cc29190c116ecfd" => :x86_64_linux
+    sha256 "d86cca72ea66bc74bb4d78a4db2ddefabe02899b29b34e1ff06d41d26053bf7e" => :catalina
+    sha256 "1674bf7fa550bbd2c9c0b29b43c6f334d7016b79f0e37a99f2ba5a8bf9ac41e6" => :x86_64_linux
   end
 
   unless OS.mac?
