@@ -4,7 +4,7 @@ class FflasFfpack < Formula
   url "https://github.com/mahrud/fflas-ffpack.git", using: :git, branch: "master"
   version "2.4.3"
   license "LGPL-2.1-or-later"
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/fflas-ffpack-2.4.3_2"
@@ -15,6 +15,12 @@ class FflasFfpack < Formula
 
   head do
     url "https://github.com/linbox-team/fflas-ffpack.git", using: :git
+  end
+
+  unless OS.mac?
+    fails_with gcc: "4"
+    fails_with gcc: "5"
+    depends_on "gcc@9" => :build
   end
 
   depends_on "autoconf" => :build
