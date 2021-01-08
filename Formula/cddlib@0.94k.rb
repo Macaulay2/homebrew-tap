@@ -8,10 +8,10 @@ class CddlibAT094k < Formula
   version_scheme 1
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/cddlib@0.94k-0.94k"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/cddlib@0.94k-0.94k_1"
     cellar :any
-    sha256 "25032f7bc1ec67beca1e0dae72627db256d745014411cca99bcd154f53efd074" => :catalina
-    sha256 "311818da60c45d1bd39a76c99cbfda99a90a487b1c46ab34fda1f6e5f583ad36" => :x86_64_linux
+    sha256 "f72889d6d25cbdd304a75361dd34307e68e4dd3d1e8dba2e8c5b2277e3960c32" => :catalina
+    sha256 "e9da5a840fb8deb16832ed8bc90170cc4dfaabacbde14d2aa22b5c890e618974" => :x86_64_linux
   end
 
   unless OS.mac?
