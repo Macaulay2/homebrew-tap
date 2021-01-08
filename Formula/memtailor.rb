@@ -4,7 +4,7 @@ class Memtailor < Formula
   url "https://github.com/Macaulay2/memtailor.git", using: :git, branch: "master"
   version "1.0"
   license "BSD-3-Clause"
-  revision 6
+  revision 8
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/memtailor-1.0_6"
@@ -16,17 +16,13 @@ class Memtailor < Formula
   unless OS.mac?
     fails_with gcc: "4"
     fails_with gcc: "5"
-    depends_on "llvm" => :build
   end
 
   depends_on "cmake" => :build
 
   def install
     ENV.cxx11
-    cxx = OS.mac? ? ENV.cxx : "#{Formula["llvm"].opt_bin}/clang++"
-    system "cmake", ".", "-DBUILD_TESTING=off",
-           "-DCMAKE_CXX_COMPILER=#{cxx}",
-           *std_cmake_args
+    system "cmake", ".", "-DBUILD_TESTING=off", *std_cmake_args
     system "make", "install"
   end
 
