@@ -4,7 +4,7 @@ class FflasFfpack < Formula
   url "https://github.com/mahrud/fflas-ffpack.git", using: :git, branch: "master"
   version "2.4.3"
   license "LGPL-2.1-or-later"
-  revision 3
+  revision 4
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/fflas-ffpack-2.4.3_3"
@@ -31,7 +31,7 @@ class FflasFfpack < Formula
   depends_on "givaro"
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
-  depends_on "openblas" unless OS.mac?
+  depends_on "openblas@0.3.13" unless OS.mac?
 
   def install
     ENV.cxx11
