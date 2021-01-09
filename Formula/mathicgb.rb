@@ -7,10 +7,10 @@ class Mathicgb < Formula
   revision 6
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/mathicgb-1.0_4"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/mathicgb-1.0_6"
     cellar :any_skip_relocation
-    sha256 "f7bc6ff7705bb2933caca04007b8ed1cab5ff39d4457a09f296e5241208f1d2e" => :catalina
-    sha256 "3a2c04767cd33ecce22be433d2c13c71033b2ed1c83553c65a477a2d0ddaadf5" => :x86_64_linux
+    sha256 "2067fb4f866250a47beafd188c68d76d29872d0125e1d2b15966531deea7c3f3" => :catalina
+    sha256 "d6b0ebd30e5abc331c8192e473eed7fa0e5c44c35cabed6362bb32b2dc191a61" => :x86_64_linux
   end
 
   option "without-mgb", "don't build mgb"
