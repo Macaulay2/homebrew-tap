@@ -7,10 +7,10 @@ class Gfan < Formula
   revision 3
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/gfan-0.6.2_2"
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/gfan-0.6.2_3"
     cellar :any
-    sha256 "c5b2e0afafa57fe3bdbab68efa8de8cbb62cc3b6321c3a25d88f21165f42fcbe" => :catalina
-    sha256 "e1042c120fe9535956872f4427dbb3d6deeba5d2c79079421f31b0bd03bd0cc2" => :x86_64_linux
+    sha256 "b1aaaf5c671f5ef3a524af37d0765a9877a481166ccb116557741f672fb78dd6" => :catalina
+    sha256 "0b40d7ce749d622e0481b3d553eba79e1d4a775978a7467f4cd7960fb1bf9b3a" => :x86_64_linux
   end
 
   if OS.mac?
