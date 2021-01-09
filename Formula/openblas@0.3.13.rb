@@ -4,6 +4,7 @@ class OpenblasAT0313 < Formula
   url "https://github.com/xianyi/OpenBLAS/archive/v0.3.13.tar.gz"
   sha256 "79197543b17cc314b7e43f7a33148c308b0807cd6381ee77f77e15acf3e6459e"
   license "BSD-3-Clause"
+  revision 1
   head "https://github.com/xianyi/OpenBLAS.git", branch: "develop"
 
   keg_only :shadowed_by_macos, "macOS provides BLAS in Accelerate.framework"
@@ -32,7 +33,8 @@ class OpenblasAT0313 < Formula
     end
 
     # Must call in two steps
-    system "make", "CC=#{ENV.cc}", "FC=gfortran", "libs", "netlib", "shared"
+    gcc = Formula["gcc@9"]
+    system "make", "CC=#{gcc.bin}/gcc-9", "FC=#{gcc.bin}/gfortran-9", "libs", "netlib", "shared"
     system "make", "PREFIX=#{prefix}", "install"
 
     lib.install_symlink shared_library("libopenblas") => shared_library("libblas")
