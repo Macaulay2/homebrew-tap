@@ -6,6 +6,13 @@ class FflasFfpack < Formula
   license "LGPL-2.1-or-later"
   revision 5
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/fflas-ffpack-2.4.3_5"
+    cellar :any_skip_relocation
+    sha256 "38d6310fc65eac930289d17f68f4454850910e7595376830dd8407894868a2fb" => :catalina
+    sha256 "59233257c1dcf9ab98b7cbb862d8cba7fee19819ee0ca634521d2a93a746af05" => :x86_64_linux
+  end
+
   head do
     url "https://github.com/linbox-team/fflas-ffpack.git", using: :git
   end
