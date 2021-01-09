@@ -7,6 +7,13 @@ class OpenblasAT0313 < Formula
   revision 1
   head "https://github.com/xianyi/OpenBLAS.git", branch: "develop"
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/openblas@0.3.13-0.3.13_1"
+    cellar :any
+    sha256 "ded17800afef8eec8e01f602b132be47a6cceaf95682088992c4bf9cdcaefa3c" => :catalina
+    sha256 "dbfdde40c655812441f57b249c9b3f6727d9ae206a429f78e2a456df39d56f28" => :x86_64_linux
+  end
+
   keg_only :shadowed_by_macos, "macOS provides BLAS in Accelerate.framework"
 
   depends_on "gcc@9" # for gfortran
