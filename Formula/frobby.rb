@@ -1,10 +1,9 @@
 class Frobby < Formula
   desc "Computations With Monomial Ideals"
   homepage "https://www.broune.com/frobby/"
-  url "https://github.com/Macaulay2/frobby.git", using: :git, branch: "Macaulay2-patches"
-  version "0.9.1"
+  url "https://github.com/mahrud/frobby.git", using: :git, branch: "feature/cmake"
+  version "0.9.4"
   license "GPL-2.0-only"
-  revision 3
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/frobby-0.9.1_3"
@@ -16,24 +15,18 @@ class Frobby < Formula
   unless OS.mac?
     fails_with gcc: "4"
     fails_with gcc: "5"
-    depends_on "gcc@9" => :build
   end
 
-  depends_on "binutils" => :build
+  depends_on "cmake" => :build
+
   depends_on "gmp"
 
   def install
     ENV.cxx11
-    system "make", "bin/libfrobby.a", # "bin/frobby", "BIN_INSTALL_DIR=#{bin}",
-           "GMP_INC_DIR=#{Formula["gmp"].include}",
-           "LDFLAGS=-L#{Formula["gmp"].lib}",
-           "CXXFLAGS=-std=gnu++11",
-           "prefix=#{prefix}",
-           "CXX=#{ENV.cxx}",
-           "RANLIB=ranlib"
-    include.install "src/stdinc.h"
-    include.install "src/frobby.h"
-    lib.install "bin/libfrobby.a"
+    system "cmake", ".", "-DBUILD_TESTING=off",
+           "-DCMAKE_PREFIX_PATH=#{Formula["gmp"].prefix}",
+           *std_cmake_args
+    system "make", "install"
   end
 
   test do
