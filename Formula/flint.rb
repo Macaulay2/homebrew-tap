@@ -1,4 +1,4 @@
-class FlintAT263 < Formula
+class Flint < Formula
   desc "C library for number theory"
   homepage "https://flintlib.org"
   url "https://flintlib.org/flint-2.6.3.tar.gz"
