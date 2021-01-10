@@ -52,7 +52,6 @@ class Macaulay2 < Formula
   depends_on "openblas@0.3.13" unless OS.mac?
   depends_on "readline"
 
-  depends_on "cddlib@0.94k" => :recommended
   depends_on "cohomcalg" => :recommended
   depends_on "csdp" => :recommended
   depends_on "fourtitwo" => :recommended

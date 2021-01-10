@@ -17,7 +17,7 @@ class Topcom < Formula
   depends_on "automake" => :build
   depends_on "libtool" => :build
 
-  depends_on "cddlib"
+  depends_on "cddlib@0.94"
   depends_on "gmp"
 
   patch do
