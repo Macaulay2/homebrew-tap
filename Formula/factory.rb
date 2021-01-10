@@ -7,9 +7,9 @@ class Factory < Formula
   revision 3
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/factory@4.1.3-4.1.3_2"
-    sha256 "e682b69396558d1720e01d934012e9f5c09feef4822b47215a29e50a1829643e" => :catalina
-    sha256 "e8d2c661c86de3829908ce25ac0930312de582a8ffaad65cbbf8bf8638d705df" => :x86_64_linux
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/factory-4.1.3_3"
+    sha256 "04c45ffa505fd3d21b50ad8595b985f7ee5709c985fd19c73edcdb3e62fe4381" => :catalina
+    sha256 "c74a514e4514c62775badf78ee28a55860510d65a2c5160a31a85c4fa2ef939f" => :x86_64_linux
   end
 
   depends_on "autoconf" => :build
