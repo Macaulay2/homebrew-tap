@@ -21,7 +21,7 @@ class Gfan < Formula
     fails_with gcc: "5"
   end
 
-  depends_on "cddlib"
+  depends_on "cddlib@0.94"
   depends_on "gmp"
 
   patch do
