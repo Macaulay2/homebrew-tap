@@ -7,6 +7,12 @@ class Macaulay2 < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
   revision 1
 
+  bottle do
+    root_url "https://github.com/mahrud/homebrew-tap/releases/download/macaulay2-1.17_1"
+    sha256 "16a1a14f03eee5786877d35e0ccd2cabd3f67347011bcac43e142920107057b9" => :catalina
+    sha256 "3bba661db87761a18b83b37ef1c1e1a6336a6185bd83b4ef6846e093d71abb73" => :x86_64_linux
+  end
+
   head do
     url "https://github.com/Macaulay2/M2.git", using: :git, branch: "development"
   end
