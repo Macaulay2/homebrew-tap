@@ -1,4 +1,4 @@
-class OpenblasAT0313 < Formula
+class Openblas < Formula
   desc "Optimized BLAS library"
   homepage "https://www.openblas.net/"
   url "https://github.com/xianyi/OpenBLAS/archive/v0.3.13.tar.gz"
