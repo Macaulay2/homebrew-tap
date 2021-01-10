@@ -4,7 +4,7 @@ class Topcom < Formula
   url "http://www.rambau.wm.uni-bayreuth.de/Software/TOPCOM-0.17.8.tar.gz"
   sha256 "3f83b98f51ee859ec321bacabf7b172c25884f14848ab6c628326b987bd8aaab"
   license "GPL-2.0-only"
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/mahrud/homebrew-tap/releases/download/topcom-0.17.8_1"
@@ -17,7 +17,7 @@ class Topcom < Formula
   depends_on "automake" => :build
   depends_on "libtool" => :build
 
-  depends_on "cddlib@0.94k"
+  depends_on "cddlib"
   depends_on "gmp"
 
   patch do
@@ -32,8 +32,8 @@ class Topcom < Formula
            "--disable-dependency-tracking",
            "--disable-silent-rules",
            "--prefix=#{prefix}",
-           "CPPFLAGS=-I#{Formula["gmp"].include} -I#{Formula["cddlib@0.94k"].include}/cddlib",
-           "LDFLAGS=-L#{Formula["gmp"].lib} -L#{Formula["cddlib@0.94k"].lib}"
+           "CPPFLAGS=-I#{Formula["gmp"].include} -I#{Formula["cddlib"].include}/cddlib",
+           "LDFLAGS=-L#{Formula["gmp"].lib} -L#{Formula["cddlib"].lib}"
     system "make", "install"
   end
 
