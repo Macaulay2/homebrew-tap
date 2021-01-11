@@ -7,7 +7,7 @@ class Normaliz < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/normaliz-3.8.9_2"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.8.9_2"
     cellar :any
     sha256 "807d7da3a2f145c12414135df2b17418facbe43d175425c1f4356fb2df53c2fe" => :catalina
     sha256 "5a3bb78cdb0226407715a45d315037c2b0cfba709f86bd0f275ce8f8ecd20dfc" => :x86_64_linux

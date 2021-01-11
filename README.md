@@ -1,6 +1,6 @@
 # Macaulay2 Tap
 
-This is an unofficial repository for Macaulay2 and its dependencies.
+This is the Homebrew repository for Macaulay2 and its dependencies.
 
 ## How do I install Homebrew?
 See [brew.sh](https://brew.sh).
@@ -8,13 +8,13 @@ See [brew.sh](https://brew.sh).
 ## How do I install these formulae?
 To add this Homebrew tap and install Macaulay2 from a bottle, run:
 ```
-brew tap mahrud/tap
+brew tap Macaulay2/tap
 brew install M2
 ```
 
 Alternatively, to install M2 directly, run:
 ```
-brew install mahrud/tap/M2
+brew install Macaulay2/tap/M2
 ```
 
 ## Can I modify the options?
@@ -35,10 +35,10 @@ and moving them to the [homebrew/core](https://github.com/Homebrew/homebrew-core
 The formula from which the Macaulay2 bottle on this tap is built uses the
 [CMake build system](https://github.com/Macaulay2/M2/blob/master/M2/INSTALL-CMake.md).
 
-Before submitting a pull request, make sure that it satisfies Homebrew's syntax guidelines
-with `brew syntax mahrud/tap` and that the changed formula can be bottled by running:
+Before submitting a pull request, make sure that it satisfies Homebrew's style guidelines
+with `brew style Macaulay2/tap` and that the changed formula can be bottled by running:
 ```
-brew install --verbose --build-bottle mahrud/tap/<formula>
+brew install --verbose --build-bottle Macaulay2/tap/<formula>
 ```
 
 ## Bug Reports

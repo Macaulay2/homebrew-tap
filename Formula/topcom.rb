@@ -7,7 +7,7 @@ class Topcom < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/topcom-0.17.8_2"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/topcom-0.17.8_2"
     cellar :any
     sha256 "04bb3f8321e6a3be1c1968984282244dd2b8b072784859ea09317cef7e9b505c" => :catalina
     sha256 "8bf4db44249ae523817f236f0d78d919b6fd05c6000c7e023ee111c1c892a540" => :x86_64_linux

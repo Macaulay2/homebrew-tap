@@ -7,7 +7,7 @@ class Cddlib < Formula
   version_scheme 1
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/cddlib-0.94m"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cddlib-0.94m"
     cellar :any
     sha256 "23e6f0cb4a6f47b6fdb3f739f2b8f8afb5f2a1fdfc3ef223023d4a1fbeab8041" => :catalina
     sha256 "14882fd55833e9f3c836d465bfa943b219311c985fd15de6714de42f8e55ac70" => :x86_64_linux

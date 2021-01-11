@@ -6,7 +6,7 @@ class Fourtitwo < Formula
   license "GPL-2.0-or-later"
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/fourtitwo-1.6.9"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fourtitwo-1.6.9"
     cellar :any
     sha256 "868c7c3724e64c614ccd15e61d15a4abe4bee5e7e090dfaf3dea3f29531b8ad1" => :catalina
     sha256 "03db527ac7d43339fb40696e012859822943bf9a64113b1f8bcb1f18b0cc502d" => :x86_64_linux

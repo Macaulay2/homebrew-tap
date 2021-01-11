@@ -1,13 +1,13 @@
 class Givaro < Formula
   desc "Prime field and algebraic computations"
   homepage "https://casys.gricad-pages.univ-grenoble-alpes.fr/givaro/"
-  url "https://github.com/mahrud/givaro.git", using: :git, branch: "master"
+  url "https://github.com/Macaulay2/givaro.git", using: :git, branch: "master"
   version "4.1.1"
   license "CECILL-B"
   revision 3
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/givaro-4.1.1_3"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.1.1_3"
     cellar :any
     sha256 "25ba990eeb936ff8d9c77f350bc98a43d4decdba51ca3d7c2558590a99ede783" => :catalina
     sha256 "6c3e748359fe61036e407086d5f02bb86c34fb926f23c16a802a476d75198564" => :x86_64_linux

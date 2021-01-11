@@ -8,7 +8,7 @@ class Flint < Formula
   head "https://github.com/wbhart/flint2.git", branch: "trunk"
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/flint-2.6.3_1"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/flint-2.6.3_1"
     sha256 "4ba3103bc30555658173f0eba629567ee1ad70a054c186cdb5579eee5e4d4a8f" => :catalina
     sha256 "708257b00f1b80b0f712385df3d3c7b075bcae672bae60bac74292029744b097" => :x86_64_linux
   end

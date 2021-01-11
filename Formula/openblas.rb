@@ -8,7 +8,7 @@ class Openblas < Formula
   head "https://github.com/xianyi/OpenBLAS.git", branch: "develop"
 
   bottle do
-    root_url "https://github.com/mahrud/homebrew-tap/releases/download/openblas-0.3.13_1"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/openblas-0.3.13_1"
     cellar :any
     sha256 "a2bdb5cdf0fb13e5629d38473d61c57555debb3d6c5e88a6e4b7db0e2640de35" => :catalina
     sha256 "5cb0cda041379272f30a43b0614b94e55f547ad8ff269daac4d7a3d787606780" => :x86_64_linux
