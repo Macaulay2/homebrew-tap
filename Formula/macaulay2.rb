@@ -2,10 +2,9 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2.git", using: :git, branch: "master"
-  version "1.17"
+  url "https://github.com/Macaulay2/M2/archive/release-1.17.1.tar.gz"
+  sha256 "8042808b07f049b941494c1538a782192f107cb85e2245e85b880f657bc73ee2"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.17_1"
@@ -65,27 +64,38 @@ class Macaulay2 < Formula
   depends_on "tbb" => :optional
 
   def install
+    # Find readline via brew
+    inreplace "M2/cmake/FindReadline.cmake", "NO_DEFAULT_PATH", ""
+    # Install M2 major mode for Emacs where brew expects it
     inreplace "M2/cmake/startup.cmake", "site-lisp/Macaulay2", "site-lisp/macaulay2"
     inreplace "M2/Macaulay2/editors/CMakeLists.txt", "site-lisp/Macaulay2", "site-lisp/macaulay2"
+    # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
-    build_path = "M2/BUILD/build-brew"
-    host_prefix = ENV["HOMEBREW_M2_HOST_PREFIX"]
+    unless head?
+      # Place the submodule, since the tarfile doesn't include it
+      system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs"
+      %w[bdwgc fflas_ffpack flint2 frobby givaro googletest libatomic_ops mathic mathicgb memtailor].each do |sub|
+        # CMake doesn't like empty source directories for ExternalProject_Add
+        touch "M2/submodules/#{sub}/dummy"
+      end
+    end
+
+    # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
 
     args = std_cmake_args
-    args << "-DBUILD_TESTING=off"
-    args << "-DM2_HOST_PREFIX=#{host_prefix}" unless host_prefix.nil?
+    args << "-DBUILD_TESTING=OFF"
     args << "-DCMAKE_PREFIX_PATH=#{lib_prefix}"
-
-    args << "-DWITH_OMP=on" if build.with?("libomp") || !OS.mac?
-    args << "-DWITH_TBB=on" << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}" if build.with?("tbb")
+    args << "-DWITH_OMP=ON" if build.with?("libomp") || !OS.mac?
+    args << "-DWITH_TBB=ON" << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}" if build.with?("tbb")
 
     if OS.mac?
       ENV["MACOSX_DEPLOYMENT_TARGET"] = MacOS.version
       ENV["SDKROOT"] = MacOS.sdk_path
     end
 
+    build_path = "M2/BUILD/build-brew"
     system "cmake", "-GNinja", "-SM2", "-B#{build_path}", *args
     system "cmake", "--build", build_path, "--target", "M2-core", "M2-emacs"
     system "cmake", "--build", build_path, "--target", "install-packages"
