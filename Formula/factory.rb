@@ -1,10 +1,9 @@
 class Factory < Formula
   desc "C++ class library for recursive representation of multivariate polynomial data"
   homepage "https://github.com/Singular/Singular/blob/spielwiese/factory/README"
-  url "https://faculty.math.illinois.edu/Macaulay2/Downloads/OtherSourceCode/factory-4.1.3.tar.gz"
-  sha256 "d004dd7e3aafc9881b2bf42b7bc935afac1326f73ad29d7eef0ad33eb72ee158"
+  url "https://service.mathematik.uni-kl.de/ftp/pub/Math/Factory/factory-4.2.0.tar.gz"
+  sha256 "b66c4c78847e24b71386a42ea2fb368b721f5cb03966c8c78801f1677c45e6c0"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 4
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.1.3_4"
@@ -22,15 +21,16 @@ class Factory < Formula
     depends_on "gcc@9" => :build
   end
 
-  depends_on "flint@2.6.3"
+  depends_on "flint"
   depends_on "gmp"
-  depends_on "mpfr"
   depends_on "ntl"
 
   def install
     ENV.cxx11
     ENV["CPPFLAGS"] = "-DNDEBUG -DOM_NDEBUG -DSING_NDEBUG"
     ENV["CXXFLAGS"] = "-std=c++11"
+    # TODO: why does it now require yacc?
+    # TODO: why does it say unrecognized options: --with-gmp, --with-mpfr?
     args = %W[
       --disable-debug
       --disable-dependency-tracking
@@ -40,9 +40,8 @@ class Factory < Formula
       --enable-streamio
       --without-Singular
       --with-gmp=#{Formula["gmp"].prefix}
-      --with-mpfr=#{Formula["mpfr"].prefix}
       --with-ntl=#{Formula["ntl"].prefix}
-      --with-flint=#{Formula["flint@2.6.3"].prefix}
+      --with-flint=#{Formula["flint"].prefix}
       --prefix=#{prefix}
     ]
     system "autoreconf", "-vif"
@@ -52,7 +51,6 @@ class Factory < Formula
   end
 
   test do
-    # test that the library is installed and linkable-against
     # also check:
     #  grep [[^.define HAVE_NTL 1]] _config.h
     #  grep [[^.define HAVE_FLINT 1]] _config.h
@@ -93,10 +91,9 @@ class Factory < Formula
 	  return ret;
 	}
     EOS
-    system ENV.cxx, "test.cc", "-I#{include}/factory", "-L#{lib}", "-lfactory",
-           "-L#{Formula["flint@2.6.3"].lib}", "-lflint",
+    system ENV.cxx, "test.cc", "-I#{include}", "-L#{lib}", "-lfactory",
+           "-L#{Formula["flint"].lib}", "-lflint",
            "-L#{Formula["ntl"].lib}", "-lntl",
-           "-L#{Formula["mpfr"].lib}", "-lmpfr",
            "-L#{Formula["gmp"].lib}", "-lgmp", "-o", "test"
     system "./test"
   end
