@@ -5,6 +5,7 @@ class Macaulay2 < Formula
   url "https://github.com/Macaulay2/M2/archive/release-1.17.1.tar.gz"
   sha256 "8042808b07f049b941494c1538a782192f107cb85e2245e85b880f657bc73ee2"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
+  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.17.1"
