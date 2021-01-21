@@ -2,10 +2,9 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/release-1.17.1.tar.gz"
-  sha256 "8042808b07f049b941494c1538a782192f107cb85e2245e85b880f657bc73ee2"
+  url "https://github.com/Macaulay2/M2/archive/release-1.17.2.tar.gz"
+  sha256 "a487c5056a2015ddb6764d478978a8dafd14a69727cd0698c40d95eea930e6e1"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.17.1_1"
@@ -14,7 +13,7 @@ class Macaulay2 < Formula
   end
 
   head do
-    url "https://github.com/Macaulay2/M2.git", using: :git, branch: "development"
+    url "https://github.com/Macaulay2/M2.git", using: :git, branch: "master"
   end
 
   unless OS.mac?
@@ -22,27 +21,23 @@ class Macaulay2 < Formula
     fails_with gcc: "5"
   end
 
-  depends_on "autoconf" => :build
-  depends_on "automake" => :build
   depends_on "bison" => :build
   depends_on "cmake" => :build
-  depends_on "libtool" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
 
   depends_on "bdw-gc"
   depends_on "boost"
   depends_on "eigen"
-  depends_on "factory@4.1.3"
+  depends_on "factory"
   depends_on "fflas-ffpack"
-  depends_on "flint@2.6.3"
+  depends_on "flint"
   depends_on "frobby"
   depends_on "gdbm"
   depends_on "givaro"
-  depends_on "glpk"
   depends_on "gmp"
   depends_on "libatomic_ops"
-  depends_on "libxml2"
+  depends_on "libxml2" unless OS.mac?
   depends_on "mathic"
   depends_on "mathicgb"
   depends_on "memtailor"
@@ -60,27 +55,15 @@ class Macaulay2 < Formula
   depends_on "lrs" => :recommended
   depends_on "nauty" => :recommended
   depends_on "normaliz" => :recommended
+  depends_on "tbb" => :recommended
   depends_on "topcom" => :recommended
 
-  depends_on "tbb" => :optional
-
   def install
-    # Find readline via brew
-    inreplace "M2/cmake/FindReadline.cmake", "NO_DEFAULT_PATH", ""
-    # Install M2 major mode for Emacs where brew expects it
-    inreplace "M2/cmake/startup.cmake", "site-lisp/Macaulay2", "site-lisp/macaulay2"
-    inreplace "M2/Macaulay2/editors/CMakeLists.txt", "site-lisp/Macaulay2", "site-lisp/macaulay2"
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
-    unless head?
-      # Place the submodule, since the tarfile doesn't include it
-      system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs"
-      %w[bdwgc fflas_ffpack flint2 frobby givaro googletest libatomic_ops mathic mathicgb memtailor].each do |sub|
-        # CMake doesn't like empty source directories for ExternalProject_Add
-        touch "M2/submodules/#{sub}/dummy"
-      end
-    end
+    # Place the emacs submodule, since the tarfile doesn't include it
+    system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs" unless head?
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
