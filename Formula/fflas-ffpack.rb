@@ -4,7 +4,7 @@ class FflasFfpack < Formula
   url "https://github.com/Macaulay2/fflas-ffpack.git", using: :git, branch: "master"
   version "2.4.3"
   license "LGPL-2.1-or-later"
-  revision 5
+  revision 6
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fflas-ffpack-2.4.3_5"
@@ -20,7 +20,6 @@ class FflasFfpack < Formula
   unless OS.mac?
     fails_with gcc: "4"
     fails_with gcc: "5"
-    depends_on "gcc@9" => :build
   end
 
   depends_on "autoconf" => :build
@@ -33,8 +32,17 @@ class FflasFfpack < Formula
   depends_on "libomp" if OS.mac?
   depends_on "openblas@0.3.13" unless OS.mac?
 
+  # See https://github.com/linbox-team/fflas-ffpack/issues/309
+  patch :DATA
+
   def install
     ENV.cxx11
+    if OS.mac?
+      libomp = Formula["libomp"]
+      ENV["OMPFLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
+    else
+      ENV["OMPFLAGS"] = "-fopenmp"
+    end
     ENV["CBLAS_LIBS"] = ENV["LIBS"] = OS.mac? ? "-framework Accelerate" : "-lopenblas"
     system "./autogen.sh",
            "--enable-openmp",
@@ -48,3 +56,19 @@ class FflasFfpack < Formula
     system "true"
   end
 end
+
+__END__
+diff --git a/macros/omp-check.m4 b/macros/omp-check.m4
+index 01c5fdac..0d407e1c 100644
+--- a/macros/omp-check.m4
++++ b/macros/omp-check.m4
+@@ -36,7 +36,6 @@ AC_DEFUN([FF_CHECK_OMP],
+ 	  AS_IF([ test "x$avec_omp" != "xno" ],
+ 		[
+ 		BACKUP_CXXFLAGS=${CXXFLAGS}
+-		OMPFLAGS="-fopenmp"
+ 		CXXFLAGS="${BACKUP_CXXFLAGS} ${OMPFLAGS}"
+ 		AC_TRY_RUN([
+ #include <omp.h>
+-- 
+2.26.2
