@@ -1,8 +1,8 @@
 class Frobby < Formula
   desc "Computations With Monomial Ideals"
   homepage "https://www.broune.com/frobby/"
-  url "https://github.com/Macaulay2/frobby.git", using: :git, branch: "master"
-  version "0.9.4"
+  url "https://github.com/mahrud/frobby.git", using: :git, branch: "master"
+  version "0.9.5"
   license "GPL-2.0-only"
 
   bottle do
