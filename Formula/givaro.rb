@@ -4,7 +4,7 @@ class Givaro < Formula
   url "https://github.com/Macaulay2/givaro.git", using: :git, branch: "master"
   version "4.1.1"
   license "CECILL-B"
-  revision 3
+  revision 4
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.1.1_3"
@@ -20,7 +20,6 @@ class Givaro < Formula
   unless OS.mac?
     fails_with gcc: "4"
     fails_with gcc: "5"
-    depends_on "gcc@9" => :build
   end
 
   depends_on "autoconf" => :build
