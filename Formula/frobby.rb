@@ -6,10 +6,10 @@ class Frobby < Formula
   license "GPL-2.0-only"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/frobby-0.9.4"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/frobby-0.9.5"
     cellar :any_skip_relocation
-    sha256 "7c5c4ba6a762d6aa53b746bcbcbd10809e432dc1bda80661926d32caa4788a59" => :catalina
-    sha256 "e56c8c3aaa74a8258ffb1db8ca8c38ba545fe22015aa22d0b00a189df3fe14cf" => :x86_64_linux
+    sha256 "3c100ed1fb07fe444f151ea9614165b4ab28f5f9f64bb152519d20f3b0ffd664" => :catalina
+    sha256 "934bac15d4d72bee4cdf1d502f99aa4d88e9bf2ec66537029f7d76bba5070688" => :x86_64_linux
   end
 
   unless OS.mac?
