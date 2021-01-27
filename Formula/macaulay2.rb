@@ -5,6 +5,7 @@ class Macaulay2 < Formula
   url "https://github.com/Macaulay2/M2/archive/release-1.17.2.tar.gz"
   sha256 "a487c5056a2015ddb6764d478978a8dafd14a69727cd0698c40d95eea930e6e1"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
+  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.17.2"
@@ -69,6 +70,7 @@ class Macaulay2 < Formula
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
 
     args = std_cmake_args
+    args << "-DBUILD_NATIVE=OFF"
     args << "-DBUILD_TESTING=OFF"
     args << "-DCMAKE_PREFIX_PATH=#{lib_prefix}"
     args << "-DWITH_OMP=ON" if build.with?("libomp") || !OS.mac?
@@ -89,5 +91,6 @@ class Macaulay2 < Formula
   test do
     system "#{bin}/M2", "--version"
     system "#{bin}/M2", "--check", "1", "-e", "exit 0"
+    # system "#{bin}/M2", "--check", "2", "-e", "exit 0"
   end
 end
