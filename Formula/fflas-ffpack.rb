@@ -32,9 +32,6 @@ class FflasFfpack < Formula
   depends_on "libomp" if OS.mac?
   depends_on "openblas@0.3.13" unless OS.mac?
 
-  # See https://github.com/linbox-team/fflas-ffpack/issues/309
-  patch :DATA
-
   def install
     ENV.cxx11
     if OS.mac?
@@ -56,19 +53,3 @@ class FflasFfpack < Formula
     system "true"
   end
 end
-
-__END__
-diff --git a/macros/omp-check.m4 b/macros/omp-check.m4
-index 01c5fdac..0d407e1c 100644
---- a/macros/omp-check.m4
-+++ b/macros/omp-check.m4
-@@ -36,7 +36,6 @@ AC_DEFUN([FF_CHECK_OMP],
- 	  AS_IF([ test "x$avec_omp" != "xno" ],
- 		[
- 		BACKUP_CXXFLAGS=${CXXFLAGS}
--		OMPFLAGS="-fopenmp"
- 		CXXFLAGS="${BACKUP_CXXFLAGS} ${OMPFLAGS}"
- 		AC_TRY_RUN([
- #include <omp.h>
--- 
-2.26.2
