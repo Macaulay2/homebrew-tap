@@ -7,9 +7,8 @@ class Frobby < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/frobby-0.9.5"
-    cellar :any_skip_relocation
-    sha256 "3c100ed1fb07fe444f151ea9614165b4ab28f5f9f64bb152519d20f3b0ffd664" => :catalina
-    sha256 "934bac15d4d72bee4cdf1d502f99aa4d88e9bf2ec66537029f7d76bba5070688" => :x86_64_linux
+    sha256 cellar: :any_skip_relocation, catalina:     "3c100ed1fb07fe444f151ea9614165b4ab28f5f9f64bb152519d20f3b0ffd664"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "934bac15d4d72bee4cdf1d502f99aa4d88e9bf2ec66537029f7d76bba5070688"
   end
 
   unless OS.mac?
