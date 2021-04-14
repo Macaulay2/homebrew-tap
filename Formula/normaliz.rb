@@ -8,9 +8,8 @@ class Normaliz < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.8.9_2"
-    cellar :any
-    sha256 "807d7da3a2f145c12414135df2b17418facbe43d175425c1f4356fb2df53c2fe" => :catalina
-    sha256 "5a3bb78cdb0226407715a45d315037c2b0cfba709f86bd0f275ce8f8ecd20dfc" => :x86_64_linux
+    sha256 cellar: :any, catalina:     "807d7da3a2f145c12414135df2b17418facbe43d175425c1f4356fb2df53c2fe"
+    sha256 cellar: :any, x86_64_linux: "5a3bb78cdb0226407715a45d315037c2b0cfba709f86bd0f275ce8f8ecd20dfc"
   end
 
   depends_on "autoconf" => :build

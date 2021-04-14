@@ -8,9 +8,8 @@ class Mpsolve < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mpsolve-3.2.1_2"
-    cellar :any
-    sha256 "d86cca72ea66bc74bb4d78a4db2ddefabe02899b29b34e1ff06d41d26053bf7e" => :catalina
-    sha256 "1674bf7fa550bbd2c9c0b29b43c6f334d7016b79f0e37a99f2ba5a8bf9ac41e6" => :x86_64_linux
+    sha256 cellar: :any, catalina:     "d86cca72ea66bc74bb4d78a4db2ddefabe02899b29b34e1ff06d41d26053bf7e"
+    sha256 cellar: :any, x86_64_linux: "1674bf7fa550bbd2c9c0b29b43c6f334d7016b79f0e37a99f2ba5a8bf9ac41e6"
   end
 
   unless OS.mac?
