@@ -2,8 +2,8 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/release-1.17.2.tar.gz"
-  sha256 "a487c5056a2015ddb6764d478978a8dafd14a69727cd0698c40d95eea930e6e1"
+  url "https://github.com/Macaulay2/M2/archive/release-1.18-rc1.tar.gz"
+  sha256 "41e3b4f188a926c309f244fd19a288000d93866fdbca475497fc70c1c9d51e85"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
   revision 1
 
@@ -42,11 +42,18 @@ class Macaulay2 < Formula
   depends_on "mathic"
   depends_on "mathicgb"
   depends_on "memtailor"
+  depends_on "mpfi"
   depends_on "mpfr"
   depends_on "mpsolve"
   depends_on "ntl"
   depends_on "openblas@0.3.13" unless OS.mac?
   depends_on "readline"
+
+  if OS.mac?
+    depends_on "tbb@2020" # has bottles for Mac OS X
+  else
+    depends_on "tbb@2020_u3" #  bottled for linux, too
+  end
 
   depends_on "cohomcalg" => :recommended
   depends_on "csdp" => :recommended
@@ -56,7 +63,6 @@ class Macaulay2 < Formula
   depends_on "lrs" => :recommended
   depends_on "nauty" => :recommended
   depends_on "normaliz" => :recommended
-  depends_on "tbb" => :recommended
   depends_on "topcom" => :recommended
 
   def install
@@ -73,8 +79,8 @@ class Macaulay2 < Formula
     args << "-DBUILD_NATIVE=OFF"
     args << "-DBUILD_TESTING=OFF"
     args << "-DCMAKE_PREFIX_PATH=#{lib_prefix}"
+    args << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}"
     args << "-DWITH_OMP=ON" if build.with?("libomp") || !OS.mac?
-    args << "-DWITH_TBB=ON" << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}" if build.with?("tbb")
 
     if OS.mac?
       ENV["MACOSX_DEPLOYMENT_TARGET"] = MacOS.version
