@@ -25,15 +25,16 @@ brew info M2
 ```
 
 ## Documentation
-`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+`brew help`, `man brew` or the [Formula Cookbook](https://docs.brew.sh/Formula-Cookbook).
 
 ## Contributing
 Pull requests for improvements, bug fixes, or new formulae are welcome!
 In particular, help is needed for adding better testing to the existing formulae
 and moving them to [homebrew/core](https://github.com/Homebrew/homebrew-core).
 
-Before submitting a pull request, make sure that it satisfies Homebrew's style guidelines
-with `brew style Macaulay2/tap` and that the changed formula can be bottled by running:
+Before submitting a [pull request](https://docs.brew.sh/How-To-Open-a-Homebrew-Pull-Request),
+make sure that it satisfies Homebrew's style guidelines with `brew style Macaulay2/tap`
+and that the changed formula can be bottled by running:
 ```
 brew install --verbose --build-bottle Macaulay2/tap/<formula>
 ```
