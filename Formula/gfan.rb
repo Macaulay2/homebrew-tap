@@ -7,9 +7,9 @@ class Gfan < Formula
   revision 5
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_4"
-    sha256 cellar: :any, catalina:     "56436a2633e90f202bb618464d712d69483cce1489d3d73484fbfbad62daedcf"
-    sha256 cellar: :any, x86_64_linux: "699e49821472fbf1b5ad0c49df888754f1dee59aa19aa2c5f69f1a9d2225e172"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_5"
+    sha256 cellar: :any,                 catalina:     "6e649f4deea2830a33271d6cb99ef2e0cd9b93da738c6d12efe57b802a3ac1e2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "8d4a66dc01875439ca144597fd3a6140ec6d6dc36e5a7628e2d02c911a11c753"
   end
 
   if OS.mac?
