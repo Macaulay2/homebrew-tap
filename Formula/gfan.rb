@@ -4,7 +4,7 @@ class Gfan < Formula
   url "https://users-math.au.dk/~jensen/software/gfan/gfan0.6.2.tar.gz"
   sha256 "a674d5e5dc43634397de0d55dd5da3c32bd358d05f72b73a50e62c1a1686f10a"
   license "GPL-2.0-or-later"
-  revision 4
+  revision 5
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_4"
