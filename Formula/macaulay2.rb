@@ -5,7 +5,7 @@ class Macaulay2 < Formula
   url "https://github.com/Macaulay2/M2/archive/release-1.18-rc1.tar.gz"
   sha256 "41e3b4f188a926c309f244fd19a288000d93866fdbca475497fc70c1c9d51e85"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.18-rc1_1"
@@ -45,7 +45,7 @@ class Macaulay2 < Formula
   depends_on "mpfr"
   depends_on "mpsolve"
   depends_on "ntl"
-  depends_on "openblas@0.3.13" unless OS.mac?
+  depends_on "openblas" unless OS.mac?
   depends_on "readline"
   depends_on "tbb@2020_u3"
 
