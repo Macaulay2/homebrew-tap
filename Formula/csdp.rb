@@ -4,7 +4,7 @@ class Csdp < Formula
   url "https://github.com/coin-or/Csdp/archive/releases/6.2.0.tar.gz"
   sha256 "3d341974af1f8ed70e1a37cc896e7ae4a513375875e5b46db8e8f38b7680b32f"
   license "EPL-2.0"
-  revision 6
+  revision 7
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/csdp-6.2.0_6"
@@ -13,7 +13,7 @@ class Csdp < Formula
   end
 
   depends_on "libomp" if OS.mac?
-  depends_on "openblas@0.3.13" unless OS.mac?
+  depends_on "openblas" unless OS.mac?
 
   # patch for compatibility with macOS
   patch do
