@@ -6,6 +6,12 @@ class TbbAT2020U3 < Formula
   sha256 "ebc4f6aa47972daed1f7bf71d100ae5bf6931c2e3144cf299c8cc7d041dca2f3"
   license "Apache-2.0"
 
+  bottle do
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/tbb@2020_u3-2020_U3"
+    sha256 cellar: :any,                 catalina:     "a7a3dfee03664ab0fd74e930ae6adc0020a68854a3e96426ba17eeed61c2fe1f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "3a922affa7bca39ae12df901a611db1ab8b04965da45a77bd013f9435b434c94"
+  end
+
   keg_only :versioned_formula
 
   depends_on "cmake" => :build
