@@ -29,7 +29,7 @@ class FflasFfpack < Formula
   depends_on "givaro"
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
-  depends_on "openblas@0.3.13" unless OS.mac?
+  depends_on "openblas" unless OS.mac?
 
   def install
     ENV.cxx11
