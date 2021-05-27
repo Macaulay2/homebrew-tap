@@ -47,12 +47,7 @@ class Macaulay2 < Formula
   depends_on "ntl"
   depends_on "openblas@0.3.13" unless OS.mac?
   depends_on "readline"
-
-  if OS.mac?
-    depends_on "tbb@2020" # has bottles for Mac OS X
-  else
-    depends_on "tbb@2020_u3" #  bottled for linux, too
-  end
+  depends_on "tbb@2020_u3"
 
   depends_on "cohomcalg" => :recommended
   depends_on "csdp" => :recommended
