@@ -4,7 +4,7 @@ class Memtailor < Formula
   url "https://github.com/Macaulay2/memtailor.git", using: :git, branch: "master"
   version "1.0"
   license "BSD-3-Clause"
-  revision 8
+  revision 9
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/memtailor-1.0_8"
