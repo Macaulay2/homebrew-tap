@@ -4,7 +4,7 @@ class FflasFfpack < Formula
   url "https://github.com/Macaulay2/fflas-ffpack.git", using: :git, branch: "master"
   version "2.4.3"
   license "LGPL-2.1-or-later"
-  revision 6
+  revision 7
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fflas-ffpack-2.4.3_6"
