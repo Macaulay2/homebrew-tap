@@ -5,6 +5,7 @@ class TbbAT2020U3 < Formula
   version "2020_U3"
   sha256 "ebc4f6aa47972daed1f7bf71d100ae5bf6931c2e3144cf299c8cc7d041dca2f3"
   license "Apache-2.0"
+  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/tbb@2020_u3-2020_U3"
@@ -13,6 +14,11 @@ class TbbAT2020U3 < Formula
   end
 
   keg_only :versioned_formula
+
+  unless OS.mac?
+    fails_with gcc: "4"
+    fails_with gcc: "5"
+  end
 
   depends_on "cmake" => :build
 
