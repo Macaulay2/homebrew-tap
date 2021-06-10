@@ -2,10 +2,12 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/release-1.18-rc1.tar.gz"
-  sha256 "41e3b4f188a926c309f244fd19a288000d93866fdbca475497fc70c1c9d51e85"
+  url "https://github.com/Macaulay2/M2/archive/refs/heads/release-1.18-branch.tar.gz"
+  sha256 "015c788d3d4e902f444106d2fb8c34bc2ff5acd2d589b81d704a2bfafd6cba52"
+  # url "https://github.com/Macaulay2/M2/archive/release-1.18-rc1.tar.gz"
+  # sha256 "41e3b4f188a926c309f244fd19a288000d93866fdbca475497fc70c1c9d51e85"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.18-rc1_1"
@@ -45,7 +47,7 @@ class Macaulay2 < Formula
   depends_on "mpfr"
   depends_on "mpsolve"
   depends_on "ntl"
-  depends_on "openblas@0.3.13" unless OS.mac?
+  depends_on "openblas" unless OS.mac?
   depends_on "readline"
   depends_on "tbb@2020_u3"
 
