@@ -2,10 +2,9 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/release-1.18.tar.gz"
-  sha256 "139075b8c5c9709c5ffd4183ca7aded088c2622ec3d8873f83ad1dda343aa09f"
+  url "https://github.com/Macaulay2/M2/archive/release-1.19.tar.gz"
+  sha256 "08c110d0081c8408eec60e11cee363d9b62e82c212a9f099247be1940057b071"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.18_2"
@@ -39,9 +38,6 @@ class Macaulay2 < Formula
   depends_on "gmp"
   depends_on "libatomic_ops"
   depends_on "libxml2" unless OS.mac?
-  depends_on "mathic"
-  depends_on "mathicgb"
-  depends_on "memtailor"
   depends_on "mpfi"
   depends_on "mpfr"
   depends_on "mpsolve"
@@ -64,8 +60,14 @@ class Macaulay2 < Formula
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
-    # Place the emacs submodule, since the tarfile doesn't include it
-    system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs" unless head?
+    # Place the submodules, since the tarfile doesn't include them
+    unless head?
+      system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs",
+             "--branch", "main"
+      system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
+      system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
+      system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "M2/submodules/mathicgb"
+    end
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
