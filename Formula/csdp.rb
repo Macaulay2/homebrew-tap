@@ -7,9 +7,9 @@ class Csdp < Formula
   revision 8
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/csdp-6.2.0_7"
-    sha256 cellar: :any_skip_relocation, catalina:     "de75ad40ebb2b2c6a6bb96f9990a42d381a85c686465032c5f6a402ceb636d56"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "10679331bc00139b5ae0952344cc7a4502b93739a805d6c3123454a2b6c25c3f"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/csdp-6.2.0_8"
+    sha256 cellar: :any_skip_relocation, catalina:     "23f1c1b514a8eb72e02e3cafcff4c961d6b0f4f15fed3a329676daed3694c286"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "4bc70977d93a2674b15c33d6c5edef051a790fabc74ff93a432ec23df7758350"
   end
 
   depends_on "libomp" if OS.mac?
