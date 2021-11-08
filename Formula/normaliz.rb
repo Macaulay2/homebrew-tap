@@ -6,9 +6,9 @@ class Normaliz < Formula
   license "GPL-3.0-only"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.8.10_1"
-    sha256 cellar: :any,                 catalina:     "770e0924334c4d391c4a02c363951cca786c2b57b832f0916e17ccf074ff0bd1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "91946d8981fe5e178a7ccbe551df113708e11fc6a538c179817bb670a4244aaa"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.9.1"
+    sha256 cellar: :any,                 catalina:     "46684bf73aac62578b01324b253bfce7c475506028adfc122e03b641ad8bae5b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "0976328d85cbdff7ebbc23e7d20e9efbe9d30458fde1e409696e99232965f7a3"
   end
 
   depends_on "autoconf" => :build
