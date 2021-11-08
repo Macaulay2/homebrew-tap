@@ -1,10 +1,9 @@
 class Normaliz < Formula
   desc "Affine monoids, vector configurations, lattice polytopes, and rational cones"
   homepage "https://www.normaliz.uni-osnabrueck.de/"
-  url "https://github.com/Normaliz/Normaliz/releases/download/v3.8.10/normaliz-3.8.10.tar.gz"
-  sha256 "d085c64bebcb23e1c607ca1daff4551a9d38dd8f3dfbef4ef49670b58bb27f65"
+  url "https://github.com/Normaliz/Normaliz/releases/download/v3.9.1/normaliz-3.9.1.tar.gz"
+  sha256 "ad5dbecc3ca3991bcd7b18774ebe2b68dae12ccca33c813ab29891beb85daa20"
   license "GPL-3.0-only"
-  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.8.10_1"
@@ -21,11 +20,6 @@ class Normaliz < Formula
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
   depends_on "nauty"
-
-  patch do
-    url "https://raw.githubusercontent.com/Macaulay2/M2/83056083c62b734102a7b8f1e4c875c0c4456996/M2/libraries/normaliz/patch-3.8.5"
-    sha256 "2b984d9f5d08a44df6a1a065c0c1e51b1ef3beb8a1c938484dea4333ad71962b"
-  end
 
   def install
     ENV.cxx11
