@@ -1,10 +1,9 @@
 class Factory < Formula
   desc "C++ class library for recursive representation of multivariate polynomial data"
   homepage "https://github.com/Singular/Singular/blob/spielwiese/factory/README"
-  url "https://service.mathematik.uni-kl.de/ftp/pub/Math/Factory/factory-4.2.0.tar.gz"
-  sha256 "b66c4c78847e24b71386a42ea2fb368b721f5cb03966c8c78801f1677c45e6c0"
+  url "https://service.mathematik.uni-kl.de/ftp/pub/Math/Factory/factory-4.2.1.tar.gz"
+  sha256 "3a3135d8d9e89bca512b22c8858f3e03f44b15629df6f0309ce4f7ddedd09a15"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.2.0_2"
