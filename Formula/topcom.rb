@@ -1,7 +1,7 @@
 class Topcom < Formula
   desc "Triangulations of point configurations and oriented matroids"
-  homepage "http://www.rambau.wm.uni-bayreuth.de/TOPCOM/"
-  url "http://www.rambau.wm.uni-bayreuth.de/Software/TOPCOM-0.17.8.tar.gz"
+  homepage "https://www.wm.uni-bayreuth.de/de/team/rambau_joerg/TOPCOM/index.html"
+  url "https://www.wm.uni-bayreuth.de/de/team/rambau_joerg/TOPCOM-Downloads/TOPCOM-0_17_8.tgz"
   sha256 "3f83b98f51ee859ec321bacabf7b172c25884f14848ab6c628326b987bd8aaab"
   license "GPL-2.0-only"
   revision 2
