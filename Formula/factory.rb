@@ -6,9 +6,9 @@ class Factory < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.2.0_2"
-    sha256                               catalina:     "8be0e90eb759f8ccb57968d225205aee686dda6ba44789f638db19bd60e2afce"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "57715612953e4229caad3a4931442dea2756bcf5d6670345cbffa6f0d9dd8403"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.2.1"
+    sha256                               catalina:     "f20642db117fefa468fd63ae244f7d0301edc0782c8f1095f81e6b1b3292e4a7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "30fe404b101c7ae9175fde2b06484fd611de7e26bdad06dfeab0387e98118e88"
   end
 
   depends_on "autoconf" => :build
