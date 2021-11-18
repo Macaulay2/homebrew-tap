@@ -7,9 +7,9 @@ class Macaulay2 < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.18_2"
-    sha256 cellar: :any, catalina:     "785626195f2f12a592bb10c4a1ae7aeaee3c49cb5489dd1837b5b004c1a79eb0"
-    sha256               x86_64_linux: "b7b8cdc891e55468ee373cf3599049c0189bdba6422c7cebfe9ab5245dbf54ec"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.19"
+    sha256 cellar: :any, catalina:     "3e7a42249cd22e47cdee8696a6c6024d6b8345f9e0c25d2a9e78495b21eeedb4"
+    sha256               x86_64_linux: "84672235d49b803eaad279bd71fcbf64abb739cb0fa11a6bd9df9f53595f9b27"
   end
 
   head do
