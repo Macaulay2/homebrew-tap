@@ -87,7 +87,8 @@ class Macaulay2 < Formula
     build_path = "M2/BUILD/build-brew"
     system "cmake", "-GNinja", "-SM2", "-B#{build_path}", *args
     system "cmake", "--build", build_path, "--target", "M2-core", "M2-emacs"
-    system "cmake", "--build", build_path, "--target", "install-packages"
+    system "cmake", "--build", build_path, "--target", "install-Macaulay2Doc"
+    system "cmake", "--build", build_path, "--target", "install-packages" unless head?
     system "cmake", "--install", build_path
   end
 
