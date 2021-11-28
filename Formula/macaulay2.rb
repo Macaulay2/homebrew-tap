@@ -13,7 +13,7 @@ class Macaulay2 < Formula
   end
 
   head do
-    url "https://github.com/Macaulay2/M2.git", using: :git, branch: "master"
+    url "https://github.com/Macaulay2/M2/archive/refs/heads/master.tar.gz"
   end
 
   unless OS.mac?
@@ -61,13 +61,11 @@ class Macaulay2 < Formula
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
     # Place the submodules, since the tarfile doesn't include them
-    unless head?
-      system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs",
-             "--branch", "main"
-      system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
-      system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
-      system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "M2/submodules/mathicgb"
-    end
+    system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs",
+           "--branch", "main"
+    system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
+    system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
+    system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "xM2/submodules/mathicgb"
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
