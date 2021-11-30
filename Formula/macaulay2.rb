@@ -2,8 +2,8 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/release-1.19.tar.gz"
-  sha256 "08c110d0081c8408eec60e11cee363d9b62e82c212a9f099247be1940057b071"
+  url "https://github.com/Macaulay2/M2/archive/release-1.19.1.tar.gz"
+  sha256 "35d87b280157e1485e7fc05f5192a4db4d69d0463d58c326a3f3814127f6c527"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
@@ -56,6 +56,8 @@ class Macaulay2 < Formula
   depends_on "normaliz" => :recommended
   depends_on "topcom" => :recommended
 
+  patch :DATA
+
   def install
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
@@ -65,7 +67,7 @@ class Macaulay2 < Formula
            "--branch", "main"
     system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
     system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
-    system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "xM2/submodules/mathicgb"
+    system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "M2/submodules/mathicgb"
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
@@ -96,3 +98,39 @@ class Macaulay2 < Formula
     # system "#{bin}/M2", "--check", "2", "-e", "exit 0"
   end
 end
+
+__END__
+
+diff --git a/M2/Macaulay2/packages/Macaulay2Doc/changes.m2 b/M2/Macaulay2/packages/Macaulay2Doc/changes.m2
+index 2ab88b234b..988a95d6aa 100644
+--- a/M2/Macaulay2/packages/Macaulay2Doc/changes.m2
++++ b/M2/Macaulay2/packages/Macaulay2Doc/changes.m2
+@@ -6,7 +6,6 @@ document {
+      Key => "changes to Macaulay2, by version",
+      Subnodes => {
+ 	  TO "changes made for the next release",
+-	  TO "changes, 1.19.1",
+ 	  TO "changes, 1.19",
+ 	  TO "changes, 1.18",
+ 	  TO "changes, 1.17",
+@@ -39,18 +38,6 @@ document {
+      Key => "changes made for the next release"
+      }
+ 
+-document {
+-     Key => "changes, 1.19.1",
+-     UL {
+-          LI { "bugs fixed:",
+-	       UL {
+-		    LI { "repaired two broken links to packages in the changes documentation" },
+-		    LI { "restored the 'Ways to use' and 'For the programmer' sections of the documentation provided by ", TO "help", " for a method function." }
+-		    }
+-	       }
+-     	  }
+-     }
+-
+ document {
+      Key => "changes, 1.19",
+      UL {
+-- 
+2.31.1
