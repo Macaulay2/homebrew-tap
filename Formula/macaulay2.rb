@@ -2,9 +2,13 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/release-1.19.1.tar.gz"
-  sha256 "35d87b280157e1485e7fc05f5192a4db4d69d0463d58c326a3f3814127f6c527"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
+
+  stable do
+    url "https://github.com/Macaulay2/M2/archive/release-1.19.1.tar.gz"
+    sha256 "35d87b280157e1485e7fc05f5192a4db4d69d0463d58c326a3f3814127f6c527"
+    patch :DATA
+  end
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.19.1"
@@ -54,8 +58,6 @@ class Macaulay2 < Formula
   depends_on "nauty" => :recommended
   depends_on "normaliz" => :recommended
   depends_on "topcom" => :recommended
-
-  patch :DATA
 
   def install
     # Don't print the shims prefix path
