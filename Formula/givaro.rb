@@ -4,7 +4,7 @@ class Givaro < Formula
   url "https://github.com/Macaulay2/givaro.git", using: :git, branch: "master"
   version "4.1.1"
   license "CECILL-B"
-  revision 4
+  revision 5
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.1.1_4"
