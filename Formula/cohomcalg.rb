@@ -4,6 +4,7 @@ class Cohomcalg < Formula
   url "https://github.com/BenjaminJurke/cohomCalg/archive/v0.32.tar.gz"
   sha256 "367c52b99c0b0a4794b215181439bf54abe4998872d3ef25d793bc13c4d40e42"
   license "GPL-3.0-only"
+  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cohomcalg-0.32"
