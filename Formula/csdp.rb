@@ -4,7 +4,7 @@ class Csdp < Formula
   url "https://github.com/coin-or/Csdp/archive/releases/6.2.0.tar.gz"
   sha256 "3d341974af1f8ed70e1a37cc896e7ae4a513375875e5b46db8e8f38b7680b32f"
   license "EPL-2.0"
-  revision 9
+  revision 10
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/csdp-6.2.0_9"
