@@ -4,6 +4,7 @@ class Fourtitwo < Formula
   url "https://github.com/4ti2/4ti2/releases/download/Release_1_6_9/4ti2-1.6.9.tar.gz"
   sha256 "3053e7467b5585ad852f6a56e78e28352653943e7249ad5e5174d4744d174966"
   license "GPL-2.0-or-later"
+  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fourtitwo-1.6.9"
