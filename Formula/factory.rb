@@ -4,6 +4,7 @@ class Factory < Formula
   url "https://service.mathematik.uni-kl.de/ftp/pub/Math/Factory/factory-4.2.1.tar.gz"
   sha256 "3a3135d8d9e89bca512b22c8858f3e03f44b15629df6f0309ce4f7ddedd09a15"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
+  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.2.1"
