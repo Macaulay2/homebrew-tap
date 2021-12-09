@@ -4,7 +4,7 @@ class Mpsolve < Formula
   url "https://numpi.dm.unipi.it/_media/software/mpsolve/mpsolve-3.2.1.tar.gz"
   sha256 "3d11428ae9ab2e020f24cabfbcd9e4d9b22ec572cf70af0d44fe8dae1d51e78e"
   license "GPL-3.0-only"
-  revision 3
+  revision 4
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mpsolve-3.2.1_3"
