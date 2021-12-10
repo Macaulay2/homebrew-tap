@@ -4,7 +4,7 @@ class Topcom < Formula
   url "https://www.wm.uni-bayreuth.de/de/team/rambau_joerg/TOPCOM-Downloads/TOPCOM-0_17_8.tgz"
   sha256 "3f83b98f51ee859ec321bacabf7b172c25884f14848ab6c628326b987bd8aaab"
   license "GPL-2.0-only"
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/topcom-0.17.8_2"
@@ -17,7 +17,7 @@ class Topcom < Formula
   depends_on "automake" => :build
   depends_on "libtool" => :build
 
-  depends_on "cddlib@0.94"
+  depends_on "cddlib"
   depends_on "gmp"
 
   patch do
