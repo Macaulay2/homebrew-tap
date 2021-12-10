@@ -1,9 +1,8 @@
 class Msolve < Formula
   desc "Library for solving multivariate polynomial systems"
   homepage "https://msolve.lip6.fr"
-  url "https://gitlab.lip6.fr/safey/msolve.git", tag: "v0.1.2", revision: "e62794b7bd3b7c34fca5364017c278e116abc1ab"
+  url "https://gitlab.lip6.fr/safey/msolve.git", tag: "v0.1.7", revision: "2c085f06b4e153cc7d9f6f60b6e75d565ed4e449"
   license "GPL-2.0-or-later"
-  revision 1
 
   head "https://gitlab.lip6.fr/safey/msolve.git"
 
@@ -25,15 +24,17 @@ class Msolve < Formula
   def install
     if OS.mac?
       libomp = Formula["libomp"]
-      ENV["OpenMP_CFLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include}"
+      ENV["OPENMP_CFLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
     end
 
     system "autoreconf", "-vif"
     system "./configure",
            "--disable-dependency-tracking",
            "--disable-silent-rules",
+           "--enable-openmp=yes",
            "--prefix=#{prefix}",
-           "--libdir=#{lib}"
+           "--libdir=#{lib}",
+           "CC=#{ENV.cc} #{ENV["OPENMP_CFLAGS"]}"
     system "make", "install"
   end
 
