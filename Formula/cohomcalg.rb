@@ -7,9 +7,10 @@ class Cohomcalg < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cohomcalg-0.32"
-    sha256 cellar: :any_skip_relocation, catalina:     "e78b6986b83f2b03c6c287aa94a77a374236238292cd81ad20cb1363fe48903d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "9beeba1639ebbc8201c2aeb18ebca2202b8137502be52b5b6456264be7e2f1bc"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cohomcalg-0.32_1"
+    sha256 cellar: :any_skip_relocation, big_sur:      "c330c447686cc60c9f2b99588664ea5852cbb7f5efa59f0833ef93bf19845b04"
+    sha256 cellar: :any_skip_relocation, catalina:     "9155214e22ea4ab1baba6f30b96f882052d037862fa5ae1b1b996a7abfb46611"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "bb70a659a2d7eecd59e5902dbb82c26f9de2e5939d44b362070d67d5d5f3a4f3"
   end
 
   def install
