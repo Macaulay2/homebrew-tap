@@ -4,22 +4,17 @@ class Gfan < Formula
   url "https://users-math.au.dk/~jensen/software/gfan/gfan0.6.2.tar.gz"
   sha256 "a674d5e5dc43634397de0d55dd5da3c32bd358d05f72b73a50e62c1a1686f10a"
   license "GPL-2.0-or-later"
-  revision 7
-
-  bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "fb626adac2a2166771091f2b60755b7321775ef0d46c806d8b64eab1511fa9b4"
-  end
+  revision 9
 
   if OS.mac?
-    depends_on "llvm" => :build
+    depends_on "gcc"
     fails_with :clang
   else
     fails_with gcc: "4"
     fails_with gcc: "5"
   end
 
-  depends_on "cddlib"
+  depends_on "cddlib@0.94m"
   depends_on "gmp"
 
   patch do
@@ -33,8 +28,8 @@ class Gfan < Formula
     system "make", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
-           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib"].include}/cddlib",
-           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib"].lib}"
+           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib@0.94m"].include}/cddlib",
+           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib@0.94m"].lib}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
@@ -48,11 +43,11 @@ end
 
 __END__
 
-diff --git a/Makefile b/Makefile
-index 737208a..a49b4ed 100644
+diff --git a/Makefile-orig b/Makefile
+index 737208abfb..52e010e0b3 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -110,9 +110,9 @@ MKDIR=mkdir -p
+@@ -110,15 +110,15 @@ MKDIR=mkdir -p
  PREFIX =
  SHELL       = /bin/sh
  #ARCH        = LINUX
@@ -66,3 +61,13 @@ index 737208a..a49b4ed 100644
 +#CCLINKER    = $(CXX)
  #OPTFLAGS    = -O2 -DGMPRATIONAL -DNDEBUG
  # Note that gcc produces wrong code with -O3
+-OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O2	 #-O3 -fno-guess-branch-probability #-DNDEBUG
++#OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O2	 #-O3 -fno-guess-branch-probability #-DNDEBUG
+ #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2  -finline-limit=1000 -ffast-math -Wuninitialized # -fno-guess-branch-probability #-DNDEBUG -ftree-vectorizer-verbose=2
+-#OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O1             -fno-guess-branch-probability
++OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O1             -fno-guess-branch-probability
+  #-DNDEBUG
+ #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2 -ftree-vectorizer-verbose=2 -finline-limit=1000 -ffast-math #-DNDEBUG
+ #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2 -ftree-vectorizer-verbose=2 -march=native -unroll-loops --param max-unroll-times=4 -ffast-math #-DNDEBUG
+-- 
+2.31.1
