@@ -8,9 +8,10 @@ class TbbAT2020U3 < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/tbb@2020_u3-2020_U3_1"
-    sha256 cellar: :any,                 catalina:     "4fbd20d9e2e13d7788505a4d6d1c892b70377e6eedd33ee9f7dccd4ed469a227"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "3bdcb17c305f4ade60d4264fdb16c860a8b7a9a171fffb27156922fa1827221f"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/tbb@2020_u3-2020_U3_2"
+    sha256 cellar: :any,                 big_sur:      "a4ebb2e17ef8f78a50de7ab691afa02eb1a926d7b13e8de78ea5a16d3f29e8b7"
+    sha256 cellar: :any,                 catalina:     "af584ddb641638924c343d7665f48897673ad04a913d1c7f2a7868efc48503b0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "d3cadb4d514aab1e8851910c88d152dfe1dbfc9f2ec2e0383c94231827b00dc5"
   end
 
   keg_only :versioned_formula
