@@ -6,6 +6,13 @@ class CddlibAT094m < Formula
   license "GPL-2.0-or-later"
   version_scheme 1
 
+  bottle do
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cddlib@0.94m-0.94m"
+    sha256 cellar: :any,                 big_sur:      "ca8ac58b151eb5955b74ffd98d87ecbe29e189d8a89af5fd16e95cd16fd793e7"
+    sha256 cellar: :any,                 catalina:     "237fc359319b8005ccd4d497057cf2f53ce31414b2f68900939b3277e98e16ab"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "f2f3d7b23bd3a6bbeea80f4338c0f08d5234eacad0e2f99e616c2de1e436ef0f"
+  end
+
   keg_only :versioned_formula
 
   if OS.mac?
