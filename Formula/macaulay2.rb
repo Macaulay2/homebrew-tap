@@ -12,8 +12,10 @@ class Macaulay2 < Formula
   end
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.19.1"
-    sha256 x86_64_linux: "8b2995830fe378f971e6c20d1de3a7beae065265ce5d9dbabad8137f1bbdf289"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.19.1_1"
+    sha256 cellar: :any, big_sur:      "8630e609ca5fb3401f9b816f93cf63bd90fab3abce0aae5417ee6ec366e1c90f"
+    sha256 cellar: :any, catalina:     "916041377639839fe6cd2816c1cdcb2556cac052ea8309b0044c1fd5a6635f11"
+    sha256               x86_64_linux: "aaf16d1e533f14c92912783494e868b3c9b2bf4945c6bb748849465d43029a56"
   end
 
   head do
