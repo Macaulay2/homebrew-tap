@@ -8,9 +8,9 @@ class Msolve < Formula
   head "https://gitlab.lip6.fr/safey/msolve.git"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/msolve-0.1.2"
-    sha256 cellar: :any,                 catalina:     "9094675e03edb49a35af23a55f7142ae609432d4d75080dc45362bf76ba61f2e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "92c9124e118fd3c778e0deba7da122f7417db2a16bcc5462ab8852bbfabc2c63"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/msolve-0.1.2_1"
+    sha256 cellar: :any,                 catalina:     "e305be0aa9282a098580d1dd8e1b19fe9511a90aa6da1a85540fb209724de107"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "ea9c7a915bebf4344b58a531b1d15ae908502bd40a717de2647e23416aa4634a"
   end
 
   depends_on "autoconf" => :build
