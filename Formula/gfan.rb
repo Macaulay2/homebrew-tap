@@ -6,6 +6,13 @@ class Gfan < Formula
   license "GPL-2.0-or-later"
   revision 9
 
+  bottle do
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_9"
+    sha256 cellar: :any,                 big_sur:      "333d464d314864cbb4eae5231388c120ae02e7f47b2c688b5ace132df130baed"
+    sha256 cellar: :any,                 catalina:     "c9832bef3e78fd506cc0a0952422bdb9effb952f2613eacbbc9154a892c4c779"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "dab0e35bf18f3685130bdff999614d2699435393191946a19b560af40a2ddac5"
+  end
+
   if OS.mac?
     depends_on "gcc"
     fails_with :clang
