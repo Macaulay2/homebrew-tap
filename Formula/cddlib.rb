@@ -4,6 +4,7 @@ class Cddlib < Formula
   url "https://github.com/cddlib/cddlib/releases/download/0.94m/cddlib-0.94m.tar.gz"
   sha256 "70dffdb3369b8704dc75428a1b3c42ab9047b81ce039f12f427e2eb2b1b0dee2"
   license "GPL-2.0-or-later"
+  revision 1
   version_scheme 1
 
   bottle do
