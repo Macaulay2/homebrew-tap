@@ -80,7 +80,7 @@ class Macaulay2 < Formula
     args << "-DBUILD_NATIVE=OFF"
     args << "-DBUILD_TESTING=OFF"
     args << "-DCMAKE_PREFIX_PATH=#{lib_prefix}"
-    args << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}"
+    args << "-DTBB_ROOT_DIR=#{Formula["tbb@2020_u3"].prefix}"
     args << "-DWITH_OMP=ON" if build.with?("libomp") || !OS.mac?
 
     if OS.mac?
