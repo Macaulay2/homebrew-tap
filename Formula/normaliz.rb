@@ -4,7 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.9.1/normaliz-3.9.1.tar.gz"
   sha256 "ad5dbecc3ca3991bcd7b18774ebe2b68dae12ccca33c813ab29891beb85daa20"
   license "GPL-3.0-only"
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.9.1_1"
@@ -21,7 +21,9 @@ class Normaliz < Formula
   depends_on "boost"
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
-  depends_on "nauty"
+
+  depends_on "flint" => :optional
+  depends_on "nauty" => :optional
 
   def install
     ENV.cxx11
@@ -31,15 +33,25 @@ class Normaliz < Formula
     else
       ENV["OPENMP_CXXFLAGS"] = "-fopenmp"
     end
+
     ENV["CPPFLAGS"] = "-I#{Formula["gmp"].include}"
     ENV["LDFLAGS"] = "-L#{Formula["gmp"].lib}"
+
+    # replace the outdated libtool that ships with normaliz
     symlink "#{Formula["libtool"].opt_bin}/libtool", "libtool"
+
+    args = [
+      "--prefix=#{prefix}",
+      "--disable-shared",
+      "--disable-silent-rules",
+      "--disable-dependency-tracking",
+    ]
+
+    args << "--with-flint" if build.with? "flint"
+    args << "--with-nauty" if build.with? "nauty"
+
     system "autoreconf", "-vif"
-    system "./configure", "--prefix=#{prefix}",
-           "--without-flint",
-           "--disable-shared",
-           "--disable-silent-rules",
-           "--disable-dependency-tracking"
+    system "./configure", *args
     system "make", "install"
   end
 
