@@ -3,7 +3,7 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
+  revision 2
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/release-1.19.1.tar.gz"
@@ -50,7 +50,7 @@ class Macaulay2 < Formula
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
   depends_on "readline"
-  depends_on "tbb@2020_u3"
+  depends_on "tbb@2020"
 
   depends_on "cohomcalg" => :recommended
   depends_on "csdp" => :recommended
@@ -72,6 +72,7 @@ class Macaulay2 < Formula
     system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
     system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
     system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "M2/submodules/mathicgb"
+    system "git", "-C", "M2/submodules/mathicgb", "checkout", "14cb3196066af7ef63857c3b44f19b73f31371b8"
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
@@ -80,7 +81,7 @@ class Macaulay2 < Formula
     args << "-DBUILD_NATIVE=OFF"
     args << "-DBUILD_TESTING=OFF"
     args << "-DCMAKE_PREFIX_PATH=#{lib_prefix}"
-    args << "-DTBB_ROOT_DIR=#{Formula["tbb@2020_u3"].prefix}"
+    args << "-DTBB_ROOT_DIR=#{Formula["tbb@2020"].prefix}"
     args << "-DWITH_OMP=ON" if build.with?("libomp") || !OS.mac?
 
     if OS.mac?
