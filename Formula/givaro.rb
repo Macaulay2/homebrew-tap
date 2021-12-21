@@ -6,10 +6,10 @@ class Givaro < Formula
   license "CECILL-B"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.1.1_5"
-    sha256 cellar: :any,                 big_sur:      "26c0c1a8381c8f076be3bde468b91f06fd15c957d60a6218328dd972c08e0201"
-    sha256 cellar: :any,                 catalina:     "a577684e778f3b3eace871fad30cc090ee2534d57b461b3dd3945d7273b2ca6e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "8986b54704d78699e5262835816c8bd2f5639dd4a965215f365afd3c73c21675"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.2.0"
+    sha256 cellar: :any,                 big_sur:      "b755c38b4ef9c91eb0db616b6378240daed373c45400b10b518815fc21cc0e23"
+    sha256 cellar: :any,                 catalina:     "de769e6a8ff99cb7dde345b19dd9db1e31eba9e88433730e8649c9e853235f6b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "909af3d560a72e11db51d01d739830f0a1a745450811986d41f21d41d236917d"
   end
 
   head do
