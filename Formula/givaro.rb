@@ -1,10 +1,9 @@
 class Givaro < Formula
   desc "Prime field and algebraic computations"
   homepage "https://casys.gricad-pages.univ-grenoble-alpes.fr/givaro/"
-  url "https://github.com/Macaulay2/givaro.git", using: :git, branch: "master"
-  version "4.1.1"
+  url "https://github.com/linbox-team/givaro/releases/download/v4.2.0/givaro-4.2.0.tar.gz"
+  sha256 "865e228812feca971dfb6e776a7bc7ac959cf63ebd52b4f05492730a46e1f189"
   license "CECILL-B"
-  revision 5
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.1.1_5"
@@ -17,11 +16,6 @@ class Givaro < Formula
     url "https://github.com/linbox-team/givaro.git", using: :git
   end
 
-  unless OS.mac?
-    fails_with gcc: "4"
-    fails_with gcc: "5"
-  end
-
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
@@ -30,7 +24,8 @@ class Givaro < Formula
 
   def install
     ENV.cxx11
-    system "./autogen.sh",
+    system "autoreconf", "-vif"
+    system "./configure",
            "--with-gmp=#{Formula["gmp"].prefix}",
            "--disable-debug",
            "--disable-dependency-tracking",
