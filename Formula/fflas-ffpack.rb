@@ -1,10 +1,9 @@
 class FflasFfpack < Formula
   desc "Finite Field Linear Algebra Routines"
   homepage "https://linbox-team.github.io/fflas-ffpack/"
-  url "https://github.com/Macaulay2/fflas-ffpack.git", using: :git, branch: "master"
-  version "2.4.3"
+  url "https://github.com/linbox-team/fflas-ffpack/releases/download/v2.5.0/fflas-ffpack-2.5.0.tar.gz"
+  sha256 "dafb4c0835824d28e4f823748579be6e4c8889c9570c6ce9cce1e186c3ebbb23"
   license "LGPL-2.1-or-later"
-  revision 8
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fflas-ffpack-2.4.3_8"
@@ -15,11 +14,6 @@ class FflasFfpack < Formula
 
   head do
     url "https://github.com/linbox-team/fflas-ffpack.git", using: :git
-  end
-
-  unless OS.mac?
-    fails_with gcc: "4"
-    fails_with gcc: "5"
   end
 
   depends_on "autoconf" => :build
@@ -41,7 +35,8 @@ class FflasFfpack < Formula
       ENV["OMPFLAGS"] = "-fopenmp"
     end
     ENV["CBLAS_LIBS"] = ENV["LIBS"] = OS.mac? ? "-framework Accelerate" : "-lopenblas"
-    system "./autogen.sh",
+    system "autoreconf", "-vif"
+    system "./configure",
            "--enable-openmp",
            "--disable-dependency-tracking",
            "--disable-silent-rules",
