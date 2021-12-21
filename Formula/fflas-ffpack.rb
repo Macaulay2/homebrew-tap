@@ -6,10 +6,10 @@ class FflasFfpack < Formula
   license "LGPL-2.1-or-later"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fflas-ffpack-2.4.3_8"
-    sha256 cellar: :any_skip_relocation, big_sur:      "bf7db10872cadfaa0716b1f6474b81347b18cd97992fe61568c78ff39974c536"
-    sha256 cellar: :any_skip_relocation, catalina:     "d1b66b4052e32175b7dd842723962f6694bee4734f8c33bca24e9ef6f98fbbc5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "82cd7cd560c8c1522d66c5d4363ef20e546e67f17d2599657a02b6cab1ca77a5"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fflas-ffpack-2.5.0"
+    sha256 cellar: :any_skip_relocation, big_sur:      "77cb085376d5e5f5ca967cbc804a4e02e2858b002faf00635a4a3fea8231ad3c"
+    sha256 cellar: :any_skip_relocation, catalina:     "784c162c6957906919ef2ba71aabc5ca3a657cb3a0df8b4057d101d377cee5b2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "144a8bb935684cfc3e836dc09d6681dcb31f5a3ca9adabf0aa9681862b9d7f92"
   end
 
   head do
