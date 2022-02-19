@@ -33,7 +33,7 @@ class Macaulay2 < Formula
   depends_on "pkg-config" => :build
 
   depends_on "bdw-gc"
-  depends_on "boost"
+  depends_on "boost@1.76"
   depends_on "eigen"
   depends_on "factory"
   depends_on "fflas-ffpack"
