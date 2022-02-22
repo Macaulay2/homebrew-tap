@@ -3,7 +3,7 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
+  revision 3
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/release-1.19.1.tar.gz"
@@ -33,7 +33,9 @@ class Macaulay2 < Formula
   depends_on "pkg-config" => :build
 
   depends_on "bdw-gc"
-  depends_on "boost"
+  # temporary, until problems with boost 1.78 are resolved
+  # see https://github.com/Macaulay2/homebrew-tap/pull/131#issuecomment-1047358601
+  depends_on "boost@1.76"
   depends_on "eigen"
   depends_on "factory"
   depends_on "fflas-ffpack"
