@@ -8,9 +8,10 @@ class Factory < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.2.1_1"
-    sha256                               big_sur:      "eca9084774ccd7a3f40d59de81d667ab668bedc9eddcc0d32fed6d464a1ef50c"
-    sha256                               catalina:     "dcecf3d72434cef3b97b1cae021455b6b77b0e91d0fb74297ab2f0f884693199"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "538562b624fd1f6313f7aebbf89fa32a655aa33ae4cfeb56a2ed1c3d47af6e63"
+    rebuild 1
+    sha256 cellar: :any,                 big_sur:      "655bf91a2f79a95774b2aabf4c187528583131aba4b6d198f6da654be17dcf03"
+    sha256 cellar: :any,                 catalina:     "989a811acf247e757ef9949cf54a399c41fddd93d1a6ec08a62801ef27bbd055"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "3cb2df910acf286a13864226fafe072c322d460a65b1f21e18429e9cd54ed73a"
   end
 
   depends_on "autoconf" => :build
