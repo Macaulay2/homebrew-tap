@@ -6,8 +6,8 @@ class Macaulay2 < Formula
   revision 3
 
   stable do
-    url "https://github.com/Macaulay2/M2/archive/release-1.19.1.tar.gz"
-    sha256 "35d87b280157e1485e7fc05f5192a4db4d69d0463d58c326a3f3814127f6c527"
+    url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.20.tar.gz"
+    sha256 "38c36a8a91759b71eff2aad4a5075fff0edf439b54a0d97cc34bd5b92d2a34b0"
     patch :DATA
   end
 
@@ -33,9 +33,7 @@ class Macaulay2 < Formula
   depends_on "pkg-config" => :build
 
   depends_on "bdw-gc"
-  # temporary, until problems with boost 1.78 are resolved
-  # see https://github.com/Macaulay2/homebrew-tap/pull/131#issuecomment-1047358601
-  depends_on "boost@1.76"
+  depends_on "boost"
   depends_on "eigen"
   depends_on "factory"
   depends_on "fflas-ffpack"
@@ -49,6 +47,7 @@ class Macaulay2 < Formula
   depends_on "mpfi"
   depends_on "mpfr"
   depends_on "mpsolve"
+  depends_on "node"
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
   depends_on "readline"
@@ -74,7 +73,6 @@ class Macaulay2 < Formula
     system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
     system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
     system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "M2/submodules/mathicgb"
-    system "git", "-C", "M2/submodules/mathicgb", "checkout", "14cb3196066af7ef63857c3b44f19b73f31371b8"
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
@@ -108,36 +106,17 @@ end
 
 __END__
 
-diff --git a/M2/Macaulay2/packages/Macaulay2Doc/changes.m2 b/M2/Macaulay2/packages/Macaulay2Doc/changes.m2
-index 2ab88b234b..988a95d6aa 100644
---- a/M2/Macaulay2/packages/Macaulay2Doc/changes.m2
-+++ b/M2/Macaulay2/packages/Macaulay2Doc/changes.m2
-@@ -6,7 +6,6 @@ document {
-      Key => "changes to Macaulay2, by version",
-      Subnodes => {
- 	  TO "changes made for the next release",
--	  TO "changes, 1.19.1",
- 	  TO "changes, 1.19",
- 	  TO "changes, 1.18",
- 	  TO "changes, 1.17",
-@@ -39,18 +38,6 @@ document {
-      Key => "changes made for the next release"
-      }
- 
--document {
--     Key => "changes, 1.19.1",
--     UL {
--          LI { "bugs fixed:",
--	       UL {
--		    LI { "repaired two broken links to packages in the changes documentation" },
--		    LI { "restored the 'Ways to use' and 'For the programmer' sections of the documentation provided by ", TO "help", " for a method function." }
--		    }
--	       }
--     	  }
--     }
--
- document {
-      Key => "changes, 1.19",
-      UL {
+diff --git a/M2/Macaulay2/m2/packages.m2 b/M2/Macaulay2/m2/packages.m2
+index d5ddc33bc..92f700b5c 100644
+--- a/M2/Macaulay2/m2/packages.m2
++++ b/M2/Macaulay2/m2/packages.m2
+@@ -188,7 +188,6 @@ needsPackage String  := opts -> pkgname -> (
+     and instance(pkg := value PackageDictionary#pkgname, Package)
+     and (opts.FileName === null or
+ 	realpath opts.FileName == realpath pkg#"source file")
+-    and pkg.PackageIsLoaded
+     then use value PackageDictionary#pkgname
+     else loadPackage(pkgname, opts))
+
 -- 
-2.31.1
+2.34.3
