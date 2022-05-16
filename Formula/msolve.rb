@@ -1,7 +1,7 @@
 class Msolve < Formula
   desc "Library for solving multivariate polynomial systems"
   homepage "https://msolve.lip6.fr"
-  url "https://gitlab.lip6.fr/safey/msolve.git", tag: "v0.1.7", revision: "2c085f06b4e153cc7d9f6f60b6e75d565ed4e449"
+  url "https://gitlab.lip6.fr/safey/msolve.git", tag: "v0.2.4", revision: "09f64db29d1f79dad41e5615f466686c8c5154d0"
   license "GPL-2.0-or-later"
 
   head "https://gitlab.lip6.fr/safey/msolve.git"
