@@ -6,8 +6,10 @@ class Macaulay2Common < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-common-1.19.1"
-    sha256 cellar: :any_skip_relocation, all: "00f992f5c9e975c88040516e514b17a934f4476d895304d05118dc0f8efe22d0"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-common-1.20"
+    sha256 cellar: :any_skip_relocation, big_sur:      "1b51560ff19f4e6cb7f17d8cd08b2475de2fb3685d65aabdab1b25f120fba3f8"
+    sha256 cellar: :any_skip_relocation, catalina:     "100d187a61169f063f7e1dc4e3f90ec57c9baad994702009d1a69b24aeb1c1ef"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "0db170b02a83a635525e3dcc3b3a79257be055b625472ce0ed2a31399eb99327"
   end
 
   keg_only "it only installs documentation for macaulay2/tap/M2"
