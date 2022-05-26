@@ -3,7 +3,7 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 3
+  revision 1
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.20.tar.gz"
@@ -50,7 +50,7 @@ class Macaulay2 < Formula
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
   depends_on "readline"
-  depends_on "tbb@2020"
+  depends_on "tbb"
 
   depends_on "cohomcalg" => :recommended
   depends_on "csdp" => :recommended
@@ -80,7 +80,7 @@ class Macaulay2 < Formula
     args << "-DBUILD_NATIVE=OFF"
     args << "-DBUILD_TESTING=OFF"
     args << "-DCMAKE_PREFIX_PATH=#{lib_prefix}"
-    args << "-DTBB_ROOT_DIR=#{Formula["tbb@2020"].prefix}"
+    args << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}"
     args << "-DWITH_OMP=ON" if build.with?("libomp") || !OS.mac?
 
     if OS.mac?
