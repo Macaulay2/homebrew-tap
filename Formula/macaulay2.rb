@@ -3,7 +3,7 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
+  revision 2
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.20.tar.gz"
@@ -90,7 +90,7 @@ class Macaulay2 < Formula
 
     build_path = "M2/BUILD/build-brew"
     system "cmake", "-GNinja", "-SM2", "-B#{build_path}", *args
-    system "cmake", "--build", build_path, "--target", "M2-core", "M2-emacs"
+    system "cmake", "--build", build_path, "--target", "M2-core", "M2-emacs", "M2-highlightjs"
     system "cmake", "--build", build_path, "--target", "install-Macaulay2Doc"
     system "cmake", "--build", build_path, "--target", "install-packages" unless head?
     system "cmake", "--install", build_path
