@@ -4,6 +4,7 @@ class Macaulay2Common < Formula
   url "https://github.com/Macaulay2/M2-emacs.git", using: :git, revision: "5029b532a2738d476fd685ac8d57324133c6d83e"
   version "1.20"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
+  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-common-1.20"
@@ -15,16 +16,16 @@ class Macaulay2Common < Formula
   keg_only "it only installs documentation for macaulay2/tap/M2"
 
   resource "v1.20" do
-    url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.20_3/macaulay2-1.20_3.big_sur.bottle.tar.gz"
-    sha256 "5b8298ec50c3bd3d3007f53bdbbde3ddbd48cdb1962d90cace69627e1bb4f983"
+    url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.20_2/macaulay2-1.20_2.big_sur.bottle.tar.gz"
+    sha256 "8e840e42d134e094d0b854d7c934f44ec2ceb465859158830d03ca1cc5e850a0"
   end
 
   def install
     resource("v1.20").stage buildpath
     # nothing from the M2-emacs repository is actually used,
     # but brew requires at least one url, so I gave it one.
-    mv buildpath/"1.20_3/share", prefix
-    mv buildpath/"1.20_3/lib",   prefix
+    mv buildpath/"1.20_2/share", prefix
+    mv buildpath/"1.20_2/lib",   prefix
     rm_rf share/"emacs"
   end
 
