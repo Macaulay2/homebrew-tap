@@ -7,10 +7,10 @@ class Macaulay2Common < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-common-1.20"
-    sha256 cellar: :any_skip_relocation, big_sur:      "1b51560ff19f4e6cb7f17d8cd08b2475de2fb3685d65aabdab1b25f120fba3f8"
-    sha256 cellar: :any_skip_relocation, catalina:     "100d187a61169f063f7e1dc4e3f90ec57c9baad994702009d1a69b24aeb1c1ef"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "0db170b02a83a635525e3dcc3b3a79257be055b625472ce0ed2a31399eb99327"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-common-1.20_1"
+    sha256 cellar: :any_skip_relocation, big_sur:      "5b2f3c1457cd85d8503fed486fd54dd39cabf2533d5641fc5ee4fac61f121f7d"
+    sha256 cellar: :any_skip_relocation, catalina:     "1dd43e4eab5d02dff7dc10ee2cbdf5ba744af9e384a3694676b0750b545cadf8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "3187b44b7fe52ade5a4a073f747a97b2b48d97e7bdb6d05bebc322c95a8ce26f"
   end
 
   keg_only "it only installs documentation for macaulay2/tap/M2"
