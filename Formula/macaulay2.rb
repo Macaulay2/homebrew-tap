@@ -3,7 +3,7 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
+  revision 3
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.20.tar.gz"
@@ -119,3 +119,18 @@ index d5ddc33bc..92f700b5c 100644
 
 -- 
 2.34.3
+
+diff --git a/M2/Macaulay2/e/aring-zzp-ffpack.hpp b/M2/Macaulay2/e/aring-zzp-ffpack.hpp
+index 6640d39e9..0c6284700 100644
+--- a/M2/Macaulay2/e/aring-zzp-ffpack.hpp
++++ b/M2/Macaulay2/e/aring-zzp-ffpack.hpp
+@@ -9,6 +9,7 @@
+ 
+ #include <type_traits> // define bool_constant to fix issue #2347
+ #include <utility>
++#include <ratio> //fix compilation errors on some macs
+ 
+ #pragma GCC diagnostic push
+ #pragma GCC diagnostic ignored "-Wconversion"
+-- 
+2.36.1
