@@ -3,6 +3,7 @@ class Msolve < Formula
   homepage "https://msolve.lip6.fr"
   url "https://gitlab.lip6.fr/safey/msolve.git", tag: "v0.2.4", revision: "09f64db29d1f79dad41e5615f466686c8c5154d0"
   license "GPL-2.0-or-later"
+  revision 1
 
   head "https://gitlab.lip6.fr/safey/msolve.git"
 
