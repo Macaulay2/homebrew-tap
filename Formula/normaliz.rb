@@ -1,8 +1,8 @@
 class Normaliz < Formula
   desc "Affine monoids, vector configurations, lattice polytopes, and rational cones"
   homepage "https://www.normaliz.uni-osnabrueck.de/"
-  url "https://github.com/Normaliz/Normaliz/releases/download/v3.9.3/normaliz-3.9.3.tar.gz"
-  sha256 "0288f410428a0eebe10d2ed6795c8906712848c7ae5966442ce164adc2429657"
+  url "https://github.com/Normaliz/Normaliz/releases/download/v3.9.4/normaliz-3.9.4.tar.gz"
+  sha256 "fdfcec1bfd4586aee2c43040370e051c1cb28a3d4bdd8d77a62c0c0e0afb9a6f"
   license "GPL-3.0-only"
 
   bottle do
