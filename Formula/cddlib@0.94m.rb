@@ -8,11 +8,12 @@ class CddlibAT094m < Formula
   version_scheme 1
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cddlib@0.94m-0.94m"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cddlib@0.94m-0.94m_1"
     sha256 cellar: :any,                 arm64_monterey: "b019848a0530a7a940e1b551340e79a9d5d8d3e84e0a2ce2b550e09a51eeb230"
-    sha256 cellar: :any,                 big_sur:        "ca8ac58b151eb5955b74ffd98d87ecbe29e189d8a89af5fd16e95cd16fd793e7"
-    sha256 cellar: :any,                 catalina:       "237fc359319b8005ccd4d497057cf2f53ce31414b2f68900939b3277e98e16ab"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "f2f3d7b23bd3a6bbeea80f4338c0f08d5234eacad0e2f99e616c2de1e436ef0f"
+    sha256 cellar: :any,                 monterey:       "e9c869d4fa2b43577ab23e5571722864768eb960732ae39f3bb3f746627931ba"
+    sha256 cellar: :any,                 big_sur:        "d30a537f1144f3e980c7b843b751df5bc98c695e50a5648e78de1bac08c85488"
+    sha256 cellar: :any,                 catalina:       "8f8d8d67a2bbcdda3a5b3abc38e5c697ade81c2551295285e986ec1d1640b571"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "05c6f25fe2bd2535d9ec3164e0468ce0586dd0f3fdb52ae560c28f44ed432b78"
   end
 
   keg_only :versioned_formula
