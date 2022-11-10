@@ -4,7 +4,7 @@ class Gfan < Formula
   url "https://users-math.au.dk/~jensen/software/gfan/gfan0.6.2.tar.gz"
   sha256 "a674d5e5dc43634397de0d55dd5da3c32bd358d05f72b73a50e62c1a1686f10a"
   license "GPL-2.0-or-later"
-  revision 9
+  revision 10
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_9"
@@ -22,7 +22,7 @@ class Gfan < Formula
     fails_with gcc: "5"
   end
 
-  depends_on "cddlib@0.94m"
+  depends_on "cddlib"
   depends_on "gmp"
 
   patch do
@@ -36,8 +36,8 @@ class Gfan < Formula
     system "make", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
-           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib@0.94m"].include}/cddlib",
-           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib@0.94m"].lib}"
+           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib"].include}/cddlib",
+           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib"].lib}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
