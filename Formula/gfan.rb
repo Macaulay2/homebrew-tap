@@ -7,11 +7,12 @@ class Gfan < Formula
   revision 10
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_9"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_10"
     sha256 cellar: :any,                 arm64_monterey: "a17a5973219c6ab5e1ec1132f7b78d0633b548063e2f86a150e683c225e3c079"
-    sha256 cellar: :any,                 big_sur:        "333d464d314864cbb4eae5231388c120ae02e7f47b2c688b5ace132df130baed"
-    sha256 cellar: :any,                 catalina:       "c9832bef3e78fd506cc0a0952422bdb9effb952f2613eacbbc9154a892c4c779"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "dab0e35bf18f3685130bdff999614d2699435393191946a19b560af40a2ddac5"
+    sha256 cellar: :any,                 big_sur:        "0ed20db484e5f69dcbe72a5a5c28c2d430733844ee6f9f541ddc8628e407a075"
+    sha256 cellar: :any,                 catalina:       "49328ff1820ac2f7af1941e7e14825c0b54bee8c28727cb5c40287ba25d09587"
+    sha256 cellar: :any,                 monterey:       "3cee4cd7b981c9001dba1a11da927869c2792e47094e1355737b2854a79ec501"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "0ab04196c4a20e443b7789943ab399774854b93976a4c3abfa31a8e08e1202d8"
   end
 
   if OS.mac?
