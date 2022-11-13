@@ -16,6 +16,7 @@ class Macaulay2 < Formula
     sha256 cellar: :any,                 arm64_monterey: "8b084b22d65ff52b935a96a5b3730e66796046ff22097b486afaf7d60651e917"
     sha256 cellar: :any,                 big_sur:        "9cb8f51edbc0429837deeb07b4278d528f521f7843b3a5bbc28e0713231ae40f"
     sha256 cellar: :any,                 catalina:       "f1a528ff19200a8af615868c4bc8a2c6d698ba55cc64b42f4ceae6aeee1602d2"
+    sha256 cellar: :any,                 monterey:       "0ad5ae436468cf2308e8bdd7dc0b651b55a0fe55067e5142c8c430ceae6a911c"
     sha256                               x86_64_linux:   "1253b62ac356a2beafc714c8cfec56ef49e777c2dda43d63c90114eb0a1ceeae"
   end
 
