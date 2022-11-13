@@ -16,7 +16,7 @@ class Gfan < Formula
   end
 
   if OS.mac?
-    depends_on "gcc"
+    depends_on "gcc" => :build
     fails_with :clang
   else
     fails_with gcc: "4"
