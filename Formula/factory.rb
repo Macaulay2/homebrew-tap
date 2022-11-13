@@ -12,6 +12,7 @@ class Factory < Formula
     sha256 cellar: :any,                 arm64_monterey: "e0fc3941eb837bc97b9d3297960328c93895373c881126d8147bc3c20d3463fe"
     sha256 cellar: :any,                 big_sur:        "ed2877ac4b8954c5d2ca31f40abec1a94f69619fb9923aaba102c9d3ffa33494"
     sha256 cellar: :any,                 catalina:       "4d2c9efb8385cc4c9b58fc7ae2cb825cf5e4240903d40adb42bcd62911c832e3"
+    sha256 cellar: :any,                 monterey:       "e90e826ee0b9c67d97791094ea9fc3a03fb042d65137cdf41eda5239a0c5ae75"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "2e806f1e3641beb0141719929891e2f81086e1dc3ed65f05ef6d8aa0e87b5216"
   end
 

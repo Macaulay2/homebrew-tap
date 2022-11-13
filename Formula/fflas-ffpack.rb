@@ -10,6 +10,7 @@ class FflasFfpack < Formula
     sha256 cellar: :any_skip_relocation, arm64_monterey: "09243154036963bfe61d886796bafca1b124412a573ae8cc07c881aa2eb76d32"
     sha256 cellar: :any_skip_relocation, big_sur:        "77cb085376d5e5f5ca967cbc804a4e02e2858b002faf00635a4a3fea8231ad3c"
     sha256 cellar: :any_skip_relocation, catalina:       "784c162c6957906919ef2ba71aabc5ca3a657cb3a0df8b4057d101d377cee5b2"
+    sha256 cellar: :any_skip_relocation, monterey:       "a37de2b23f8f07d7ab0a70e97e9a2a2449b20d84845900b2b7c238297caa5a47"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "144a8bb935684cfc3e836dc09d6681dcb31f5a3ca9adabf0aa9681862b9d7f92"
   end
 

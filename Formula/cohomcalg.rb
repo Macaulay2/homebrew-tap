@@ -11,6 +11,7 @@ class Cohomcalg < Formula
     sha256 cellar: :any_skip_relocation, arm64_monterey: "e1d322af4524672156037f61dd94f1a31f068bb2cb5a71e9be00d957ec8afe3e"
     sha256 cellar: :any_skip_relocation, big_sur:        "c330c447686cc60c9f2b99588664ea5852cbb7f5efa59f0833ef93bf19845b04"
     sha256 cellar: :any_skip_relocation, catalina:       "9155214e22ea4ab1baba6f30b96f882052d037862fa5ae1b1b996a7abfb46611"
+    sha256 cellar: :any_skip_relocation, monterey:       "b2ae1ed1771561d8481476bde3a45ba47bfb9962ab91f22b84cfc2c38fabd058"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "bb70a659a2d7eecd59e5902dbb82c26f9de2e5939d44b362070d67d5d5f3a4f3"
   end
 
