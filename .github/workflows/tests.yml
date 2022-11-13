@@ -50,7 +50,7 @@ jobs:
           path: '*.bottle.*'
 
       - name: Upload logs as artifact
-        if: failure() && github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@main
         with:
           name: logs (${{ matrix.os }})
