@@ -4,7 +4,7 @@ class Frobby < Formula
   url "https://github.com/Macaulay2/frobby.git", using: :git, branch: "master"
   version "0.9.5"
   license "GPL-2.0-only"
-  revision 3
+  revision 4
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/frobby-0.9.5_3"
@@ -15,6 +15,7 @@ class Frobby < Formula
   end
 
   unless OS.mac?
+    depends_on "llvm" => :build
     fails_with gcc: "4"
     fails_with gcc: "5"
   end
@@ -25,6 +26,10 @@ class Frobby < Formula
 
   def install
     ENV.cxx11
+    unless OS.mac?
+      ENV["CC"] = Formula["llvm"].opt_bin/"clang"
+      ENV["CXX"] = Formula["llvm"].opt_bin/"clang++"
+    end
     system "cmake", ".", "-DBUILD_TESTING=off",
            "-DCMAKE_PREFIX_PATH=#{Formula["gmp"].prefix}",
            *std_cmake_args
