@@ -7,11 +7,11 @@ class Frobby < Formula
   revision 4
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/frobby-0.9.5_3"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "4e7bb29fe1c62d272d7971efce0328f0e0b07e7b383d8937855e9849f6bce7c3"
-    sha256 cellar: :any_skip_relocation, monterey:       "702731828706965b0979b4457bd0b2e06354006b9d72279684cb77f837880da7"
-    sha256 cellar: :any_skip_relocation, catalina:       "c83aef13da2a57ca68b8dec3aed4cc83e0fe451cdbf5207a006a7b0d95202aa2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "22765bce23fb27bc4ec9a20b7f6e7f7ed1bbc4870333fc917331bcc66857b32a"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/frobby-0.9.5_4"
+    sha256 cellar: :any_skip_relocation, monterey:     "de11dfa58b111f3a1cc2e6cf4e9ab387d56356c68920ca727800cc1460295782"
+    sha256 cellar: :any_skip_relocation, big_sur:      "a771081b280379145c3656002582d82a2278f73f5492d672ce0e76d4255a9640"
+    sha256 cellar: :any_skip_relocation, catalina:     "4400a38be4024e11d76dbb40488f66d062befba6b0f24653436b2b33549a0028"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "2b283abcb0fe6cef36f2f8cbb812da4c111e4f7c185d64092cbbd32306583a8f"
   end
 
   unless OS.mac?
