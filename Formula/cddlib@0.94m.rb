@@ -9,7 +9,7 @@ class CddlibAT094m < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cddlib@0.94m-0.94m_1"
-    sha256 cellar: :any,                 arm64_monterey: "b019848a0530a7a940e1b551340e79a9d5d8d3e84e0a2ce2b550e09a51eeb230"
+    sha256 cellar: :any,                 arm64_monterey: "ac0bce917f195cbb2d10b82d0d2ad4e9e0929ff406b216962b0dd9be0bfd4f03"
     sha256 cellar: :any,                 monterey:       "e9c869d4fa2b43577ab23e5571722864768eb960732ae39f3bb3f746627931ba"
     sha256 cellar: :any,                 big_sur:        "d30a537f1144f3e980c7b843b751df5bc98c695e50a5648e78de1bac08c85488"
     sha256 cellar: :any,                 catalina:       "8f8d8d67a2bbcdda3a5b3abc38e5c697ade81c2551295285e986ec1d1640b571"
