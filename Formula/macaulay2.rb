@@ -11,14 +11,6 @@ class Macaulay2 < Formula
     patch :DATA
   end
 
-  bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.20_5"
-    sha256 cellar: :any,                 arm64_monterey: "8b084b22d65ff52b935a96a5b3730e66796046ff22097b486afaf7d60651e917"
-    sha256 cellar: :any,                 big_sur:        "9cb8f51edbc0429837deeb07b4278d528f521f7843b3a5bbc28e0713231ae40f"
-    sha256 cellar: :any,                 catalina:       "f1a528ff19200a8af615868c4bc8a2c6d698ba55cc64b42f4ceae6aeee1602d2"
-    sha256                               x86_64_linux:   "1253b62ac356a2beafc714c8cfec56ef49e777c2dda43d63c90114eb0a1ceeae"
-  end
-
   head do
     url "https://github.com/Macaulay2/M2/archive/refs/heads/master.tar.gz"
   end
