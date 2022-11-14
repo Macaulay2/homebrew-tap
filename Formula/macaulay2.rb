@@ -3,11 +3,10 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 5
 
   stable do
-    url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.20.tar.gz"
-    sha256 "38c36a8a91759b71eff2aad4a5075fff0edf439b54a0d97cc34bd5b92d2a34b0"
+    url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.21.tar.gz"
+    sha256 "1923da43b94675b5f0f05dbde111c5d90c810a41c99f078b6917477bda5ef527"
     patch :DATA
   end
 
@@ -47,6 +46,7 @@ class Macaulay2 < Formula
   depends_on "gmp"
   depends_on "libatomic_ops"
   depends_on "libxml2" unless OS.mac?
+  depends_on "libffi"
   depends_on "mpfi"
   depends_on "mpfr"
   depends_on "mpsolve"
@@ -69,6 +69,9 @@ class Macaulay2 < Formula
   def install
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
+
+    # c.f. https://github.com/Macaulay2/M2/issues/2682
+    inreplace "M2/Macaulay2/d/CMakeLists.txt", "M2-supervisor", "M2-supervisor quadmath" unless OS.mac?
 
     # Place the submodules, since the tarfile doesn't include them
     system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs",
@@ -124,17 +127,34 @@ index d5ddc33bc..92f700b5c 100644
 -- 
 2.34.3
 
-diff --git a/M2/Macaulay2/e/aring-zzp-ffpack.hpp b/M2/Macaulay2/e/aring-zzp-ffpack.hpp
-index 6640d39e9..0c6284700 100644
---- a/M2/Macaulay2/e/aring-zzp-ffpack.hpp
-+++ b/M2/Macaulay2/e/aring-zzp-ffpack.hpp
-@@ -9,6 +9,7 @@
+diff --git a/M2/cmake/check-libraries.cmake b/M2/cmake/check-libraries.cmake
+index ca3effff15..45e6b11c81 100644
+--- a/M2/cmake/check-libraries.cmake
++++ b/M2/cmake/check-libraries.cmake
+@@ -43,6 +43,8 @@ endif()
  
- #include <type_traits> // define bool_constant to fix issue #2347
- #include <utility>
-+#include <ratio> //fix compilation errors on some macs
- 
- #pragma GCC diagnostic push
- #pragma GCC diagnostic ignored "-Wconversion"
+ find_package(Threads	REQUIRED QUIET)
+ find_package(LAPACK	REQUIRED QUIET)
++
++set(Boost_USE_STATIC_LIBS ON)
+ find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_backtrace stacktrace_addr2line)
+ if(Boost_STACKTRACE_BACKTRACE_FOUND)
+   set(Boost_stacktrace_lib "Boost::stacktrace_backtrace")
 -- 
-2.36.1
+2.38.1
+
+diff --git a/M2/Macaulay2/packages/Topcom.m2 b/M2/Macaulay2/packages/Topcom.m2
+index 15832adfb1..e9af682733 100644
+--- a/M2/Macaulay2/packages/Topcom.m2
++++ b/M2/Macaulay2/packages/Topcom.m2
+@@ -317,7 +317,7 @@ topcomIsTriangulation(Matrix, List) := Boolean => opts -> (Vin, T) -> (
+       << "Index sets do not correspond to full-dimensional simplices" << endl;
+       return false;
+    );
+-   (outfile, errfile) := callTopcom("points2nflips --checktriang -v", {topcomPoints(V, Homogenize=>false), [], T });
++   (outfile, errfile) := callTopcom("points2nflips --checktriang --memopt -v", {topcomPoints(V, Homogenize=>false), [], T });
+    not match("not valid", get errfile)
+ )
+ 
+-- 
+2.38.1
