@@ -30,7 +30,7 @@ class Normaliz < Formula
     ENV.cxx11
     if OS.mac?
       libomp = Formula["libomp"]
-      ENV["OPENMP_CXXFLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
+      ENV["OPENMP_CXXFLAGS"] = "-Xpreprocessor -fopenmp -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
     else
       ENV["OPENMP_CXXFLAGS"] = "-fopenmp"
     end

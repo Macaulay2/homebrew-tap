@@ -29,8 +29,8 @@ class Csdp < Formula
     inreplace "Makefile", /-ansi/, ""
     if OS.mac?
       libomp = Formula["libomp"]
-      ENV["OpenMP_C_FLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include}"
-      ENV["OpenMP_C_LDLIBS"] = "-L#{libomp.opt_lib}\ -lomp"
+      ENV["OpenMP_C_FLAGS"] = "-Xpreprocessor -fopenmp -I#{libomp.opt_include}"
+      ENV["OpenMP_C_LDLIBS"] = "-L#{libomp.opt_lib} -lomp"
       ENV["LA_LIBRARIES"] = "-framework Accelerate"
     else
       ENV["OpenMP_C_FLAGS"] = "-fopenmp"

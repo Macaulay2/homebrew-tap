@@ -32,7 +32,7 @@ class FflasFfpack < Formula
     ENV.cxx11
     if OS.mac?
       libomp = Formula["libomp"]
-      ENV["OMPFLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
+      ENV["OMPFLAGS"] = "-Xpreprocessor -fopenmp -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
     else
       ENV["OMPFLAGS"] = "-fopenmp"
     end

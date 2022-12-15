@@ -26,7 +26,7 @@ class Msolve < Formula
   def install
     if OS.mac?
       libomp = Formula["libomp"]
-      ENV["OPENMP_CFLAGS"] = "-Xpreprocessor\ -fopenmp\ -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
+      ENV["OPENMP_CFLAGS"] = "-Xpreprocessor -fopenmp -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
     end
 
     system "autoreconf", "-vif"
