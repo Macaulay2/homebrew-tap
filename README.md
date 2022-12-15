@@ -33,13 +33,25 @@ In particular, help is needed for adding better testing to the existing formulae
 and moving them to [homebrew/core](https://github.com/Homebrew/homebrew-core).
 
 Before submitting a [pull request](https://docs.brew.sh/How-To-Open-a-Homebrew-Pull-Request),
-make sure that it satisfies Homebrew's style guidelines with `brew style Macaulay2/tap`
+make sure that it satisfies Homebrew's style guidelines with
+```
+brew style Macaulay2/tap
+```
 and that the changed formula can be bottled by running:
 ```
 brew install --verbose --build-bottle Macaulay2/tap/<formula>
 ```
 You can use this [Docker environment](https://github.com/Macaulay2/M2/tree/master/M2/BUILD/docker/brew)
-for testing the formulae in a controlled environment.
+for testing the formulae in a controlled environment. Afterwards, you can audit the formula with:
+```
+brew audit Macaulay2/tap
+```
+
+## Bottling
+Pre-built Homebrew "bottles", which may be used instead of building from source,
+are built using GitHub Actions for Linux and macOS x86_64 systems.
+See the [wiki](https://github.com/Macaulay2/homebrew-tap/wiki) for information
+about bottling Macaulay2 and its dependencies for different architectures.
 
 The formula from which the Macaulay2 bottle on this tap is built uses the
 [CMake build system](https://github.com/Macaulay2/M2/blob/master/M2/INSTALL-CMake.md).
