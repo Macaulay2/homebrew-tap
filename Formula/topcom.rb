@@ -9,6 +9,7 @@ class Topcom < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/topcom-1.1.2_5"
+    sha256 cellar: :any, arm64_monterey: "233d55e9b07d3aca283ad6dc22c6dadc3826bc4d778efd29ff8b05fe0f067a03"
     sha256 cellar: :any, monterey:     "efab76d0cad36aa7c24e4c9024ae0e897a4727b16b04017b36261db569ac8664"
     sha256 cellar: :any, big_sur:      "32499f758f1aad40512fb7a15a0ad6699bc3fea9cfede7a4a13af96cd23acc96"
     sha256 cellar: :any, catalina:     "33861026c46157d77ca7989ef705385586724b0f1ab923dc0039ad2a5054a824"
