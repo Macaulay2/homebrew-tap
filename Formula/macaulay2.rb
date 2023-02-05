@@ -9,6 +9,10 @@ class Macaulay2 < Formula
     url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.21.tar.gz"
     sha256 "1923da43b94675b5f0f05dbde111c5d90c810a41c99f078b6917477bda5ef527"
     patch :DATA
+    patch do
+      url "https://github.com/Macaulay2/M2/commit/c4bf16f3278118ff1b6fdf20d4ad68441f4b26c5.patch?full_index=1"
+      sha256 "65d2ef4af3b404ccf8d7f5fd7d4991d6c9ff437225806322ccc00841a45061d9"
+    end
   end
 
   bottle do
