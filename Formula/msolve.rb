@@ -55,6 +55,6 @@ class Msolve < Formula
       x8*x9-9,
       x0+x1+x2+x3+x4+x5+x6+x7+x8+1
     EOS
-    system "msolve", "-f", "eco10-31.ms"
+    system "#{bin}/msolve", "-f", "eco10-31.ms"
   end
 end
