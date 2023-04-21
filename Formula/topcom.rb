@@ -7,12 +7,10 @@ class Topcom < Formula
   revision 6
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/topcom-1.1.2_5"
-    sha256 cellar: :any, arm64_monterey: "233d55e9b07d3aca283ad6dc22c6dadc3826bc4d778efd29ff8b05fe0f067a03"
-    sha256 cellar: :any, monterey:       "efab76d0cad36aa7c24e4c9024ae0e897a4727b16b04017b36261db569ac8664"
-    sha256 cellar: :any, big_sur:        "32499f758f1aad40512fb7a15a0ad6699bc3fea9cfede7a4a13af96cd23acc96"
-    sha256 cellar: :any, catalina:       "33861026c46157d77ca7989ef705385586724b0f1ab923dc0039ad2a5054a824"
-    sha256               x86_64_linux:   "dc4297dd06d343181355aafcb5dfe2ceb8e51382852e9cde8a66adbea3698b0a"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/topcom-1.1.2_6"
+    sha256 cellar: :any,                 monterey:     "123255b73771b5f28b0074b8569877adc509aea99f908cb32af88338a69ce2b4"
+    sha256 cellar: :any,                 big_sur:      "e4b35050590e7639375aff7a20adb6fc863fccc1ad08e57c2988d8dbbb0aac34"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "1acd391b45a89bc3a8368ca7a0fe0b1ed542da6ade9c82573232b995fab7a4e7"
   end
 
   depends_on "autoconf" => :build
