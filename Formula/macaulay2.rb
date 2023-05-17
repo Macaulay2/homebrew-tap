@@ -2,17 +2,13 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
+  version "1.22-rc1"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
 
   stable do
-    url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.21.tar.gz"
-    sha256 "1923da43b94675b5f0f05dbde111c5d90c810a41c99f078b6917477bda5ef527"
+    url "https://github.com/Macaulay2/M2/archive/refs/heads/pre-master.tar.gz"
+    sha256 "9de12885223d002b86479595fb31e5a4cfdb2bbbdebdda542ca8cd996fb30f3a"
     patch :DATA
-    patch do
-      url "https://github.com/Macaulay2/M2/commit/c4bf16f3278118ff1b6fdf20d4ad68441f4b26c5.patch?full_index=1"
-      sha256 "65d2ef4af3b404ccf8d7f5fd7d4991d6c9ff437225806322ccc00841a45061d9"
-    end
   end
 
   bottle do
@@ -25,11 +21,6 @@ class Macaulay2 < Formula
 
   head do
     url "https://github.com/Macaulay2/M2/archive/refs/heads/master.tar.gz"
-  end
-
-  unless OS.mac?
-    fails_with gcc: "4"
-    fails_with gcc: "5"
   end
 
   depends_on "bison" => :build
@@ -68,9 +59,13 @@ class Macaulay2 < Formula
   depends_on "lrs" => :recommended
   depends_on "nauty" => :recommended
   depends_on "normaliz" => :recommended
+  depends_on "python@3.10" => :recommended
   depends_on "topcom" => :recommended
 
   def install
+    # Only for release candidate
+    inreplace "M2/VERSION", "1.21", "1.22"
+
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
@@ -165,3 +160,22 @@ index 15832adfb1..e9af682733 100644
  
 -- 
 2.38.1
+
+diff --git a/M2/Macaulay2/e/CMakeLists.txt b/M2/Macaulay2/e/CMakeLists.txt
+index ce702082fe..bd23b68304 100644
+--- a/M2/Macaulay2/e/CMakeLists.txt
++++ b/M2/Macaulay2/e/CMakeLists.txt
+@@ -359,10 +359,6 @@ if(EIGEN3_FOUND)
+   target_link_libraries(M2-engine PUBLIC Eigen3::Eigen)
+ endif()
+ 
+-if(OpenMP_FOUND)
+-  target_link_libraries(M2-engine PUBLIC OpenMP::OpenMP_CXX)
+-endif()
+-
+ # Compiler warning flags
+ target_compile_options(M2-engine PRIVATE
+   -Wno-cast-qual # FIXME
+-- 
+2.40.1
+
