@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, macos-11, macos-12, macos-13]
+        os: [ubuntu-latest, macos-11, macos-12, macos-13]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Homebrew
@@ -29,11 +29,6 @@ jobs:
       - name: Install Homebrew Bundler RubyGems
         if: steps.cache.outputs.cache-hit != 'true'
         run: brew install-bundler-gems
-
-      # remove this when the Xcode 14 linker on Monterey is fixed
-      - name: Set Xcode version (workaround for Monterey bug)
-        if: matrix.os == 'macos-12'
-        run: sudo xcode-select -s "/Applications/Xcode_13.4.app"
 
       # query whether all dependencies are bottled
       - run: brew unbottled Macaulay2
