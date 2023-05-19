@@ -6,15 +6,6 @@ class Mpsolve < Formula
   license "GPL-3.0-only"
   revision 4
 
-  bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mpsolve-3.2.1_4"
-    sha256 cellar: :any,                 arm64_monterey: "cef92986f98ef651d1ca81619944547d9b49b3e649fe6edbb919032378d68cb9"
-    sha256 cellar: :any,                 big_sur:        "44e44aaf82cbb84a46f902b276926e3aee8035b8296ca89b0cc3473517eea2c1"
-    sha256 cellar: :any,                 catalina:       "4f5807e0ec5c5b340125f2b45df9ac3bd334ada899a7377cb8a2d2eef7774cb5"
-    sha256 cellar: :any,                 monterey:       "51546f47c8affd0842f0c32a42c362b9281d6e3e16ca2eaf28a9f0b7257fe17f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "7a3840be8c6d6b10b0bb00cff20a2206e0be42b501ccadfd26d60083f9a66447"
-  end
-
   unless OS.mac?
     fails_with gcc: "4"
     fails_with gcc: "5"
