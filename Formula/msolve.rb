@@ -9,6 +9,7 @@ class Msolve < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/msolve-0.4.9"
+    sha256 cellar: :any,                 ventura:      "cc358fe27e6aff09c2ea59a1b7c87ae4aa5e3656c685acfa9be5b0a02a9bc61f"
     sha256 cellar: :any,                 monterey:     "0efcec6d01fde9d2dc7ed4bf67129d2cc8e00035b5ce859de0316be14b6f9ffd"
     sha256 cellar: :any,                 big_sur:      "e584b3da5dc1f1f37eb683b74f75e730caf80bb66f3ce8e96d1daebc3bdfa068"
     sha256 cellar: :any_skip_relocation, x86_64_linux: "e3429faafdfa54eddf04003acb6856d86b969a34c58f82b6f0c4a40a9f2b86dd"

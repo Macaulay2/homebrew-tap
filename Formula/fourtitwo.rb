@@ -12,6 +12,7 @@ class Fourtitwo < Formula
     sha256 cellar: :any,                 big_sur:        "ce0d7ed1e2aef4a358e2b3961969c79cd28898357517a550120279e853e5c368"
     sha256 cellar: :any,                 catalina:       "d98a4cdf6356e5f1711969f1b06035004a16b265214dd84290797075b3457427"
     sha256 cellar: :any,                 monterey:       "5578687a70da0b4333386aa94489c405c70ce53002aead36504f1de3805598d8"
+    sha256 cellar: :any,                 ventura:        "54f7fcef9c462e0efe29f03b2f62ed867529b07ecb10282b8e07e09902be8371"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "4ac3d558537776b89e453ff69b53009686b68afaf8b9e2be076c46c576f75ba2"
   end
 
