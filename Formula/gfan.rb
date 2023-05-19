@@ -6,16 +6,6 @@ class Gfan < Formula
   license "GPL-2.0-or-later"
   revision 10
 
-  bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_10"
-    sha256 cellar: :any,                 arm64_monterey: "229e0358f1ebc66a7ad1c19c06bde99e15665a39cee27e60b59a4301e4f469c0"
-    sha256 cellar: :any,                 arm64_ventura:  "9beaf48e587b697d3430a462335839d7d3d31523fe51c2e079f68a5c5d0a5e6c"
-    sha256 cellar: :any,                 big_sur:        "0ed20db484e5f69dcbe72a5a5c28c2d430733844ee6f9f541ddc8628e407a075"
-    sha256 cellar: :any,                 catalina:       "49328ff1820ac2f7af1941e7e14825c0b54bee8c28727cb5c40287ba25d09587"
-    sha256 cellar: :any,                 monterey:       "3cee4cd7b981c9001dba1a11da927869c2792e47094e1355737b2854a79ec501"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "0ab04196c4a20e443b7789943ab399774854b93976a4c3abfa31a8e08e1202d8"
-  end
-
   if OS.mac?
     depends_on "gcc" => :build
     fails_with :clang
@@ -24,7 +14,7 @@ class Gfan < Formula
     fails_with gcc: "5"
   end
 
-  depends_on "cddlib"
+  depends_on "cddlib@0.94m"
   depends_on "gmp"
 
   patch do
@@ -38,8 +28,8 @@ class Gfan < Formula
     system "make", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
-           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib"].include}/cddlib",
-           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib"].lib}"
+           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib@0.94m"].include}/cddlib",
+           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib@0.94m"].lib}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
