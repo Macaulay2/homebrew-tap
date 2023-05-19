@@ -5,13 +5,6 @@ class Linbox < Formula
   sha256 "6d2159fd395be0298362dd37f6c696676237bc8e2757341fbc46520e3b466bcc"
   license "LGPL-2.1-or-later"
 
-  bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/linbox-1.7.0"
-    sha256 cellar: :any,                 monterey:     "6cb19cdcb31f7bed85876b47f4566c0a3b4ca7399957db57926cc4c15adb173e"
-    sha256 cellar: :any,                 big_sur:      "e0139e4c5caee0c3b52411a182e55569892a77f76c8bef04a1996122218aee38"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "feb752911c5c7156bc95400a4292b60c53ba99a2ae5de57f2e04fe25aea648c4"
-  end
-
   head do
     url "https://github.com/linbox-team/linbox.git", using: :git, branch: "master"
   end
