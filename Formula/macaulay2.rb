@@ -13,10 +13,11 @@ class Macaulay2 < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.22-rc1"
-    sha256 cellar: :any, ventura:      "970ed1d8d60254ce2c0fa9fc133e7dcb422a8c055e0488c4e3d18d7c9421069f"
-    sha256 cellar: :any, monterey:     "9f861038eec762f006360b0358ed2b307cf2d55a27b7b1a3977ab76f19351b8b"
-    sha256 cellar: :any, big_sur:      "511f4bd73d177fa08f60fde56bc202cdd1df866e620aca7fbdf7f6f02d6a6dac"
-    sha256               x86_64_linux: "2cf33a26f8f1af9c79590515ae3aab6a12b66891c3f3bd78f0525ebc1fc91eda"
+    sha256 cellar: :any, arm64_ventura: "465c7af8301da7dddf2d4ee86b6632c3c9715d9df173a5098965c8b8e1ba547e"
+    sha256 cellar: :any, ventura:       "970ed1d8d60254ce2c0fa9fc133e7dcb422a8c055e0488c4e3d18d7c9421069f"
+    sha256 cellar: :any, monterey:      "9f861038eec762f006360b0358ed2b307cf2d55a27b7b1a3977ab76f19351b8b"
+    sha256 cellar: :any, big_sur:       "511f4bd73d177fa08f60fde56bc202cdd1df866e620aca7fbdf7f6f02d6a6dac"
+    sha256               x86_64_linux:  "2cf33a26f8f1af9c79590515ae3aab6a12b66891c3f3bd78f0525ebc1fc91eda"
   end
 
   head do
