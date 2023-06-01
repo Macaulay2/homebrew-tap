@@ -13,6 +13,7 @@ class CddlibAT094m < Formula
     sha256 cellar: :any,                 big_sur:        "d30a537f1144f3e980c7b843b751df5bc98c695e50a5648e78de1bac08c85488"
     sha256 cellar: :any,                 catalina:       "8f8d8d67a2bbcdda3a5b3abc38e5c697ade81c2551295285e986ec1d1640b571"
     sha256 cellar: :any,                 monterey:       "e9c869d4fa2b43577ab23e5571722864768eb960732ae39f3bb3f746627931ba"
+    sha256 cellar: :any,                 ventura:        "66dd2db5ddc8711b49bfdfff712a406061fddf7062dcec5ff92fdf5f87b44d78"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "05c6f25fe2bd2535d9ec3164e0468ce0586dd0f3fdb52ae560c28f44ed432b78"
   end
 
