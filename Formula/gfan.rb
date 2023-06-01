@@ -7,14 +7,11 @@ class Gfan < Formula
   revision 10
 
   if OS.mac?
-    depends_on "gcc" => :build
+    depends_on "gcc"
     fails_with :clang
-  else
-    fails_with gcc: "4"
-    fails_with gcc: "5"
   end
 
-  depends_on "cddlib@0.94m"
+  depends_on "cddlib"
   depends_on "gmp"
 
   patch do
@@ -28,8 +25,8 @@ class Gfan < Formula
     system "make", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
-           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib@0.94m"].include}/cddlib",
-           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib@0.94m"].lib}"
+           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib"].include}/cddlib",
+           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib"].lib}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
