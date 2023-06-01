@@ -13,6 +13,7 @@ class Gfan < Formula
     sha256 cellar: :any,                 big_sur:        "0ed20db484e5f69dcbe72a5a5c28c2d430733844ee6f9f541ddc8628e407a075"
     sha256 cellar: :any,                 catalina:       "49328ff1820ac2f7af1941e7e14825c0b54bee8c28727cb5c40287ba25d09587"
     sha256 cellar: :any,                 monterey:       "3cee4cd7b981c9001dba1a11da927869c2792e47094e1355737b2854a79ec501"
+    sha256 cellar: :any,                 ventura:        "eb2f562bc8f61065b5f633e91afdbaed1a3bf58e0591e4b82175a22ae39c1924"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "0ab04196c4a20e443b7789943ab399774854b93976a4c3abfa31a8e08e1202d8"
   end
 
