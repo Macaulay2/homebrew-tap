@@ -162,21 +162,19 @@ index 15832adfb1..e9af682733 100644
 -- 
 2.38.1
 
-diff --git a/M2/Macaulay2/e/CMakeLists.txt b/M2/Macaulay2/e/CMakeLists.txt
-index ce702082fe..bd23b68304 100644
---- a/M2/Macaulay2/e/CMakeLists.txt
-+++ b/M2/Macaulay2/e/CMakeLists.txt
-@@ -359,10 +359,6 @@ if(EIGEN3_FOUND)
-   target_link_libraries(M2-engine PUBLIC Eigen3::Eigen)
- endif()
+diff --git a/M2/cmake/check-libraries.cmake b/M2/cmake/check-libraries.cmake
+index b10dce3c6d..25344274e4 100644
+--- a/M2/cmake/check-libraries.cmake
++++ b/M2/cmake/check-libraries.cmake
+@@ -73,6 +73,8 @@ foreach(lang IN ITEMS C CXX)
+     string(REGEX REPLACE "^lib" "" _lib "${_lib}")
+     set(OpenMP_${lang}_LDLIBS "${OpenMP_${lang}_LDLIBS} -L${_libdir} -Wl,-rpath,${_libdir} -l${_lib}")
+   endforeach()
++  # TODO: remove when https://gitlab.kitware.com/cmake/cmake/-/issues/24966 is fixed
++  set_property(TARGET OpenMP::OpenMP_${lang} PROPERTY INTERFACE_LINK_OPTIONS "SHELL: ${OpenMP_${lang}_FLAGS}")
+ endforeach()
  
--if(OpenMP_FOUND)
--  target_link_libraries(M2-engine PUBLIC OpenMP::OpenMP_CXX)
--endif()
--
- # Compiler warning flags
- target_compile_options(M2-engine PRIVATE
-   -Wno-cast-qual # FIXME
+ if(WITH_TBB)
 -- 
 2.40.1
 
