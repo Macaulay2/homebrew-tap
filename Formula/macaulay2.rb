@@ -7,7 +7,7 @@ class Macaulay2 < Formula
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/refs/heads/pre-master.tar.gz"
-    sha256 "9de12885223d002b86479595fb31e5a4cfdb2bbbdebdda542ca8cd996fb30f3a"
+    sha256 "2de3236e59d39703e95c38921aef188313a7bcd996414f9658382ee434d04c56"
     patch :DATA
   end
 
