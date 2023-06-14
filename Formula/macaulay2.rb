@@ -2,12 +2,11 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  version "1.22-rc1"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   stable do
-    url "https://github.com/Macaulay2/M2/archive/refs/heads/pre-master.tar.gz"
-    sha256 "2de3236e59d39703e95c38921aef188313a7bcd996414f9658382ee434d04c56"
+    url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.22.tar.gz"
+    sha256 "fededb82203d93f3f6db22db97350407fc6e55e90285cc8fa89713ff21d5c0fc"
     patch :DATA
   end
 
@@ -65,9 +64,6 @@ class Macaulay2 < Formula
   depends_on "topcom" => :recommended
 
   def install
-    # Only for release candidate
-    inreplace "M2/VERSION", "1.21", "1.22"
-
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
