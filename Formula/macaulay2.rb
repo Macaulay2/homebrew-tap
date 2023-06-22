@@ -3,6 +3,7 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
+  revision 1
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.22.tar.gz"
