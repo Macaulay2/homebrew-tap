@@ -32,17 +32,13 @@ jobs:
       # query whether all dependencies are bottled
       - run: brew unbottled Macaulay2
 
-      - name: Install Homebrew Bundler RubyGems
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: brew install-bundler-gems
-
       - run: brew test-bot --only-cleanup-before
 
       - run: brew test-bot --only-setup
 
       - run: brew test-bot --only-tap-syntax
 
-      - run: brew test-bot --only-formulae --verbose
+      - run: brew test-bot --only-formulae --verbose --root-url=https://ghcr.io/v2/macaulay2/tap
         if: github.event_name == 'pull_request'
 
       - name: Upload bottles as artifact
