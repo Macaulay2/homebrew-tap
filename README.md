@@ -47,6 +47,9 @@ for testing the formulae in a controlled environment. Afterwards, you can audit 
 brew audit Macaulay2/tap
 ```
 
+When a pull request becomes green (all checks passed), then you can publish the built bottles.
+To do so, label your PR as `pr-pull` and the workflow will be triggered. Do NOT merge the PR.
+
 ## Bottling
 Pre-built Homebrew "bottles", which may be used instead of building from source,
 are built using GitHub Actions for Linux and macOS x86_64 systems.
