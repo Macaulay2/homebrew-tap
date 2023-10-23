@@ -36,7 +36,7 @@ jobs:
 
       - run: brew test-bot --only-tap-syntax
 
-      - run: brew test-bot --only-formulae --verbose
+      - run: brew test-bot --only-formulae --verbose --root-url=https://ghcr.io/v2/macaulay2/tap
         if: github.event_name == 'pull_request'
 
       - name: Upload bottles as artifact
