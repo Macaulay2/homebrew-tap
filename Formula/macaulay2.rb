@@ -3,12 +3,16 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
+  revision 2
 
   stable do
     url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.22.tar.gz"
     sha256 "fededb82203d93f3f6db22db97350407fc6e55e90285cc8fa89713ff21d5c0fc"
     patch :DATA
+    patch do
+      url "https://github.com/Macaulay2/M2/commit/84c7b9f67bfdb6b821e24546ab2dd4e2455dfdbf.patch?full_index=1"
+      sha256 "135100251be6c1217948c74c46761d7550ed30e4dc27cce6a76a45d34a362f78"
+    end
   end
 
   bottle do
