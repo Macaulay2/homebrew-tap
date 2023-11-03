@@ -8,13 +8,10 @@ class Factory < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.3.0_1"
-    sha256 cellar: :any,                 arm64_monterey: "e0fc3941eb837bc97b9d3297960328c93895373c881126d8147bc3c20d3463fe"
-    sha256 cellar: :any,                 big_sur:        "ed2877ac4b8954c5d2ca31f40abec1a94f69619fb9923aaba102c9d3ffa33494"
-    sha256 cellar: :any,                 catalina:       "4d2c9efb8385cc4c9b58fc7ae2cb825cf5e4240903d40adb42bcd62911c832e3"
-    sha256 cellar: :any,                 monterey:       "e90e826ee0b9c67d97791094ea9fc3a03fb042d65137cdf41eda5239a0c5ae75"
-    sha256 cellar: :any,                 ventura:        "654df656bdaafcf8618c2e9b7b35452cbb4dd3111d146afdb35d7edd31950777"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "2e806f1e3641beb0141719929891e2f81086e1dc3ed65f05ef6d8aa0e87b5216"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.3.0_2"
+    sha256 cellar: :any,                 ventura:      "9c3f5a9b0e22c5b28a96a51e32a1a5d699245de472c7c601b3eb4916d090502c"
+    sha256 cellar: :any,                 monterey:     "be2e9df63de0cdb620fcf39b837cd50a305b97b3a1d4c6fe47af515667e429c1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "419125bb7d3dba4dc1e6d0ee3d39a24d7553253454e49f79ef84de0bf57e2960"
   end
 
   depends_on "autoconf" => :build
