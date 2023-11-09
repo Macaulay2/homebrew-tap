@@ -179,3 +179,51 @@ index ce702082fe..bd23b68304 100644
 -- 
 2.40.1
 
+diff --git a/M2/Macaulay2/e/eigen.cpp b/M2/Macaulay2/e/eigen.cpp
+index 26cf19de66..77748d5a8c 100644
+--- a/M2/Macaulay2/e/eigen.cpp
++++ b/M2/Macaulay2/e/eigen.cpp
+@@ -29,6 +29,41 @@ using MatrixXmpRR = Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic>;
+ using MatrixXmpCC = Eigen::Matrix<std::complex<double>,Eigen::Dynamic,Eigen::Dynamic>;
+ #endif
+ 
++#ifdef _LIBCPP_VERSION
++/* workaround incompatibility between libc++'s implementation of complex and
++ * mpreal
++ */
++namespace eigen_mpfr {
++inline Real abs(const Complex &x) { return hypot(x.real(), x.imag()); }
++inline Complex sqrt(const Complex &x)
++{
++  Real a = abs(x);
++  const Real &xr = x.real();
++  const Real &xi = x.imag();
++  if (xi >= 0) { return Complex(sqrt((a + xr) / 2), sqrt((a - xr) / 2)); }
++  else { return Complex(sqrt((a + xr) / 2), -sqrt((a - xr) / 2)); }
++}
++inline std::complex<Real> operator/(const Complex &lhs, const Complex &rhs)
++{
++  const Real &lhsr = lhs.real();
++  const Real &lhsi = lhs.imag();
++  const Real &rhsr = rhs.real();
++  const Real &rhsi = rhs.imag();
++  Real normrhs = rhsr*rhsr+rhsi*rhsi;
++  return Complex((lhsr * rhsr + lhsi * rhsi) / normrhs,
++                 (lhsi * rhsr - lhsr * rhsi) / normrhs);
++}
++inline std::complex<Real> operator*(const Complex &lhs, const Complex &rhs)
++{
++  const Real &lhsr = lhs.real();
++  const Real &lhsi = lhs.imag();
++  const Real &rhsr = rhs.real();
++  const Real &rhsi = rhs.imag();
++  return Complex(lhsr * rhsr - lhsi * rhsi, lhsi * rhsr + lhsr * rhsi);
++}
++};  // namespace eigen_mpfr
++#endif
++
+ namespace EigenM2 {
+ 
+ #ifdef NO_LAPACK
+--
+2.40.1
