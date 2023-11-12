@@ -8,7 +8,6 @@ class Macaulay2 < Formula
   stable do
     url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.22.tar.gz"
     sha256 "fededb82203d93f3f6db22db97350407fc6e55e90285cc8fa89713ff21d5c0fc"
-    patch :DATA
     patch do
       url "https://github.com/Macaulay2/M2/commit/84c7b9f67bfdb6b821e24546ab2dd4e2455dfdbf.patch?full_index=1"
       sha256 "135100251be6c1217948c74c46761d7550ed30e4dc27cce6a76a45d34a362f78"
@@ -23,7 +22,7 @@ class Macaulay2 < Formula
   end
 
   head do
-    url "https://github.com/Macaulay2/M2/archive/refs/heads/master.tar.gz"
+    url "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
   end
 
   depends_on "bison" => :build
@@ -64,6 +63,8 @@ class Macaulay2 < Formula
   depends_on "normaliz" => :recommended
   depends_on "python@3.10" => :recommended
   depends_on "topcom" => :recommended
+
+  patch :DATA
 
   def install
     # Don't print the shims prefix path
