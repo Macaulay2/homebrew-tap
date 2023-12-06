@@ -2,9 +2,8 @@ class Macaulay2Common < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   url "https://github.com/Macaulay2/M2-emacs.git", using: :git, revision: "5029b532a2738d476fd685ac8d57324133c6d83e"
-  version "1.20"
+  version "1.22"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-common-1.20_1"
@@ -15,17 +14,17 @@ class Macaulay2Common < Formula
 
   keg_only "it only installs documentation for macaulay2/tap/M2"
 
-  resource "v1.20" do
-    url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.20_2/macaulay2-1.20_2.big_sur.bottle.tar.gz"
-    sha256 "8e840e42d134e094d0b854d7c934f44ec2ceb465859158830d03ca1cc5e850a0"
+  resource "v1.22" do
+    url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.22_2/macaulay2-1.22_2.ventura.bottle.tar.gz"
+    sha256 "6f520730827d921b2f05719c43f5d260968490ab73b2240d99cc79f0a8d408b9"
   end
 
   def install
-    resource("v1.20").stage buildpath
+    resource("v1.22").stage buildpath
     # nothing from the M2-emacs repository is actually used,
     # but brew requires at least one url, so I gave it one.
-    mv buildpath/"1.20_2/share", prefix
-    mv buildpath/"1.20_2/lib",   prefix
+    mv buildpath/"1.22_2/share", prefix
+    mv buildpath/"1.22_2/lib",   prefix
     rm_rf share/"emacs"
   end
 
