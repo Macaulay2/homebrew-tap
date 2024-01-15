@@ -76,8 +76,7 @@ class Macaulay2 < Formula
     inreplace "M2/Macaulay2/d/CMakeLists.txt", "M2-supervisor", "M2-supervisor quadmath" unless OS.mac?
 
     # Place the submodules, since the tarfile doesn't include them
-    system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs",
-           "--branch", "main"
+    system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs"
     system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
     system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
     system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "M2/submodules/mathicgb"
