@@ -2,19 +2,11 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.23-rc1.tar.gz"
+  sha256 "855ee4453e5c6f346e0f248d2ebee8d0b35d806caeeab34584d21c4bc9046f32"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
-
-  stable do
-    url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.22.tar.gz"
-    sha256 "fededb82203d93f3f6db22db97350407fc6e55e90285cc8fa89713ff21d5c0fc"
-    patch do
-      url "https://github.com/Macaulay2/M2/commit/84c7b9f67bfdb6b821e24546ab2dd4e2455dfdbf.patch?full_index=1"
-      sha256 "135100251be6c1217948c74c46761d7550ed30e4dc27cce6a76a45d34a362f78"
-    end
-  end
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.22_2"
@@ -175,53 +167,4 @@ index ce702082fe..bd23b68304 100644
  target_compile_options(M2-engine PRIVATE
    -Wno-cast-qual # FIXME
 -- 
-2.40.1
-
-diff --git a/M2/Macaulay2/e/eigen.cpp b/M2/Macaulay2/e/eigen.cpp
-index 26cf19de66..77748d5a8c 100644
---- a/M2/Macaulay2/e/eigen.cpp
-+++ b/M2/Macaulay2/e/eigen.cpp
-@@ -29,6 +29,41 @@ using MatrixXmpRR = Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic>;
- using MatrixXmpCC = Eigen::Matrix<std::complex<double>,Eigen::Dynamic,Eigen::Dynamic>;
- #endif
- 
-+#ifdef _LIBCPP_VERSION
-+/* workaround incompatibility between libc++'s implementation of complex and
-+ * mpreal
-+ */
-+namespace eigen_mpfr {
-+inline Real abs(const Complex &x) { return hypot(x.real(), x.imag()); }
-+inline Complex sqrt(const Complex &x)
-+{
-+  Real a = abs(x);
-+  const Real &xr = x.real();
-+  const Real &xi = x.imag();
-+  if (xi >= 0) { return Complex(sqrt((a + xr) / 2), sqrt((a - xr) / 2)); }
-+  else { return Complex(sqrt((a + xr) / 2), -sqrt((a - xr) / 2)); }
-+}
-+inline std::complex<Real> operator/(const Complex &lhs, const Complex &rhs)
-+{
-+  const Real &lhsr = lhs.real();
-+  const Real &lhsi = lhs.imag();
-+  const Real &rhsr = rhs.real();
-+  const Real &rhsi = rhs.imag();
-+  Real normrhs = rhsr*rhsr+rhsi*rhsi;
-+  return Complex((lhsr * rhsr + lhsi * rhsi) / normrhs,
-+                 (lhsi * rhsr - lhsr * rhsi) / normrhs);
-+}
-+inline std::complex<Real> operator*(const Complex &lhs, const Complex &rhs)
-+{
-+  const Real &lhsr = lhs.real();
-+  const Real &lhsi = lhs.imag();
-+  const Real &rhsr = rhs.real();
-+  const Real &rhsi = rhs.imag();
-+  return Complex(lhsr * rhsr - lhsi * rhsi, lhsi * rhsr + lhsr * rhsi);
-+}
-+};  // namespace eigen_mpfr
-+#endif
-+
- namespace EigenM2 {
- 
- #ifdef NO_LAPACK
---
 2.40.1
