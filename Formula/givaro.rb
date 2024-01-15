@@ -5,6 +5,8 @@ class Givaro < Formula
   sha256 "865e228812feca971dfb6e776a7bc7ac959cf63ebd52b4f05492730a46e1f189"
   license "CECILL-B"
 
+  head "https://github.com/linbox-team/givaro.git", using: :git
+
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.2.0"
     sha256 cellar: :any,                 arm64_monterey: "a2dd485809f7d5e1f9955711478ff277480d9928c953b5521b06bfb617e40076"
@@ -13,10 +15,6 @@ class Givaro < Formula
     sha256 cellar: :any,                 monterey:       "b4b449126141f3b36d291ffd79fb0208e75b5089e856dbe931335dfff33349d2"
     sha256 cellar: :any,                 ventura:        "0419a9dbce7975edd835923529d35be237de0b1b08b0c2d09daf025a0535c467"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "909af3d560a72e11db51d01d739830f0a1a745450811986d41f21d41d236917d"
-  end
-
-  head do
-    url "https://github.com/linbox-team/givaro.git", using: :git
   end
 
   depends_on "autoconf" => :build

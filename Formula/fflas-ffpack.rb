@@ -5,6 +5,8 @@ class FflasFfpack < Formula
   sha256 "dafb4c0835824d28e4f823748579be6e4c8889c9570c6ce9cce1e186c3ebbb23"
   license "LGPL-2.1-or-later"
 
+  head "https://github.com/linbox-team/fflas-ffpack.git", using: :git
+
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fflas-ffpack-2.5.0"
     sha256 cellar: :any_skip_relocation, arm64_monterey: "09243154036963bfe61d886796bafca1b124412a573ae8cc07c881aa2eb76d32"
@@ -13,10 +15,6 @@ class FflasFfpack < Formula
     sha256 cellar: :any_skip_relocation, monterey:       "a37de2b23f8f07d7ab0a70e97e9a2a2449b20d84845900b2b7c238297caa5a47"
     sha256 cellar: :any_skip_relocation, ventura:        "3fd0602f6fca2b547a7cb170ad9a49d1d9d0f0cb7be058f4ec31eac129a0207f"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "144a8bb935684cfc3e836dc09d6681dcb31f5a3ca9adabf0aa9681862b9d7f92"
-  end
-
-  head do
-    url "https://github.com/linbox-team/fflas-ffpack.git", using: :git
   end
 
   depends_on "autoconf" => :build
