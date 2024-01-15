@@ -3,12 +3,19 @@ on:
   pull_request_target:
     types:
       - labeled
+
 env:
   HOMEBREW_NO_INSTALL_FROM_API: 1
+
+permissions:
+  actions: read
+  contents: write
+  pull-requests: write
+
 jobs:
   pr-pull:
     if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
