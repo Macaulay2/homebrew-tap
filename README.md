@@ -62,4 +62,4 @@ The formula from which the Macaulay2 bottle on this tap is built uses the
 ## Bug Reports
 For issues concerning Macaulay2 itself, file an issue on the
 [upstream repository](https://github.com/Macaulay2/M2/issues).
-If the problem is specific to this build, please include the output of `brew config` in the issue.
+If the problem is specific to this build, please open an issue here and include the output of `brew config` and `brew doctor`. You can also try visiting the [wiki](https://github.com/Macaulay2/homebrew-tap/wiki) for debugging information and workarounds for common problems.
