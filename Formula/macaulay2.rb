@@ -18,6 +18,7 @@ class Macaulay2 < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.22_2"
+    sha256 cellar: :any, arm64_sonoma: "05e825ec9f41cc9d686c2b5518831ca69c9d1956f80e518e02e34ab807f6819e"
     sha256 cellar: :any, ventura:      "6f520730827d921b2f05719c43f5d260968490ab73b2240d99cc79f0a8d408b9"
     sha256 cellar: :any, monterey:     "76b58eacb443edb17bada3e108a8e42f568130ffe06d662ee11c4a1d767c6507"
     sha256               x86_64_linux: "3e64bb7cf1677029e5374c172c81b6a8b556e762d6d3f2c3465a4c9706414f02"
