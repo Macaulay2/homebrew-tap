@@ -1,10 +1,10 @@
 class Mathicgb < Formula
   desc "Compute (signature) Groebner bases using the fast datastructures from mathic"
   homepage "https://github.com/Macaulay2/mathicgb"
-  url "https://github.com/mahrud/mathicgb.git", using: :git, branch: "master"
+  url "https://github.com/Macaulay2/mathicgb.git", using: :git, branch: "master"
   version "1.0"
   license "GPL-2.0-or-later"
-  revision 8
+  revision 9
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathicgb-1.0_8"
@@ -24,7 +24,7 @@ class Mathicgb < Formula
   depends_on "mathic"
   depends_on "memtailor"
 
-  depends_on "tbb@2020" => :recommended
+  depends_on "tbb" => :recommended
 
   def install
     ENV.cxx11
@@ -32,7 +32,7 @@ class Mathicgb < Formula
     args << "-DBUILD_TESTING=off"
     args << "-DCMAKE_PREFIX_PATH=#{Formula["memtailor"].prefix};#{Formula["mathic"].prefix}"
     args << "-Denable_mgb=off" if build.without?("mgb")
-    args << "-Dwith_tbb=on" << "-DTBB_ROOT_DIR=#{Formula["tbb@2020"].prefix}" if build.with?("tbb@2020")
+    args << "-Dwith_tbb=on" << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}" if build.with?("tbb")
     system "cmake", ".", *args
     system "make", "install"
   end
