@@ -4,7 +4,7 @@ class Mathic < Formula
   url "https://github.com/Macaulay2/mathic.git", using: :git, branch: "master"
   version "1.0"
   license "LGPL-2.0-or-later"
-  revision 4
+  revision 5
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathic-1.0_4"
