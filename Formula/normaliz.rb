@@ -1,8 +1,8 @@
 class Normaliz < Formula
   desc "Affine monoids, vector configurations, lattice polytopes, and rational cones"
   homepage "https://www.normaliz.uni-osnabrueck.de/"
-  url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.1/normaliz-3.10.1.tar.gz"
-  sha256 "365e1d1e2a338dc4df1947a440e606bb66dd261307e617905e8eca64eaafcf6e"
+  url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.2/normaliz-3.10.2.tar.gz"
+  sha256 "0f649a8eae5535c18df15e8d35fc055fd0d7dbcbdd451e8876f4a47061481f07"
   license "GPL-3.0-only"
 
   bottle do
@@ -24,8 +24,8 @@ class Normaliz < Formula
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
 
-  depends_on "flint" => :optional
-  depends_on "nauty" => :optional
+  depends_on "flint" => :recommended
+  depends_on "nauty" => :recommended
 
   def install
     ENV.cxx11
