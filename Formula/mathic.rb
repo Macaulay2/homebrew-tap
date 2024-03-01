@@ -7,9 +7,11 @@ class Mathic < Formula
   revision 5
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathic-1.0_4"
-    sha256 cellar: :any_skip_relocation, catalina:     "6fcbcbd3b32224ba3b2cfa82590207484ad288c6fe785f9a3b855cf8ab1f9d61"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "2de9c4f19a7fc5e8697d086987c6a46bad8c6bb3b66708d827ce00a829c71455"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathic-1.0_5"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "b5c1535522f276c53035d7f5418674df0de88edfc3589b4a9209fb381e38c111"
+    sha256 cellar: :any_skip_relocation, ventura:      "8dca8a49ac1ef9e70350a3e8c79cf53ae3b4510914edc8061ab61952531fc296"
+    sha256 cellar: :any_skip_relocation, monterey:     "3de8fc2811cfdea267d642378dcbd42afc90be289021a64ae22ae9e4f31f6a62"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "b798aaa001e7c54e73dd94e2363f13e1a28632f1d5e64b1f8ace45b01f472b55"
   end
 
   unless OS.mac?
