@@ -6,22 +6,6 @@ class Mpsolve < Formula
   license "GPL-3.0-only"
   revision 4
 
-  bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mpsolve-3.2.1_4"
-    sha256 cellar: :any,                 arm64_monterey: "cef92986f98ef651d1ca81619944547d9b49b3e649fe6edbb919032378d68cb9"
-    sha256 cellar: :any,                 big_sur:        "44e44aaf82cbb84a46f902b276926e3aee8035b8296ca89b0cc3473517eea2c1"
-    sha256 cellar: :any,                 catalina:       "4f5807e0ec5c5b340125f2b45df9ac3bd334ada899a7377cb8a2d2eef7774cb5"
-    sha256 cellar: :any,                 monterey:       "51546f47c8affd0842f0c32a42c362b9281d6e3e16ca2eaf28a9f0b7257fe17f"
-    sha256 cellar: :any,                 ventura:        "17eeabbdbb5771997d6384490db3fb5968e173b24429dab156faba6c4d147124"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "7a3840be8c6d6b10b0bb00cff20a2206e0be42b501ccadfd26d60083f9a66447"
-  end
-
-  unless OS.mac?
-    fails_with gcc: "4"
-    fails_with gcc: "5"
-    depends_on "gcc@9" => :build
-  end
-
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
@@ -40,6 +24,9 @@ class Mpsolve < Formula
     url "https://github.com/robol/MPSolve/commit/3a890878239717e1d5d23f574e4c0073a7249f7a.patch?full_index=1"
     sha256 "b2c5e037bed14568d3692cf7270428614f2766bcaf0b2fb06a7f178497671efa"
   end
+
+  # see https://github.com/robol/MPSolve/issues/38
+  patch :DATA
 
   def install
     ENV.cxx11
@@ -61,3 +48,21 @@ class Mpsolve < Formula
     system "true"
   end
 end
+
+__END__
+
+diff --git a/include/mps/private/system/memory-file-stream.h b/include/mps/private/system/memory-file-stream.h
+index 0029bc9..a11b998 100644
+--- a/include/mps/private/system/memory-file-stream.h
++++ b/include/mps/private/system/memory-file-stream.h
+@@ -47,6 +47,8 @@ MPS_END_DECLS
+ 
+ #ifdef __cplusplus
+ 
++#undef isnan
++#undef isinf
+ #include <iostream>
+ #include <sstream>
+
+--
+2.40.1
