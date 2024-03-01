@@ -8,6 +8,7 @@ class Topcom < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/topcom-1.1.2_6"
+    sha256 cellar: :any,                 arm64_sonoma:   "e601d9582445128c59a8da5d9f787a151ded8141b1d511719eaca977e65c2bb5"
     sha256 cellar: :any,                 arm64_monterey: "5651a74747628e62cb4786aef24a69af07ed32af38449f47d40a232835fca578"
     sha256 cellar: :any,                 arm64_ventura:  "3a7be1f7cb674b1ab31ebd06c8a6f93d112f93bbad3c0ef731e5e928f1af28e5"
     sha256 cellar: :any,                 ventura:        "6c8f018724d0b885ebe44507e9698f1e88d9ae7e39f4540d89809bd776511949"
@@ -24,6 +25,9 @@ class Topcom < Formula
   depends_on "gmp"
 
   def install
+    # An error occurs when the C++ compiler is detected as "clang++ -std=gnu++11"
+    inreplace "external/Makefile", "CC=${CXX}", "CC=\"${CXX}\""
+
     # ENV.deparallelize
     system "autoreconf", "-vif"
     system "./configure",
