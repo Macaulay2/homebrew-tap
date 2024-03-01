@@ -8,6 +8,7 @@ class Fourtitwo < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fourtitwo-1.6.9_1"
+    sha256 cellar: :any,                 arm64_sonoma:   "e71c07975a3bc84cf985c0b14a04b8132c43ebb21fb05d5398eb54f79c9f43fe"
     sha256 cellar: :any,                 arm64_monterey: "e03d318e30f74cb384b2abb62301b6ba6974bdfe95ef93484e3fc93cc80f4388"
     sha256 cellar: :any,                 big_sur:        "ce0d7ed1e2aef4a358e2b3961969c79cd28898357517a550120279e853e5c368"
     sha256 cellar: :any,                 catalina:       "d98a4cdf6356e5f1711969f1b06035004a16b265214dd84290797075b3457427"

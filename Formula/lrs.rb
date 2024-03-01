@@ -9,6 +9,7 @@ class Lrs < Formula
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/lrs-070_1"
+    sha256 cellar: :any,                 arm64_sonoma:   "1fbe7c09697117f15dd86d256ac611037df75b5b6366a2a5a0f52229f6c2b26e"
     sha256 cellar: :any,                 arm64_monterey: "5bddcdb5ddc8e6160c3a9ea56d020effcd6380338a1aa51450d37cdd68c08b31"
     sha256 cellar: :any,                 big_sur:        "231d4cd321a7bdfd3b3cdfb3e90e90f3a1b582dcfbfb448106ed53035e4dfad0"
     sha256 cellar: :any,                 catalina:       "e25ae0deee94da105d7c4d848e6c77c7222df60b36847eda67d2152ee45afc10"
