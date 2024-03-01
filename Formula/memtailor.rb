@@ -7,9 +7,11 @@ class Memtailor < Formula
   revision 10
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/memtailor-1.0_9"
-    sha256 cellar: :any_skip_relocation, catalina:     "b018381c93d5e16f1f6d60993d3cc91c898d79055f53c912059b9fd9611e01c7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "e704b05c681e77b63eb2cf80c0980bb3fd86cdd47f28ad5fb2ff32d126d5b4a6"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/memtailor-1.0_10"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "8625ebc5b505c45a6791b9e37135f77e9fb5581c872dc67e428de90a8267ab72"
+    sha256 cellar: :any_skip_relocation, ventura:      "f76bd8f10b3e75f57af082550556c1d775db0d3988caa758242749cba3d15edd"
+    sha256 cellar: :any_skip_relocation, monterey:     "17d26b8168d0b0e89957fc7980153603a8dcd7f9cdc2db36053321b51da4b00b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "d6d00ef110f20f2452fdbac2a71ffefa02e221e37ab45ec23d736fd19b3014d4"
   end
 
   unless OS.mac?
