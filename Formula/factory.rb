@@ -7,11 +7,11 @@ class Factory < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.3.0_2"
-    sha256 cellar: :any,                 arm64_sonoma: "ad0f46c69873694c8d219be4dc8c5b349caba98cdedd870f166a83ecc4aece11"
-    sha256 cellar: :any,                 ventura:      "9c3f5a9b0e22c5b28a96a51e32a1a5d699245de472c7c601b3eb4916d090502c"
-    sha256 cellar: :any,                 monterey:     "be2e9df63de0cdb620fcf39b837cd50a305b97b3a1d4c6fe47af515667e429c1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "419125bb7d3dba4dc1e6d0ee3d39a24d7553253454e49f79ef84de0bf57e2960"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.3.2p15-151235c5"
+    sha256 cellar: :any,                 arm64_sonoma: "5538821c3de4448cbd611c455d6998a6d4cf369a08e3f768a6023b4543ec5232"
+    sha256 cellar: :any,                 ventura:      "3e26fbf58ec2ffba6ce6815af6c6550ccf558eaabf251c68b2dc3084eabd0340"
+    sha256 cellar: :any,                 monterey:     "c4df36b218a2bec51d6b31eeb4036938dea17f89e80a8993b33164350a480565"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "a84086efe8d46fb227e03a813051b8f3d3ab33a893d84e931fabc10c38b5e93b"
   end
 
   depends_on "autoconf" => :build
