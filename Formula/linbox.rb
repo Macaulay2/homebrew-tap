@@ -9,12 +9,11 @@ class Linbox < Formula
   head "https://github.com/linbox-team/linbox.git", using: :git, branch: "master"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/linbox-1.7.0"
-    sha256 cellar: :any,                 arm64_ventura: "b603f57c404b5b15b830ecddb81f9def82be4d57dbe88c50d5024af347842773"
-    sha256 cellar: :any,                 ventura:       "e5882e9d6f41cc2233d0f6b406cc14e813ef97dacf48098161a07dcea099df74"
-    sha256 cellar: :any,                 monterey:      "6cb19cdcb31f7bed85876b47f4566c0a3b4ca7399957db57926cc4c15adb173e"
-    sha256 cellar: :any,                 big_sur:       "e0139e4c5caee0c3b52411a182e55569892a77f76c8bef04a1996122218aee38"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "feb752911c5c7156bc95400a4292b60c53ba99a2ae5de57f2e04fe25aea648c4"
+    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/linbox-1.7.0_1"
+    sha256 cellar: :any,                 arm64_sonoma: "e2efdb9d1ed680e5756ae9e3162d208124ffcbc471f3c60abbf4aa93437ed62b"
+    sha256 cellar: :any,                 ventura:      "aa3efe72c0995118689e101c14f485bdf73ba5e8f4c2c52810d1e447d8ef4c62"
+    sha256 cellar: :any,                 monterey:     "ecefbd6696dc3233eead7b8bf864d577e2938b8894494d2ebe1224092c6cd5f7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "dc2c6b45edadc5ef7fae8ba064c018d3ac02a2849c0cac61504dd25b3fb2cc2e"
   end
 
   depends_on "autoconf" => :build
