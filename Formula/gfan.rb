@@ -7,15 +7,11 @@ class Gfan < Formula
   revision 11
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_10"
-    sha256 cellar: :any,                 arm64_sonoma:   "c320491fa6fc073fed8331ed5de841195b3c1235ff6f7c22b2eb40e7e12de454"
-    sha256 cellar: :any,                 arm64_monterey: "367389d12288f03032f98d20de2389e018932060c57f766b483e0608aa44fec9"
-    sha256 cellar: :any,                 arm64_ventura:  "9beaf48e587b697d3430a462335839d7d3d31523fe51c2e079f68a5c5d0a5e6c"
-    sha256 cellar: :any,                 big_sur:        "0ed20db484e5f69dcbe72a5a5c28c2d430733844ee6f9f541ddc8628e407a075"
-    sha256 cellar: :any,                 catalina:       "49328ff1820ac2f7af1941e7e14825c0b54bee8c28727cb5c40287ba25d09587"
-    sha256 cellar: :any,                 monterey:       "3cee4cd7b981c9001dba1a11da927869c2792e47094e1355737b2854a79ec501"
-    sha256 cellar: :any,                 ventura:        "eb2f562bc8f61065b5f633e91afdbaed1a3bf58e0591e4b82175a22ae39c1924"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "0ab04196c4a20e443b7789943ab399774854b93976a4c3abfa31a8e08e1202d8"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any,                 arm64_sonoma: "f4aa20c4b49233a6c8a68e1a751b783169797764a157d5745f73f8228c41fb62"
+    sha256 cellar: :any,                 ventura:      "aa24a98686efeb52abe9fd8c27d5d1a888c9e86303c0e53eec539ee8c195a57c"
+    sha256 cellar: :any,                 monterey:     "b92b36b01d8a2187313467b37b21793e34a89e5edd78207e685e8e0e99f23182"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "9ad2d53e029a178bd88ba7837fd216ea7b5b46f77648a034a5c7421cfb371555"
   end
 
   if OS.mac?
