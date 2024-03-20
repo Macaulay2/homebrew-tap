@@ -2,19 +2,11 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.23.tar.gz"
+  sha256 "306e3bf24514e9733a03ff8e24127b41b91fa7e593ed520651c892538c04344b"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
-
-  stable do
-    url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.23-rc1.tar.gz"
-    sha256 "855ee4453e5c6f346e0f248d2ebee8d0b35d806caeeab34584d21c4bc9046f32"
-    patch do
-      url "https://github.com/Macaulay2/M2/commit/4f4146b082b2908b4bed8e69818d8b66fa4e8d32.patch?full_index=1"
-      sha256 "ce0167d844eba1d33a7e62ec5fa951c49bb005511257fe0b25f5a6a30a98892c"
-    end
-  end
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.23-rc1_1"
