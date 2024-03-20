@@ -9,11 +9,11 @@ class Macaulay2 < Formula
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.23-rc1_1"
-    sha256 cellar: :any, arm64_sonoma: "53f9e13a29abd13f2e16a19fb86ea0a8ffdbfd7a12dc9d3becca8d1d9f80e963"
-    sha256 cellar: :any, ventura:      "5bd8aa83d21404e5f1fdff036728fdb1f27d17324d0fe2696983c2ae47025f49"
-    sha256 cellar: :any, monterey:     "a24f9e158a4b5677d6ff43377947c5b50d93f720e0af9f8f9bba2d73da5e4698"
-    sha256               x86_64_linux: "029467b231f7a376d65a624eac7bb41afc3c063f48a0dd6d32e7e4a9c2971104"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any, arm64_sonoma: "2de324956110d5c1dea1a6693fa9dfe22e45d5900093b5086983afb0468470ef"
+    sha256 cellar: :any, ventura:      "41feb1cb44721282c7b31fa26f549192f789abc1218d64107665b16571125bd9"
+    sha256 cellar: :any, monterey:     "630a4f4142e95d7d9e62dbacdfdd01dda38b46074e338da9a319a7d1071346bd"
+    sha256               x86_64_linux: "b277cb3940ebc800f57c14c2851a76e0d2eb0699e3f882db52def84f396c4a73"
   end
 
   depends_on "bison" => :build
