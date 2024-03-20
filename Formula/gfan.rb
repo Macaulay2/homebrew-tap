@@ -4,7 +4,7 @@ class Gfan < Formula
   url "https://users-math.au.dk/~jensen/software/gfan/gfan0.6.2.tar.gz"
   sha256 "a674d5e5dc43634397de0d55dd5da3c32bd358d05f72b73a50e62c1a1686f10a"
   license "GPL-2.0-or-later"
-  revision 10
+  revision 11
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/gfan-0.6.2_10"
@@ -37,11 +37,15 @@ class Gfan < Formula
   patch :DATA
 
   def install
+    linker_args = "#{ENV.cxx} -L#{Formula["cddlib"].lib} "
+    linker_args << "-static-libgcc -static-libstdc++ "
+    linker_args << "-ld_classic" if OS.mac? && DevelopmentTools.clang_build_version >= 1500
+
     system "make", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
            "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib"].include}/cddlib",
-           "CCLINKER=#{ENV.cxx} -L#{Formula["cddlib"].lib}"
+           "CCLINKER=#{linker_args}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
