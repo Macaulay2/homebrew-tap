@@ -6,11 +6,11 @@ class Macaulay2Common < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-common-1.22"
-    sha256 cellar: :any_skip_relocation, big_sur:      "07cf937af6de9653a7337a4c58c94aff8f390f5cd60231ef39b7e91b3ba05549"
-    sha256 cellar: :any_skip_relocation, monterey:     "2bc6d3176a0d741ad5a0cb521b62491842f36f2050fb9e41879ad90235ec3908"
-    sha256 cellar: :any_skip_relocation, ventura:      "8b8e5372d7b2d71ebb7e928f568e5110b8e8abbf8717d6e5de4013b5011e1f22"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "3f297ee3114e0a08ef37bc247f1a19bab1d2a42c4392700fc7bf99701afcd4fd"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "30b9480eefd0964fb6342b4d730cddd17149f4ef6ab8bc2edd14e26e384d871c"
+    sha256 cellar: :any_skip_relocation, ventura:      "8dc9fda571f4d68e28abc83bd749bb6326f9336bd5817129fdf42a160e063be2"
+    sha256 cellar: :any_skip_relocation, monterey:     "89c071f134e1b62f16fa2d396fb8eb9632b58f0ee5dda73ccf32306124f80b94"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "aaa1e33c126bf296dc4c6b17fad2ac5d18c2788a0c002033118d0d1bc3ab2120"
   end
 
   keg_only "it only installs documentation for macaulay2/tap/M2"
