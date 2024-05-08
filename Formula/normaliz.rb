@@ -4,7 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.2/normaliz-3.10.2.tar.gz"
   sha256 "0f649a8eae5535c18df15e8d35fc055fd0d7dbcbdd451e8876f4a47061481f07"
   license "GPL-3.0-only"
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.10.2_1"
@@ -40,16 +40,18 @@ class Normaliz < Formula
 
     # replace the outdated libtool that ships with normaliz
     symlink "#{Formula["libtool"].opt_bin}/libtool", "libtool"
+    with_flint = build.with? "flint"
+    with_nauty = build.with? "nauty"
 
     args = [
       "--prefix=#{prefix}",
       "--disable-shared",
       "--disable-silent-rules",
       "--disable-dependency-tracking",
+      "--without-cocoalib",
+      with_flint ? "--with-flint" : "--without-flint",
+      with_nauty ? "--with-nauty" : "--without-nauty",
     ]
-
-    args << "--with-flint" if build.with? "flint"
-    args << "--with-nauty" if build.with? "nauty"
 
     system "autoreconf", "-vif"
     system "./configure", *args
