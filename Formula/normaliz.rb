@@ -7,11 +7,11 @@ class Normaliz < Formula
   revision 2
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/normaliz-3.10.2_1"
-    sha256 cellar: :any,                 arm64_sonoma: "1db74cccd7cc744c11109e366abc74cc42329d8bc9a4ab40a83cf50163edfe34"
-    sha256 cellar: :any,                 ventura:      "d967623ffa7ebc5ae86f98338a60af877ad3512e61c7324b9c2cbc5b0222fce0"
-    sha256 cellar: :any,                 monterey:     "453f28b4ba2e9e42af7c5cd2e86d7bcab98b8ceb2a3230ce43ffcf3db38a850d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "366cb51ec5ff983d23c016f00afadbff001e458e7ec1940e8b2b93cf7e0ceaa1"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any,                 arm64_sonoma: "3d6a73000391874b63fb01c6eb107b8f9b825f9fa239ef2c0c31a6dad15ce820"
+    sha256 cellar: :any,                 ventura:      "7f20f37885e8920b78575db3e2bd3dc3d22b2877ceb282ccab0b5dd0525094a8"
+    sha256 cellar: :any,                 monterey:     "40415186d09f6c543643702491f08654ba1c1d304fdedcd6864280d75557a1ea"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "523cdfc3d3cf79504c3b8ac20e311271e3fbe054e55641d8c91e1a05c27ec4c2"
   end
 
   depends_on "autoconf" => :build
