@@ -2,8 +2,8 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.23.tar.gz"
-  sha256 "306e3bf24514e9733a03ff8e24127b41b91fa7e593ed520651c892538c04344b"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.24.05.tar.gz"
+  sha256 "63b8c9931a5cbd0b937ad6ddb81530c26f3fbe5971cc935d294772652ebcf101"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
@@ -149,21 +149,3 @@ index 15832adfb1..e9af682733 100644
  
 -- 
 2.38.1
-
-diff --git a/M2/Macaulay2/e/CMakeLists.txt b/M2/Macaulay2/e/CMakeLists.txt
-index ce702082fe..bd23b68304 100644
---- a/M2/Macaulay2/e/CMakeLists.txt
-+++ b/M2/Macaulay2/e/CMakeLists.txt
-@@ -359,10 +359,6 @@ if(EIGEN3_FOUND)
-   target_link_libraries(M2-engine PUBLIC Eigen3::Eigen)
- endif()
- 
--if(OpenMP_FOUND)
--  target_link_libraries(M2-engine PUBLIC OpenMP::OpenMP_CXX)
--endif()
--
- # Compiler warning flags
- target_compile_options(M2-engine PRIVATE
-   -Wno-cast-qual # FIXME
--- 
-2.40.1
