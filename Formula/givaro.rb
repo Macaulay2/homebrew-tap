@@ -4,6 +4,7 @@ class Givaro < Formula
   url "https://github.com/linbox-team/givaro/releases/download/v4.2.0/givaro-4.2.0.tar.gz"
   sha256 "865e228812feca971dfb6e776a7bc7ac959cf63ebd52b4f05492730a46e1f189"
   license "CECILL-B"
+  revision 1
 
   head "https://github.com/linbox-team/givaro.git", using: :git
 
@@ -23,6 +24,16 @@ class Givaro < Formula
   depends_on "libtool" => :build
 
   depends_on "gmp"
+
+  patch do
+    url "https://src.fedoraproject.org/rpms/givaro/raw/rawhide/f/218.patch"
+    sha256 "20151b77f357d8fa0205bbd238a3d74d5d414d0db2a21446fcc047530eca0c96"
+  end
+
+  patch do
+    url "https://src.fedoraproject.org/rpms/givaro/raw/rawhide/f/0001-Temporary-GCC-14-workaround.patch"
+    sha256 "4dbba14012886dcd884864edbdf7599a0ea119dd9851c846a27998ca6eba8db3"
+  end
 
   def install
     ENV.cxx11
