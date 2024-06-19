@@ -9,14 +9,11 @@ class Givaro < Formula
   head "https://github.com/linbox-team/givaro.git", using: :git
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/givaro-4.2.0"
-    sha256 cellar: :any,                 arm64_sonoma:   "58a4671838278674bf45f0caa2b100777a7ef3f70e7d83bd3e8abf70b6a37aca"
-    sha256 cellar: :any,                 arm64_monterey: "a2dd485809f7d5e1f9955711478ff277480d9928c953b5521b06bfb617e40076"
-    sha256 cellar: :any,                 big_sur:        "b755c38b4ef9c91eb0db616b6378240daed373c45400b10b518815fc21cc0e23"
-    sha256 cellar: :any,                 catalina:       "de769e6a8ff99cb7dde345b19dd9db1e31eba9e88433730e8649c9e853235f6b"
-    sha256 cellar: :any,                 monterey:       "b4b449126141f3b36d291ffd79fb0208e75b5089e856dbe931335dfff33349d2"
-    sha256 cellar: :any,                 ventura:        "0419a9dbce7975edd835923529d35be237de0b1b08b0c2d09daf025a0535c467"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "909af3d560a72e11db51d01d739830f0a1a745450811986d41f21d41d236917d"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any,                 arm64_sonoma: "c7028cc37b640518338b2fdd752c5dfac592d6118dedbd1807b3572e98107d81"
+    sha256 cellar: :any,                 ventura:      "4a3e8e8532f99f71cce50a7c8c15b341e800f6a939fe68abbbfc3c9cdad9d657"
+    sha256 cellar: :any,                 monterey:     "9e75f66645da1776fd3ebef4757dd6a9fc389d00c63d54fe064b45abd0c9fa20"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "d0ad778652e041efe91653ae57b39c057313b0cfe07ed5ac958e9ce32078f6f0"
   end
 
   depends_on "autoconf" => :build
