@@ -4,6 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.3/normaliz-3.10.3.tar.gz"
   sha256 "0aeb58fbbca362ed759f338a85e74156ed411e2846cc395f52d23ae90022ec91"
   license "GPL-3.0-only"
+  revision 1
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -15,6 +16,7 @@ class Normaliz < Formula
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
+  depends_on "diffutils" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
 
@@ -54,6 +56,7 @@ class Normaliz < Formula
 
     system "autoreconf", "-vif"
     system "./configure", *args
+    system "make", "check"
     system "make", "install"
   end
 
