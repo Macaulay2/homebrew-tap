@@ -15,6 +15,7 @@ class Normaliz < Formula
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
+  depends_on "diffutils" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
 
@@ -55,6 +56,7 @@ class Normaliz < Formula
     system "autoreconf", "-vif"
     system "./configure", *args
     system "make", "install"
+    system "make", "check" if build.bottle?
   end
 
   test do
