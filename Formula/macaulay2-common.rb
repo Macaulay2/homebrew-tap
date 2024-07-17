@@ -2,7 +2,7 @@ class Macaulay2Common < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   url "https://github.com/Macaulay2/M2-emacs.git", using: :git, revision: "e29832126afb0b153505f69eb942b0f509ac8f41"
-  version "1.23"
+  version "1.24.05"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
@@ -15,17 +15,17 @@ class Macaulay2Common < Formula
 
   keg_only "it only installs documentation for macaulay2/tap/M2"
 
-  resource "v1.23" do
-    url "https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:2de324956110d5c1dea1a6693fa9dfe22e45d5900093b5086983afb0468470ef?se=2024-03-23T06%3A30%3A00Z&sig=suoFPeqHEoPgFcxnfOs66fjA0o2afXGf4BNC%2Fjg%2Buls%3D&sp=r&spr=https&sr=b&sv=2019-12-12"
-    sha256 "2de324956110d5c1dea1a6693fa9dfe22e45d5900093b5086983afb0468470ef"
+  resource "v1.24.05" do
+    url "https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:291a38fff0ca8431a44b2f0a153d3c41b8b88d049b6e73e5206d28e4c435b458?se=2024-07-17T23%3A35%3A00Z&sig=dJwipWJQsnSEG4rkFi9b87olzkkspJTlqVKUgKJ7InY%3D&sp=r&spr=https&sr=b&sv=2019-12-12"
+    sha256 "291a38fff0ca8431a44b2f0a153d3c41b8b88d049b6e73e5206d28e4c435b458"
   end
 
   def install
-    resource("v1.23").stage buildpath
+    resource("v1.24.05").stage buildpath
     # nothing from the M2-emacs repository is actually used,
     # but brew requires at least one url, so I gave it one.
-    mv buildpath/"1.23/share", prefix
-    mv buildpath/"1.23/lib",   prefix
+    mv buildpath/"1.24.05/share", prefix
+    mv buildpath/"1.24.05/lib",   prefix
     rm_rf share/"emacs"
   end
 
