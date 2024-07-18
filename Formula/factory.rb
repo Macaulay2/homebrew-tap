@@ -6,11 +6,11 @@ class Factory < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/factory-4.3.2p15-151235c5"
-    sha256 cellar: :any,                 arm64_sonoma: "5538821c3de4448cbd611c455d6998a6d4cf369a08e3f768a6023b4543ec5232"
-    sha256 cellar: :any,                 ventura:      "3e26fbf58ec2ffba6ce6815af6c6550ccf558eaabf251c68b2dc3084eabd0340"
-    sha256 cellar: :any,                 monterey:     "c4df36b218a2bec51d6b31eeb4036938dea17f89e80a8993b33164350a480565"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "a84086efe8d46fb227e03a813051b8f3d3ab33a893d84e931fabc10c38b5e93b"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any,                 arm64_sonoma: "8e3cf499ddc55d4cd5adce608c514a0cfff0385febebd7338385f15adc3f63eb"
+    sha256 cellar: :any,                 ventura:      "c4c8adac59e5cb86a2241dfc1cfca3a8a7042bc2163df3e35bbfe2e1236dbb07"
+    sha256 cellar: :any,                 monterey:     "67c2a620b47efc30d003f03ef040ca2ec0e8554867db829304268a23f242da59"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "dfce24efc1564e07f559c2b6511853237d1122a17a619442a56adaa4f0e3c602"
   end
 
   keg_only "it conflicts with singular"
