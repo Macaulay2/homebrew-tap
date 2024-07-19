@@ -8,11 +8,11 @@ class Msolve < Formula
   head "https://gitlab.lip6.fr/safey/msolve.git"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/msolve-0.6.5"
-    sha256 cellar: :any,                 arm64_sonoma: "d4133b46fbe4d54af918cac99e81337319bbb20d11345fe81b83140632fd4a1f"
-    sha256 cellar: :any,                 ventura:      "d42e530dc10786f2303fbddcff26a702ffb085574920a115ed6554cd67cb8f2f"
-    sha256 cellar: :any,                 monterey:     "8dcf7573d6b49ffd85a1d39423008e7f38465298f6e1409120e8a8957e90e208"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "45e28e0a6326d22493d64fc2a585f79c39b7f01062c8214da045228d95cad5eb"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any,                 arm64_sonoma: "bca0a637fa1c8035be3dfbadd1eeed227c5cd407b602355f12fee7f0439cdd54"
+    sha256 cellar: :any,                 ventura:      "ed5a9033b9c7999abb163424380fea2646bc0991df93c84dd63e62afd05eaaae"
+    sha256 cellar: :any,                 monterey:     "9a24b63f4a87d435245a888bae434fba190bbbe3eac58fa287ee01d7da569bbe"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "ce2423312cf5587747e89181ad216b0aae30fd47ae48b2dc3c405aa2c3f4eaad"
   end
 
   depends_on "autoconf" => :build
