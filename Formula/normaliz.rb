@@ -4,6 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.3/normaliz-3.10.3.tar.gz"
   sha256 "0aeb58fbbca362ed759f338a85e74156ed411e2846cc395f52d23ae90022ec91"
   license "GPL-3.0-only"
+  revision 1
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -23,6 +24,7 @@ class Normaliz < Formula
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
 
+  depends_on "eantic" => :recommended
   depends_on "flint" => :recommended
   depends_on "nauty" => :recommended
 
@@ -36,10 +38,12 @@ class Normaliz < Formula
     end
 
     ENV["CPPFLAGS"] = "-I#{Formula["gmp"].include}"
-    ENV["LDFLAGS"] = "-L#{Formula["gmp"].lib}"
+    # c.f. https://github.com/Normaliz/Normaliz/issues/426
+    ENV["LDFLAGS"] = "-L#{Formula["gmp"].lib} -lflint -lgmp"
 
     # replace the outdated libtool that ships with normaliz
     symlink "#{Formula["libtool"].opt_bin}/libtool", "libtool"
+    with_eantic = build.with? "eantic"
     with_flint = build.with? "flint"
     with_nauty = build.with? "nauty"
 
@@ -49,6 +53,7 @@ class Normaliz < Formula
       "--disable-silent-rules",
       "--disable-dependency-tracking",
       "--without-cocoalib",
+      with_eantic ? "--with-e-antic" : "--without-e-antic",
       with_flint ? "--with-flint" : "--without-flint",
       with_nauty ? "--with-nauty" : "--without-nauty",
     ]
