@@ -9,10 +9,10 @@ class Msolve < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "bca0a637fa1c8035be3dfbadd1eeed227c5cd407b602355f12fee7f0439cdd54"
-    sha256 cellar: :any,                 ventura:      "ed5a9033b9c7999abb163424380fea2646bc0991df93c84dd63e62afd05eaaae"
-    sha256 cellar: :any,                 monterey:     "9a24b63f4a87d435245a888bae434fba190bbbe3eac58fa287ee01d7da569bbe"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "ce2423312cf5587747e89181ad216b0aae30fd47ae48b2dc3c405aa2c3f4eaad"
+    sha256 cellar: :any,                 arm64_sonoma: "2926cc45c1f89a93c340756ceb18fac73a1c31a4ce8b8f4ae4ae99a7dcec66ba"
+    sha256 cellar: :any,                 ventura:      "b14cb9544507b7daa2bb3371e1c11eb3fa5ac10c42b12c0af25bcf02b76496bf"
+    sha256 cellar: :any,                 monterey:     "0c312e89d393a20c4ac29c2a881772963410d81ffc451f162ecacd13689ebcbe"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "be5866089b0aa3530a54a883f380c21ecba7ff71e3b9cb5fe2cee56e191fc4be"
   end
 
   depends_on "autoconf" => :build
