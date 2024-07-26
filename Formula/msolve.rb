@@ -7,6 +7,11 @@ class Msolve < Formula
 
   head "https://gitlab.lip6.fr/safey/msolve.git"
 
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
     sha256 cellar: :any,                 arm64_sonoma: "2926cc45c1f89a93c340756ceb18fac73a1c31a4ce8b8f4ae4ae99a7dcec66ba"
@@ -31,12 +36,9 @@ class Msolve < Formula
     end
 
     system "autoreconf", "-vif"
-    system "./configure",
+    system "./configure", *std_configure_args,
            "--disable-dependency-tracking",
-           "--disable-silent-rules",
            "--enable-openmp=yes",
-           "--prefix=#{prefix}",
-           "--libdir=#{lib}",
            "CC=#{ENV.cc} #{ENV["OPENMP_CFLAGS"]}"
     system "make", "install"
   end
@@ -56,6 +58,6 @@ class Msolve < Formula
       x8*x9-9,
       x0+x1+x2+x3+x4+x5+x6+x7+x8+1
     EOS
-    system "#{bin}/msolve", "-f", "eco10-31.ms"
+    system bin/"msolve", "-f", "eco10-31.ms"
   end
 end
