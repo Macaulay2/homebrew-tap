@@ -26,7 +26,7 @@ class Macaulay2Common < Formula
     # but brew requires at least one url, so I gave it one.
     mv buildpath/"1.23/share", prefix
     mv buildpath/"1.23/lib",   prefix
-    rm_rf share/"emacs"
+    rm_r share/"emacs"
   end
 
   def post_install
