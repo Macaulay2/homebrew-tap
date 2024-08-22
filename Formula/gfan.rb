@@ -1,10 +1,9 @@
 class Gfan < Formula
   desc "Grobner fans and tropical varieties"
   homepage "https://users-math.au.dk/~jensen/software/gfan/gfan.html"
-  url "https://users-math.au.dk/~jensen/software/gfan/gfan0.6.2.tar.gz"
-  sha256 "a674d5e5dc43634397de0d55dd5da3c32bd358d05f72b73a50e62c1a1686f10a"
+  url "https://users-math.au.dk/~jensen/software/gfan/gfan0.7.tar.gz"
+  sha256 "ab833757e1e4d4a98662f4aa691394013ea9a226f6416b8f8565356d6fcc989e"
   license "GPL-2.0-or-later"
-  revision 11
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -16,34 +15,23 @@ class Gfan < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "2ac80a1fd89713e142750d8adf6f976e4249d38f58c5c2eafcfc0f6aec35793a"
   end
 
-  if OS.mac?
-    depends_on "gcc" => :build
-    fails_with :clang
-  else
-    fails_with gcc: "4"
-    fails_with gcc: "5"
-  end
+  depends_on "gcc@14" => :build
 
   depends_on "cddlib"
   depends_on "gmp"
 
-  patch do
-    url "https://raw.githubusercontent.com/Macaulay2/M2/d51564127d757a3132684e9730f4085cb89297bb/M2/libraries/gfan/patch-0.6.2"
-    sha256 "9ebbf25e6de16baec877050bef69c85504e7bfa81e79407c2ab00ea4433e838c"
-  end
-
   patch :DATA
 
   def install
-    linker_args = "#{ENV.cxx} -L#{Formula["cddlib"].lib} "
-    linker_args << "-static-libgcc -static-libstdc++ "
-    linker_args << "-ld_classic" if OS.mac? && DevelopmentTools.clang_build_version >= 1500
+    linker_args = "-L#{Formula["cddlib"].lib} -static-libgcc -static-libstdc++"
+    cxx_flags = "-I#{Formula["cddlib"].include}/cddlib"
+    cxx_flags << " -D_64BITLONGINT" unless OS.mac?
 
-    system "make", "cddnoprefix=yes",
+    system "make", "PREFIX=#{Formula["gcc@14"].bin}/", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
-           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG -I#{Formula["cddlib"].include}/cddlib",
-           "CCLINKER=#{linker_args}"
+           "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG #{cxx_flags}",
+           "CCLINKER=#{Formula["gcc@14"].bin}/g++-14 #{linker_args}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
@@ -57,31 +45,76 @@ end
 
 __END__
 
-diff --git a/Makefile-orig b/Makefile
-index 737208abfb..52e010e0b3 100644
+diff --git a/Makefile b/Makefile
+index 67c8164..fe6e00b 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -110,15 +110,15 @@ MKDIR=mkdir -p
- PREFIX =
+@@ -113,13 +113,12 @@ MKDIR=mkdir -p
+
+ # PREFIX = /usr/local/gcc/6.2.0/bin/
+ # PREFIX = /usr/local/gcc-8.1/bin/
+-PREFIX =
  SHELL       = /bin/sh
  #ARCH        = LINUX
+
 -CC          = $(PREFIX)gcc
--CLINKER     = $(CC)
++CC          = $(PREFIX)gcc-14
+ CLINKER     = $(CC)
 -CXX         = $(PREFIX)g++
--CCLINKER    = $(CXX)
-+#CC          = $(PREFIX)gcc
-+#CLINKER     = $(CC)
-+#CXX         = $(PREFIX)g++
-+#CCLINKER    = $(CXX)
- #OPTFLAGS    = -O2 -DGMPRATIONAL -DNDEBUG
- # Note that gcc produces wrong code with -O3
--OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O2	 #-O3 -fno-guess-branch-probability #-DNDEBUG
-+#OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O2	 #-O3 -fno-guess-branch-probability #-DNDEBUG
- #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2  -finline-limit=1000 -ffast-math -Wuninitialized # -fno-guess-branch-probability #-DNDEBUG -ftree-vectorizer-verbose=2
--#OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O1             -fno-guess-branch-probability
-+OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O1             -fno-guess-branch-probability
-  #-DNDEBUG
- #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2 -ftree-vectorizer-verbose=2 -finline-limit=1000 -ffast-math #-DNDEBUG
- #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2 -ftree-vectorizer-verbose=2 -march=native -unroll-loops --param max-unroll-times=4 -ffast-math #-DNDEBUG
++CXX         = $(PREFIX)g++-14
+ CCLINKER    = $(CXX)
+
+ #CC          = $(PREFIX)gcc-8.1
+diff --git a/src/gfanlib_circuittableint.h b/src/gfanlib_circuittableint.h
+index 2b5ced4..b5bf6ed 100644
+--- a/src/gfanlib_circuittableint.h
++++ b/src/gfanlib_circuittableint.h
+@@ -25,6 +25,7 @@ namespace gfan{
+   template<typename> struct MyMakeUnsigned;
+   template <> struct MyMakeUnsigned<int>{typedef unsigned int type;};
+   template <> struct MyMakeUnsigned<long int>{typedef unsigned long int type;};
++  template <> struct MyMakeUnsigned<long long int>{typedef unsigned long long int type;};
+   template <> struct MyMakeUnsigned<__int128>{typedef unsigned __int128 type;};
+
+   class MVMachineIntegerOverflow: public std::exception
+@@ -92,6 +93,15 @@ static std::string toStr(__uint32_t b)
+        return s.str();
+ }
+
++#ifndef _64BITLONGINT
++static std::string toStr(long int b)
++{
++       std::stringstream s;
++       s<<b;
++       return s.str();
++}
++#endif
++
+ class my256s{
+ public:
+        __int128_t lo,hi;
+@@ -213,6 +221,10 @@ static __int128_t extMul(long int a, long int b)
+ {
+        return ((__int128_t)a)*((__int128_t)b);
+ }
++static __int128_t extMul(long long int a, long long int b)
++{
++       return ((__int128_t)a)*((__int128_t)b);
++}
+
+ static __uint128_t unsignedProd64(uint64_t x,uint64_t y)
+ {
+diff --git a/src/gfanlib_z.h b/src/gfanlib_z.h
+index f56597c..8c84ed1 100644
+--- a/src/gfanlib_z.h
++++ b/src/gfanlib_z.h
+@@ -9,6 +9,7 @@
+ #define LIB_Z_H_
+
+ #include <string.h>
++#include <cstdint>
+ #include <ostream>
+ #include <iostream>
+ #define OLD 1
 -- 
-2.31.1
+2.46.0
