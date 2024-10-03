@@ -32,6 +32,12 @@ class Givaro < Formula
     sha256 "4dbba14012886dcd884864edbdf7599a0ea119dd9851c846a27998ca6eba8db3"
   end
 
+  # https://github.com/linbox-team/givaro/issues/232
+  patch do
+    url "https://github.com/linbox-team/givaro/commit/a18baf5227d4f3e81a50850fe98e0d954eaa3ddb.patch?full_index=1"
+    sha256 "16e3242c37e4ec38be1df5ef9b3af99cd84133b5f6d7ff767415e6711f05e296"
+  end
+
   def install
     ENV.cxx11
     system "autoreconf", "-vif"
