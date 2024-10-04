@@ -7,7 +7,6 @@ class Factory < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "8e3cf499ddc55d4cd5adce608c514a0cfff0385febebd7338385f15adc3f63eb"
     sha256 cellar: :any,                 ventura:      "c4c8adac59e5cb86a2241dfc1cfca3a8a7042bc2163df3e35bbfe2e1236dbb07"
     sha256 cellar: :any,                 monterey:     "67c2a620b47efc30d003f03ef040ca2ec0e8554867db829304268a23f242da59"
     sha256 cellar: :any_skip_relocation, x86_64_linux: "dfce24efc1564e07f559c2b6511853237d1122a17a619442a56adaa4f0e3c602"
