@@ -2,20 +2,10 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.24.05.tar.gz"
-  sha256 "63b8c9931a5cbd0b937ad6ddb81530c26f3fbe5971cc935d294772652ebcf101"
+  url "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
+  version "1.24.11-rc1"
+  sha256 "9b89dc082276f5c4d1f38a68fe59d55d61b5c9d932c0c275e7801c4920fcc39d"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
-
-  head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sonoma: "9fa62984c1f40bda3720b556fb384bcec36fa7780c76d57234b039b1a6b430fd"
-    sha256 cellar: :any, ventura:      "5b821509c8a71d914fb4fb2d2887601a315293052b01e86803ea85d5e460b645"
-    sha256 cellar: :any, monterey:     "5c987cd5c60e83ad5ffe5fcb772277b2fc39918c6fcd252936630635eb455ae8"
-    sha256               x86_64_linux: "fdd8b0361c22e532c5b5107998d7dce913adaa23119ce5eca75d137cee48110d"
-  end
 
   depends_on "bison" => :build
   depends_on "cmake" => :build
@@ -37,6 +27,7 @@ class Macaulay2 < Formula
   depends_on "mpfi"
   depends_on "mpfr"
   depends_on "mpsolve"
+  depends_on "msolve"
   depends_on "node"
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
@@ -98,7 +89,8 @@ class Macaulay2 < Formula
   test do
     system "#{bin}/M2", "--version"
     system "#{bin}/M2", "--check", "1", "-e", "exit 0"
-    # system "#{bin}/M2", "--check", "2", "-e", "exit 0"
+    system "#{bin}/M2", "--check", "2", "-e", "exit 0"
+    # system "#{bin}/M2", "--check", "3", "-e", "exit 0"
   end
 end
 
