@@ -8,13 +8,12 @@ class FflasFfpack < Formula
   head "https://github.com/linbox-team/fflas-ffpack.git", using: :git
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/fflas-ffpack-2.5.0"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "09243154036963bfe61d886796bafca1b124412a573ae8cc07c881aa2eb76d32"
-    sha256 cellar: :any_skip_relocation, big_sur:        "77cb085376d5e5f5ca967cbc804a4e02e2858b002faf00635a4a3fea8231ad3c"
-    sha256 cellar: :any_skip_relocation, catalina:       "784c162c6957906919ef2ba71aabc5ca3a657cb3a0df8b4057d101d377cee5b2"
-    sha256 cellar: :any_skip_relocation, monterey:       "a37de2b23f8f07d7ab0a70e97e9a2a2449b20d84845900b2b7c238297caa5a47"
-    sha256 cellar: :any_skip_relocation, ventura:        "3fd0602f6fca2b547a7cb170ad9a49d1d9d0f0cb7be058f4ec31eac129a0207f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "144a8bb935684cfc3e836dc09d6681dcb31f5a3ca9adabf0aa9681862b9d7f92"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "08c831d63ba6d67a0bc3e131ed7967a052833dfd2cb0f4d3afd432ef3deb6186"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "832b9cea1e610d857d35c01a432a2c81b2523dca75ca66aa6927e748d0d4176d"
+    sha256 cellar: :any_skip_relocation, ventura:       "886cee68ccab849527a2357cea74081d2b94d733541e2f47d393dca21d54b079"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2b9ab0804e231214eeb5639a82f876dc96575f8f983cd4d2a0a17026a5d9d45d"
   end
 
   depends_on "autoconf" => :build
