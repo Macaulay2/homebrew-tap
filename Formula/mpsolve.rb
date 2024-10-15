@@ -7,13 +7,12 @@ class Mpsolve < Formula
   revision 4
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mpsolve-3.2.1_4"
-    sha256 cellar: :any,                 arm64_monterey: "cef92986f98ef651d1ca81619944547d9b49b3e649fe6edbb919032378d68cb9"
-    sha256 cellar: :any,                 big_sur:        "44e44aaf82cbb84a46f902b276926e3aee8035b8296ca89b0cc3473517eea2c1"
-    sha256 cellar: :any,                 catalina:       "4f5807e0ec5c5b340125f2b45df9ac3bd334ada899a7377cb8a2d2eef7774cb5"
-    sha256 cellar: :any,                 monterey:       "51546f47c8affd0842f0c32a42c362b9281d6e3e16ca2eaf28a9f0b7257fe17f"
-    sha256 cellar: :any,                 ventura:        "17eeabbdbb5771997d6384490db3fb5968e173b24429dab156faba6c4d147124"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "7a3840be8c6d6b10b0bb00cff20a2206e0be42b501ccadfd26d60083f9a66447"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sequoia: "957d23aa020f944069b66b55db4e0504a4a85a155ce26dd17fa2b7d808c5762d"
+    sha256 cellar: :any,                 arm64_sonoma:  "bd5af6173a60ca8e1abfe6cb4052c9294930162a1fd93a187014a25c687f0338"
+    sha256 cellar: :any,                 ventura:       "376cf13caae1684e38b79c6f2ad8e185dfc5c5487df3898fb301364d0b13cca1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "60ef6228fc1d5a4bc2249ddb33ac1af125f43d53626ced7377249d2f617d60c1"
   end
 
   depends_on "autoconf" => :build
