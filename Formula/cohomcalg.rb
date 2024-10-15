@@ -7,13 +7,13 @@ class Cohomcalg < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/cohomcalg-0.32_1"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "e1d322af4524672156037f61dd94f1a31f068bb2cb5a71e9be00d957ec8afe3e"
-    sha256 cellar: :any_skip_relocation, big_sur:        "c330c447686cc60c9f2b99588664ea5852cbb7f5efa59f0833ef93bf19845b04"
-    sha256 cellar: :any_skip_relocation, catalina:       "9155214e22ea4ab1baba6f30b96f882052d037862fa5ae1b1b996a7abfb46611"
-    sha256 cellar: :any_skip_relocation, monterey:       "b2ae1ed1771561d8481476bde3a45ba47bfb9962ab91f22b84cfc2c38fabd058"
-    sha256 cellar: :any_skip_relocation, ventura:        "74cbe4b64202917e0fff9e497c5ffb8f7eedd03c1026b22b60005a22a80cd1e6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "bb70a659a2d7eecd59e5902dbb82c26f9de2e5939d44b362070d67d5d5f3a4f3"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0494687d5bc2bf2c3552ed16c9fd9709e49a7475b8271528dc6428555014e585"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d6b7c119bed3c521348f1b828bf317af6e99a2c207b0edeac17ec3048a894712"
+    sha256 cellar: :any_skip_relocation, ventura:       "f0789206c6198b4d49aa2ed74f34f6b4f56721c58f9f99db18ec16e644961f1b"
+    sha256 cellar: :any_skip_relocation, monterey:      "72b8c0c3b24a56892bb4ac78921bb03b96114584c213e93f9602353917e4055c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4deafd4a90a2d011690e5c097fe3a6deb27736237a33007ad7bbaa09c992bdb8"
   end
 
   def install
