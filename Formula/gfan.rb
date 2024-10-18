@@ -1,10 +1,9 @@
 class Gfan < Formula
   desc "Grobner fans and tropical varieties"
   homepage "https://users-math.au.dk/~jensen/software/gfan/gfan.html"
-  url "https://users-math.au.dk/~jensen/software/gfan/gfan0.6.2.tar.gz"
-  sha256 "a674d5e5dc43634397de0d55dd5da3c32bd358d05f72b73a50e62c1a1686f10a"
+  url "https://users-math.au.dk/~jensen/software/gfan/gfan0.7.tar.gz"
+  sha256 "ab833757e1e4d4a98662f4aa691394013ea9a226f6416b8f8565356d6fcc989e"
   license "GPL-2.0-or-later"
-  revision 11
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -24,11 +23,6 @@ class Gfan < Formula
 
   depends_on "cddlib"
   depends_on "gmp"
-
-  patch do
-    url "https://raw.githubusercontent.com/Macaulay2/M2/d51564127d757a3132684e9730f4085cb89297bb/M2/libraries/gfan/patch-0.6.2"
-    sha256 "9ebbf25e6de16baec877050bef69c85504e7bfa81e79407c2ab00ea4433e838c"
-  end
 
   patch :DATA
 
@@ -55,31 +49,50 @@ end
 
 __END__
 
-diff --git a/Makefile-orig b/Makefile
-index 737208abfb..52e010e0b3 100644
+diff --git a/Makefile b/Makefile
+index 67c8164..0c9bbf2 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -110,15 +110,15 @@ MKDIR=mkdir -p
- PREFIX =
+@@ -117,11 +117,6 @@ PREFIX =
  SHELL       = /bin/sh
  #ARCH        = LINUX
+ 
 -CC          = $(PREFIX)gcc
 -CLINKER     = $(CC)
 -CXX         = $(PREFIX)g++
 -CCLINKER    = $(CXX)
-+#CC          = $(PREFIX)gcc
-+#CLINKER     = $(CC)
-+#CXX         = $(PREFIX)g++
-+#CCLINKER    = $(CXX)
- #OPTFLAGS    = -O2 -DGMPRATIONAL -DNDEBUG
- # Note that gcc produces wrong code with -O3
--OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O2	 #-O3 -fno-guess-branch-probability #-DNDEBUG
-+#OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O2	 #-O3 -fno-guess-branch-probability #-DNDEBUG
- #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2  -finline-limit=1000 -ffast-math -Wuninitialized # -fno-guess-branch-probability #-DNDEBUG -ftree-vectorizer-verbose=2
--#OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O1             -fno-guess-branch-probability
-+OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O1             -fno-guess-branch-probability
-  #-DNDEBUG
- #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2 -ftree-vectorizer-verbose=2 -finline-limit=1000 -ffast-math #-DNDEBUG
- #OPTFLAGS    =  -DGMPRATIONAL -Wuninitialized -fno-omit-frame-pointer -O3 -mavx -msse2 -ftree-vectorizer-verbose=2 -march=native -unroll-loops --param max-unroll-times=4 -ffast-math #-DNDEBUG
+-
+ #CC          = $(PREFIX)gcc-8.1
+ #CLINKER     = $(CC)
+ #CXX         = $(PREFIX)g++-8.1
+@@ -420,9 +415,9 @@ EXECS	  = $(MAIN)
+ # (compiling with gcc version 4.7.2 and running gfan _tropicaltraverse on a starting cone for Grassmann3_7)
+ # Either this is a bug in the code or in the compiler. The bug disappears by compiling with -fno-guess-branch-probability
+ src/symmetrictraversal.o: src/symmetrictraversal.cpp
+-	$(CXX) $(CFLAGS) -fno-guess-branch-probability  -c src/symmetrictraversal.cpp -o src/symmetrictraversal.o
++#	$(CXX) $(CFLAGS) -fno-guess-branch-probability  -c src/symmetrictraversal.cpp -o src/symmetrictraversal.o
+ # If compiling with clang, use the line below instead:
+-#	$(CXX) $(CFLAGS) -c src/symmetrictraversal.cpp -o src/symmetrictraversal.o
++	$(CXX) $(CFLAGS) -c src/symmetrictraversal.cpp -o src/symmetrictraversal.o
+ 
+ # Define suffixes to make the program compile on legolas.imf.au.dk :
+ .SUFFIXES: .o .cpp .c
+diff --git a/src/timer.cpp b/src/timer.cpp
+index 7421c41..b5d8741 100644
+--- a/src/timer.cpp
++++ b/src/timer.cpp
+@@ -1,10 +1,10 @@
+ #include "timer.h"
+-#include "log.h"
+-
+ #include "iostream"
+ #include <time.h>
+ #include <assert.h>
+ 
++#include "log.h" // include last, because it defines a macro "log2" also defined as a function in math.h
++
+ using namespace std;
+ 
+ Timer* Timer::timers;
 -- 
-2.31.1
+2.46.0
