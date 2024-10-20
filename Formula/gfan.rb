@@ -8,9 +8,12 @@ class Gfan < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 ventura:      "aa24a98686efeb52abe9fd8c27d5d1a888c9e86303c0e53eec539ee8c195a57c"
-    sha256 cellar: :any,                 monterey:     "b92b36b01d8a2187313467b37b21793e34a89e5edd78207e685e8e0e99f23182"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "9ad2d53e029a178bd88ba7837fd216ea7b5b46f77648a034a5c7421cfb371555"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sequoia: "87a38b372411fb7a2d4ef30a4b24669a5cd822230f75d947c11a2299f8ddf284"
+    sha256 cellar: :any,                 arm64_sonoma:  "7289ab44d74c4ea08b0dade5dbb31a6ec74bfbde34dc4ddc2d618c2593cdf7bd"
+    sha256 cellar: :any,                 ventura:       "542543eb68cb50d2b13b0fe597f4659fbf1ef8fcb05df72b85fbc382234114cb"
+    sha256 cellar: :any,                 monterey:      "cfb015c8aa3422d9ccd80dbd5dc7ebae3e10dcd9d87e4103183e498edd6ae431"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2ac80a1fd89713e142750d8adf6f976e4249d38f58c5c2eafcfc0f6aec35793a"
   end
 
   if OS.mac?
