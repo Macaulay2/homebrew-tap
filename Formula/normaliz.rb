@@ -1,17 +1,9 @@
 class Normaliz < Formula
   desc "Affine monoids, vector configurations, lattice polytopes, and rational cones"
   homepage "https://www.normaliz.uni-osnabrueck.de/"
-  url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.3/normaliz-3.10.3.tar.gz"
-  sha256 "0aeb58fbbca362ed759f338a85e74156ed411e2846cc395f52d23ae90022ec91"
+  url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.4/normaliz-3.10.4.tar.gz"
+  sha256 "9b424f966d553ae32e710b8ab674c7887ddcbf0e5ea08af7f8bc1b587bcbb2aa"
   license "GPL-3.0-only"
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "b06a45b15e587ffb9304540ef3125f8e0bccd8df6e2e2efe368fcddfc04fed74"
-    sha256 cellar: :any,                 ventura:      "0606093989ec24a10553ab6ba4de9cf619301af62e5421175843fb0204876afc"
-    sha256 cellar: :any,                 monterey:     "150b469ea730cf0b861fe643b7588b8d06c30e03ba95b35ab8668a4d4bc3446a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "70479376aa304efea149c55b920797da54e02eb81f61ac5f13e46d9e6231795d"
-  end
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
