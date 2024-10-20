@@ -7,12 +7,10 @@ class Gfan < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 1
-    sha256 cellar: :any,                 arm64_sequoia: "87a38b372411fb7a2d4ef30a4b24669a5cd822230f75d947c11a2299f8ddf284"
-    sha256 cellar: :any,                 arm64_sonoma:  "7289ab44d74c4ea08b0dade5dbb31a6ec74bfbde34dc4ddc2d618c2593cdf7bd"
-    sha256 cellar: :any,                 ventura:       "542543eb68cb50d2b13b0fe597f4659fbf1ef8fcb05df72b85fbc382234114cb"
-    sha256 cellar: :any,                 monterey:      "cfb015c8aa3422d9ccd80dbd5dc7ebae3e10dcd9d87e4103183e498edd6ae431"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2ac80a1fd89713e142750d8adf6f976e4249d38f58c5c2eafcfc0f6aec35793a"
+    sha256 cellar: :any, arm64_sequoia: "3b60fbf6920c7ac4c595d654f2c80b42e75cca4bc0e3fd6fd246fdcb9c6b902e"
+    sha256 cellar: :any, arm64_sonoma:  "9b2d817cd6af701ebdb9d39827e3b1a81637763fe61e63b00c86e1db4c1ce7b8"
+    sha256 cellar: :any, ventura:       "1a9e4cb89ae301e28c242babffb3f3e214670058902ff9e44930163c8a2bf685"
+    sha256               x86_64_linux:  "21af3091c78d42a34c8324461febbe54b5dff34173024b6f52d2bff9a7172c9e"
   end
 
   depends_on "gcc@14" => :build
