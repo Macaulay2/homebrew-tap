@@ -8,7 +8,6 @@ class Gfan < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "f4aa20c4b49233a6c8a68e1a751b783169797764a157d5745f73f8228c41fb62"
     sha256 cellar: :any,                 ventura:      "aa24a98686efeb52abe9fd8c27d5d1a888c9e86303c0e53eec539ee8c195a57c"
     sha256 cellar: :any,                 monterey:     "b92b36b01d8a2187313467b37b21793e34a89e5edd78207e685e8e0e99f23182"
     sha256 cellar: :any_skip_relocation, x86_64_linux: "9ad2d53e029a178bd88ba7837fd216ea7b5b46f77648a034a5c7421cfb371555"
