@@ -1,22 +1,9 @@
 class Lrs < Formula
   desc "Vertex enumeration/convex hull problems"
-  homepage "https://github.com/mkoeppe/lrslib" # http://cgm.cs.mcgill.ca/~avis/C/lrs.html
-  # update
-  url "https://github.com/mkoeppe/lrslib/archive/refs/tags/lrslib-070.tar.gz"
-  sha256 "0a8e4d9afe0b608333e256a9e4588eb7080ebb0966ae3dcb7df708ba2bde6f90"
+  homepage "https://cgm.cs.mcgill.ca/~avis/C/lrs.html"
+  url "https://cgm.cs.mcgill.ca/~avis/C/lrslib/archive/lrslib-073.tar.gz"
+  sha256 "c49a4ebd856183473d1d5a62785fcdfe1057d5d671d4b96f3a1250eb1afe4e83"
   license "GPL-2.0-only"
-  revision 1
-
-  bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/lrs-070_1"
-    sha256 cellar: :any,                 arm64_sonoma:   "1fbe7c09697117f15dd86d256ac611037df75b5b6366a2a5a0f52229f6c2b26e"
-    sha256 cellar: :any,                 arm64_monterey: "5bddcdb5ddc8e6160c3a9ea56d020effcd6380338a1aa51450d37cdd68c08b31"
-    sha256 cellar: :any,                 big_sur:        "231d4cd321a7bdfd3b3cdfb3e90e90f3a1b582dcfbfb448106ed53035e4dfad0"
-    sha256 cellar: :any,                 catalina:       "e25ae0deee94da105d7c4d848e6c77c7222df60b36847eda67d2152ee45afc10"
-    sha256 cellar: :any,                 monterey:       "169ad55a11d2b8fbc6cd95a9634fe818d6367b4f860a4c319d2fc06b91a40807"
-    sha256 cellar: :any,                 ventura:        "9bd03a6f111a514b17cddf9aa94510531c753f944132f4dde0beb804b249705b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "6199bea799b38a985898f20ae18633226c13df7cae6df3cdaadf540de14aed5e"
-  end
 
   depends_on "gmp"
 
