@@ -17,7 +17,6 @@ class Msolve < Formula
     sha256 cellar: :any,                 arm64_sequoia: "a97b7fa4eaf2174102a29c2e62b9e5949ee175e5c46fc8f8d7c898bf390d4cf9"
     sha256 cellar: :any,                 arm64_sonoma:  "5cc708a6c27c9a28f799e37fe9ee5d8dff8862a0cb6ce2a94484802906b051e1"
     sha256 cellar: :any,                 ventura:       "c114a47507523e44fc3c17dd0ce3fe852a889844784bd95829c1b5a6929418d1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d60f958250a36384a412d5dea321af4e56a8ff0cfb6c677b971d1c432de16e2b"
   end
 
   depends_on "autoconf" => :build
