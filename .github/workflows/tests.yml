@@ -55,3 +55,6 @@ jobs:
           path: |
             /home/runner/.cache/Homebrew/Logs/*/*
             /Users/runner/Library/Logs/Homebrew/*/*
+            /tmp/macaulay2-*/*/M2/BUILD/build-brew/usr-dist/common/share/doc/Macaulay2/*/example-output/*.errors
+            /tmp/M2-*/*.tmp
+            /tmp/M2-*/*.m2
