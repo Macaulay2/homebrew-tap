@@ -8,14 +8,6 @@ class Macaulay2 < Formula
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sequoia: "b7f1d938803109c5307bc3c13ff02b9311aae3d49ac83178f2c8b1c5e4f8df16"
-    sha256 cellar: :any, arm64_sonoma:  "0b80901a9b6d53e28fb9647501a714129ef2edc1549d5e6880a1aaa20dc44ef8"
-    sha256 cellar: :any, ventura:       "32da7633b1cc5de66269687ce9b2abf15d5f95adb2a08b8d7c0ec4ea6b9351f0"
-    sha256               x86_64_linux:  "8c326857eefc779389f439208330fa5e33fcaceb1770ccd3d71b67dd908e64c2"
-  end
-
   depends_on "bison" => :build
   depends_on "cmake" => :build
   depends_on "ninja" => :build
@@ -53,6 +45,12 @@ class Macaulay2 < Formula
   depends_on "normaliz" => :recommended
   depends_on "python" => :recommended
   depends_on "topcom" => :recommended
+
+  # patch for flint 3.2.0; remove on next release
+  patch do
+    url "https://github.com/Macaulay2/M2/commit/c80d102ed88732ca76cd40a35807a678b8af99fb.patch?full_index=1"
+    sha256 "d9754b2f6b4650cedcd0d9f50c8ba83604919c195d9e7265cef557fd26db38c0"
+  end
 
   patch :DATA
 
