@@ -23,6 +23,7 @@ class Normaliz < Formula
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
 
+  depends_on "eantic" => :recommended
   depends_on "flint" => :recommended
   depends_on "nauty" => :recommended
 
