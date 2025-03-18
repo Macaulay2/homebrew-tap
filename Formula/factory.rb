@@ -7,11 +7,10 @@ class Factory < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 1
-    sha256 cellar: :any,                 arm64_sequoia: "f4e369ede40db077ef78a1747f2c253a9712cca569fa2ceee9e8a590d37c2689"
-    sha256 cellar: :any,                 arm64_sonoma:  "8d79ae09af9e520408fd38033de66f280f8335c471961cc5a679b44a85cd62b9"
-    sha256 cellar: :any,                 ventura:       "b71923031b70d291d517b33c159002fa4f3ba4dd06c6fe1ff7f407bb833300d7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1e28bf65935ae3e931d0cf6e1e2d0e059e4d259b8c5ef113056828001abc079f"
+    sha256 cellar: :any,                 arm64_sequoia: "860f76dee7900b7fe38fc399dada0f5a6d7affc609c04c0e53e8d8d1f58218bf"
+    sha256 cellar: :any,                 arm64_sonoma:  "b334b90c4f3a184370ead0d9272de93076688b8f586e303412c79d6e9fa2a009"
+    sha256 cellar: :any,                 ventura:       "d2d7ad9ebd6db183a83dd03310c0214acd36d45b30e91803d7fa8a8f68913f35"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1dab4e6a3df153b518b670929b68cdb9e8f8bee7893751592c26716f2353c7dd"
   end
 
   keg_only "it conflicts with singular"
