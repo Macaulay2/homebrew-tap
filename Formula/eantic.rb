@@ -12,6 +12,11 @@ class Eantic < Formula
   depends_on "boost"
   depends_on "flint"
 
+  patch do
+    url "https://github.com/flatsurf/e-antic/commit/66ecdffd7e83611e1c3df5049634d88f089b0104.patch?full_index=1"
+    sha256 "bdfbb3b846017bee68a53a13c974e76958f5aa5c0a50929dc3957560d616f1ec"
+  end
+
   def install
     ENV.cxx11
 
