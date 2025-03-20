@@ -8,14 +8,6 @@ class Macaulay2 < Formula
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sequoia: "b7f1d938803109c5307bc3c13ff02b9311aae3d49ac83178f2c8b1c5e4f8df16"
-    sha256 cellar: :any, arm64_sonoma:  "0b80901a9b6d53e28fb9647501a714129ef2edc1549d5e6880a1aaa20dc44ef8"
-    sha256 cellar: :any, ventura:       "32da7633b1cc5de66269687ce9b2abf15d5f95adb2a08b8d7c0ec4ea6b9351f0"
-    sha256               x86_64_linux:  "8c326857eefc779389f439208330fa5e33fcaceb1770ccd3d71b67dd908e64c2"
-  end
-
   depends_on "bison" => :build
   depends_on "cmake" => :build
   depends_on "ninja" => :build
@@ -53,6 +45,12 @@ class Macaulay2 < Formula
   depends_on "normaliz" => :recommended
   depends_on "python" => :recommended
   depends_on "topcom" => :recommended
+
+  # patch for flint 3.2.0; remove on next release
+  patch do
+    url "https://github.com/Macaulay2/M2/commit/5b9b288de5eb4c4234f056b3af804f2149650be9.patch?full_index=1"
+    sha256 "a56ea037be99ca09609c63bd88b72a8687e23dd9ef8de3eab015d701378ba841"
+  end
 
   patch :DATA
 
@@ -152,3 +150,20 @@ index 15832adfb1..e9af682733 100644
  
 -- 
 2.38.1
+
+diff --git a/M2/Macaulay2/d/CMakeLists.txt b/M2/Macaulay2/d/CMakeLists.txt
+index 9114704d79..65983c2fcd 100644
+--- a/M2/Macaulay2/d/CMakeLists.txt
++++ b/M2/Macaulay2/d/CMakeLists.txt
+@@ -146,7 +146,8 @@ add_library(M2-interpreter OBJECT ${CLIST} ${CXXLIST} ${TAGS}
+   $<$<BOOL:${WITH_XML}>:xml-c.c xml-c.h>
+   $<$<BOOL:${WITH_PYTHON}>:python-c.c>)
+
+-target_link_libraries(M2-interpreter PRIVATE M2-supervisor Boost::regex
++target_link_libraries(M2-interpreter PRIVATE M2-supervisor
++  Boost::boost # boost_regex is now header-only, so we don't link Boost::regex
+   $<$<BOOL:${WITH_TBB}>:TBB::tbb>
+   $<$<BOOL:${WITH_FFI}>:FFI::ffi>)
+ 
+-- 
+2.48.1
