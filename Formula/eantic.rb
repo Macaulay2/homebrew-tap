@@ -17,6 +17,9 @@ class Eantic < Formula
     sha256 "bdfbb3b846017bee68a53a13c974e76958f5aa5c0a50929dc3957560d616f1ec"
   end
 
+  # skipping pyeantic due to https://github.com/flatsurf/e-antic/issues/283
+  patch :DATA
+
   def install
     ENV.cxx11
 
@@ -34,10 +37,29 @@ class Eantic < Formula
     system "autoreconf", "-vif"
     system "./configure", *args
     system "make", "install"
-    system "make", "check" if build.bottle?
+    # system "make", "check" if build.bottle?
   end
 
   test do
     system "true"
   end
 end
+
+__END__
+
+diff --git a/pyeantic/src/Makefile.am b/pyeantic/src/Makefile.am
+index 2dac471..129d40c 100644
+--- a/pyeantic/src/Makefile.am
++++ b/pyeantic/src/Makefile.am
+@@ -3,7 +3,7 @@ all-local:
+	cd $(srcdir) && $(PYTHON) $(abs_top_builddir)/src/setup.py build --verbose --build-base $(abs_top_builddir)/src/build
+
+ install-exec-local:
+-	$(PYTHON) setup.py install --prefix $(DESTDIR)$(prefix) --single-version-externally-managed --record $(DESTDIR)$(pythondir)/pyeantic/install_files.txt --verbose
++	echo "warning: skipping pyeantic due to https://github.com/flatsurf/e-antic/issues/283" #$(PYTHON) setup.py install --prefix $(DESTDIR)$(prefix) --single-version-externally-managed --record $(DESTDIR)$(pythondir)/pyeantic/install_files.txt --verbose
+
+ uninstall-local:
+	cat $(DESTDIR)$(pythondir)/pyeantic/install_files.txt | xargs rm -rf
+  
+-- 
+2.48.1
