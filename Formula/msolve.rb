@@ -12,6 +12,15 @@ class Msolve < Formula
     strategy :github_latest
   end
 
+  bottle do
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sequoia: "a29a4e35a712b1c51b37bf7d764dabaeca1ecb1bf6b710eac1c8ef1264471958"
+    sha256 cellar: :any,                 arm64_sonoma:  "badffe1082407361aeeaf1328057420aa1fec3264c50f657b8b8ffbeb19fc6f8"
+    sha256 cellar: :any,                 ventura:       "dc5bba088191d961780a753119b79285e862bf178358e8dc27c8ea3fd1ab1cf3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3c6d557070eaa4f4dc2d8e8dd2fcfb1bf6a7a41008f13313459102a810a83e03"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
