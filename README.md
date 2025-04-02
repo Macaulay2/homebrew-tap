@@ -52,12 +52,12 @@ To do so, label your PR as `pr-pull` and the workflow will be triggered. Do NOT 
 
 ## Bottling
 Pre-built Homebrew "bottles", which may be used instead of building from source,
-are built using GitHub Actions for Linux and macOS x86_64 systems.
+are built using GitHub Actions for Linux and recent macOS systems.
 See the [wiki](https://github.com/Macaulay2/homebrew-tap/wiki) for information
 about bottling Macaulay2 and its dependencies for different architectures.
 
 The formula from which the Macaulay2 bottle on this tap is built uses the
-[CMake build system](https://github.com/Macaulay2/M2/blob/master/M2/INSTALL-CMake.md).
+[CMake build system](https://github.com/Macaulay2/M2/wiki/Building-M2-from-source-using-CMake).
 
 ## Bug Reports
 For issues concerning Macaulay2 itself, file an issue on the
