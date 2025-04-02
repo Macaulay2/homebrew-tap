@@ -72,11 +72,14 @@ class Macaulay2 < Formula
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
+    boost_stacktrace_path = "#{Formula["boost"].lib}/cmake/boost_stacktrace_backtrace"
+    boost_version = Formula["boost"].version
 
     args = std_cmake_args
     args << "-DBUILD_NATIVE=OFF"
     args << "-DBUILD_TESTING=OFF"
     args << "-DCMAKE_PREFIX_PATH=#{lib_prefix}"
+    args << "-Dboost_stacktrace_backtrace_DIR=#{boost_stacktrace_path}-#{boost_version}/"
     args << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}"
     args << "-DWITH_OMP=ON" if build.with?("libomp") || !OS.mac?
 
@@ -120,20 +123,27 @@ index d5ddc33bc..92f700b5c 100644
 2.34.3
 
 diff --git a/M2/cmake/check-libraries.cmake b/M2/cmake/check-libraries.cmake
-index ca3effff15..45e6b11c81 100644
+index c39b27247d..0ab5d93f28 100644
 --- a/M2/cmake/check-libraries.cmake
 +++ b/M2/cmake/check-libraries.cmake
-@@ -43,6 +43,8 @@ endif()
- 
+@@ -42,7 +42,14 @@ endif()
+
  find_package(Threads	REQUIRED QUIET)
  find_package(LAPACK	REQUIRED QUIET)
+-find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_backtrace stacktrace_addr2line)
 +
 +set(Boost_USE_STATIC_LIBS ON)
- find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_backtrace stacktrace_addr2line)
++if(UNIX)
++  cmake_policy(SET CMP0167 OLD) # load CMake's FindBoost module
++  find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_addr2line)
++else()
++  find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_backtrace)
++endif()
  if(Boost_STACKTRACE_BACKTRACE_FOUND)
    set(Boost_stacktrace_lib "Boost::stacktrace_backtrace")
--- 
-2.38.1
+ elseif(Boost_STACKTRACE_ADDR2LINE_FOUND)
+--
+2.49.0
 
 diff --git a/M2/Macaulay2/packages/Topcom.m2 b/M2/Macaulay2/packages/Topcom.m2
 index 15832adfb1..e9af682733 100644
