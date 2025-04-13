@@ -1,10 +1,9 @@
 class Givaro < Formula
   desc "Prime field and algebraic computations"
   homepage "https://casys.gricad-pages.univ-grenoble-alpes.fr/givaro/"
-  url "https://github.com/linbox-team/givaro/releases/download/v4.2.0/givaro-4.2.0.tar.gz"
-  sha256 "865e228812feca971dfb6e776a7bc7ac959cf63ebd52b4f05492730a46e1f189"
+  url "https://github.com/linbox-team/givaro/releases/download/v4.2.1/givaro-4.2.1.tar.gz"
+  sha256 "feefb7445842ceb756f8bb13900d975b530551e488a2ae174bda7b636251de43"
   license "CECILL-B"
-  revision 1
 
   head "https://github.com/linbox-team/givaro.git", using: :git
 
@@ -22,22 +21,6 @@ class Givaro < Formula
   depends_on "libtool" => :build
 
   depends_on "gmp"
-
-  patch do
-    url "https://src.fedoraproject.org/rpms/givaro/raw/rawhide/f/218.patch"
-    sha256 "20151b77f357d8fa0205bbd238a3d74d5d414d0db2a21446fcc047530eca0c96"
-  end
-
-  patch do
-    url "https://src.fedoraproject.org/rpms/givaro/raw/rawhide/f/0001-Temporary-GCC-14-workaround.patch"
-    sha256 "4dbba14012886dcd884864edbdf7599a0ea119dd9851c846a27998ca6eba8db3"
-  end
-
-  # https://github.com/linbox-team/givaro/issues/232
-  patch do
-    url "https://github.com/linbox-team/givaro/commit/a18baf5227d4f3e81a50850fe98e0d954eaa3ddb.patch?full_index=1"
-    sha256 "16e3242c37e4ec38be1df5ef9b3af99cd84133b5f6d7ff767415e6711f05e296"
-  end
 
   def install
     ENV.cxx11
