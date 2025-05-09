@@ -2,11 +2,10 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.24.11.tar.gz"
-  sha256 "6a0b4dfbb340d3ea71c8190b31fc806de76a2dcda458195f8aed4e3ef0d8be5d"
+  url "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
+  version "1.25.05-rc1"
+  sha256 "73abaeaf0ca7ac4b4c65c036d247a9cf21a14409a7e60930c5abd8ef3aee8397"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-
-  head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -19,12 +18,13 @@ class Macaulay2 < Formula
 
   depends_on "bison" => :build
   depends_on "cmake" => :build
+  depends_on "eigen" => :build
   depends_on "ninja" => :build
+  depends_on "node" => :build
   depends_on "pkg-config" => :build
 
   depends_on "bdw-gc"
   depends_on "boost"
-  depends_on "eigen"
   depends_on "factory"
   depends_on "fflas-ffpack"
   depends_on "flint"
@@ -32,13 +32,12 @@ class Macaulay2 < Formula
   depends_on "gdbm"
   depends_on "givaro"
   depends_on "gmp"
-  depends_on "libxml2" unless OS.mac?
   depends_on "libffi"
+  depends_on "libxml2" unless OS.mac?
   depends_on "mpfi"
   depends_on "mpfr"
   depends_on "mpsolve"
-  depends_on "msolve"
-  depends_on "node"
+  depends_on "normaliz"
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
   depends_on "readline"
@@ -50,16 +49,10 @@ class Macaulay2 < Formula
   depends_on "gfan" => :recommended
   depends_on "libomp" => :recommended if OS.mac?
   depends_on "lrs" => :recommended
+  depends_on "msolve" => :recommended
   depends_on "nauty" => :recommended
-  depends_on "normaliz" => :recommended
   depends_on "python" => :recommended
   depends_on "topcom" => :recommended
-
-  # patch for flint 3.2.0; remove on next release
-  patch do
-    url "https://github.com/Macaulay2/M2/commit/c80d102ed88732ca76cd40a35807a678b8af99fb.patch?full_index=1"
-    sha256 "d9754b2f6b4650cedcd0d9f50c8ba83604919c195d9e7265cef557fd26db38c0"
-  end
 
   patch :DATA
 
@@ -169,20 +162,3 @@ index 15832adfb1..e9af682733 100644
  
 -- 
 2.38.1
-
-diff --git a/M2/Macaulay2/d/CMakeLists.txt b/M2/Macaulay2/d/CMakeLists.txt
-index 9114704d79..65983c2fcd 100644
---- a/M2/Macaulay2/d/CMakeLists.txt
-+++ b/M2/Macaulay2/d/CMakeLists.txt
-@@ -146,7 +146,8 @@ add_library(M2-interpreter OBJECT ${CLIST} ${CXXLIST} ${TAGS}
-   $<$<BOOL:${WITH_XML}>:xml-c.c xml-c.h>
-   $<$<BOOL:${WITH_PYTHON}>:python-c.c>)
-
--target_link_libraries(M2-interpreter PRIVATE M2-supervisor Boost::regex
-+target_link_libraries(M2-interpreter PRIVATE M2-supervisor
-+  Boost::boost # boost_regex is now header-only, so we don't link Boost::regex
-   $<$<BOOL:${WITH_TBB}>:TBB::tbb>
-   $<$<BOOL:${WITH_FFI}>:FFI::ffi>)
- 
--- 
-2.48.1
