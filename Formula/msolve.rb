@@ -1,8 +1,8 @@
 class Msolve < Formula
   desc "Library for solving multivariate polynomial systems"
   homepage "https://msolve.lip6.fr"
-  url "https://github.com/algebraic-solving/msolve/archive/refs/tags/v0.7.5.tar.gz"
-  sha256 "e88368abfd1e1918329ff9444164ca0e304835794fec68d192a63c845ae63128"
+  url "https://github.com/algebraic-solving/msolve/archive/refs/tags/v0.8.0.tar.gz"
+  sha256 "d84f0bdefe0e09b23721fbd3b7e2f626e3206602bd245456f4ebfab445f05eb3"
   license "GPL-2.0-or-later"
 
   head "https://gitlab.lip6.fr/safey/msolve.git"
