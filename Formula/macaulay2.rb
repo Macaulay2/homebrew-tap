@@ -3,18 +3,11 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.06.tar.gz"
-  sha256 "a9d53f45f60f04878718a44c91767da01dfc0e42964223e32655927c4ceb5ecc"
+  sha256 "d5cef0196ac98cd31259cfc210c6804c390ab25f081a1d116c14a1932c2e0b4a"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
+  revision 1
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sequoia: "ee6b361c72548c63fd058325778e0fc26c535d43e3546d62885ee5bdc6037299"
-    sha256 cellar: :any, arm64_sonoma:  "a58bb97cb656c097aa195d9eaca75e5f2831bdf462eb0feb56543ba2e89d1248"
-    sha256 cellar: :any, ventura:       "e704aeffbe48e896c05a5bfc0dbbe17125da4c5198b15e77523887439faa73c7"
-    sha256               x86_64_linux:  "321afaaa3bd023321560d019668159a7a30dc7fb728ba86e129857678160fb99"
-  end
 
   depends_on "bison" => :build
   depends_on "cmake" => :build
