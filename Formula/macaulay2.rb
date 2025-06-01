@@ -2,8 +2,8 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.05.tar.gz"
-  sha256 "f5bfff30204b2090bbfb7e620de0c341d957b2ce5c4e3dfc95e129248870781c"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.06.tar.gz"
+  sha256 "a9d53f45f60f04878718a44c91767da01dfc0e42964223e32655927c4ceb5ecc"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
