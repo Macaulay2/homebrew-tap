@@ -10,10 +10,10 @@ class Macaulay2 < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sequoia: "1182a1cdac0df810698f7e91652aa672a3bfd97f46f12b9cc75228c9e024eba0"
-    sha256 cellar: :any, arm64_sonoma:  "3e1c6dfd7a95f8bd49caa1e500b5b6085357682d8e2fd7fe72b17fc2e0ec5d80"
-    sha256 cellar: :any, ventura:       "21efa39da4886e9e480953413b2bb37f167c39ecf8f6c375246ae3d50caf0b26"
-    sha256               x86_64_linux:  "9b93bc707e1ada461916bb9902adb71f4dc9b789ca35a7be2730b0ecd884c164"
+    sha256 cellar: :any, arm64_sequoia: "ee6b361c72548c63fd058325778e0fc26c535d43e3546d62885ee5bdc6037299"
+    sha256 cellar: :any, arm64_sonoma:  "a58bb97cb656c097aa195d9eaca75e5f2831bdf462eb0feb56543ba2e89d1248"
+    sha256 cellar: :any, ventura:       "e704aeffbe48e896c05a5bfc0dbbe17125da4c5198b15e77523887439faa73c7"
+    sha256               x86_64_linux:  "321afaaa3bd023321560d019668159a7a30dc7fb728ba86e129857678160fb99"
   end
 
   depends_on "bison" => :build
