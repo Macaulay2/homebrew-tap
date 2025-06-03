@@ -8,14 +8,6 @@ class Macaulay2 < Formula
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sequoia: "ee6b361c72548c63fd058325778e0fc26c535d43e3546d62885ee5bdc6037299"
-    sha256 cellar: :any, arm64_sonoma:  "a58bb97cb656c097aa195d9eaca75e5f2831bdf462eb0feb56543ba2e89d1248"
-    sha256 cellar: :any, ventura:       "e704aeffbe48e896c05a5bfc0dbbe17125da4c5198b15e77523887439faa73c7"
-    sha256               x86_64_linux:  "321afaaa3bd023321560d019668159a7a30dc7fb728ba86e129857678160fb99"
-  end
-
   depends_on "bison" => :build
   depends_on "cmake" => :build
   depends_on "eigen" => :build
@@ -55,6 +47,12 @@ class Macaulay2 < Formula
   depends_on "topcom" => :recommended
 
   patch :DATA
+
+  # patch for needsPackage: https://github.com/Macaulay2/M2/pull/3864
+  patch do
+    url "https://github.com/Macaulay2/M2/commit/ee2b71ba1850914496cc45722c629d26d47f27e5.patch?full_index=1"
+    sha256 "b8aeeaf94ada14ddbccfa45090fce82017518ddd537774c5cd59a5560abdacc6"
+  end
 
   def install
     # Don't print the shims prefix path
