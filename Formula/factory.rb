@@ -24,6 +24,8 @@ class Factory < Formula
   depends_on "gmp"
   depends_on "ntl"
 
+  patch :DATA
+
   def install
     ENV.cxx11
     args = %W[
@@ -93,3 +95,21 @@ class Factory < Formula
     system "./test"
   end
 end
+
+__END__
+
+diff --git a/factory/FLINTconvert.cc b/factory/FLINTconvert.cc
+index c36f6022d..a4d86fd17 100644
+--- a/FLINTconvert.cc
++++ factory-4.4.1/FLINTconvert.cc
+@@ -652,7 +652,7 @@ convertFacCFMatrix2Fq_nmod_mat_t (fq_nmod_mat_t M,
+   {
+     for(j=m.columns();j>0;j--)
+     {
+-      convertFacCF2nmod_poly_t (M->rows[i-1]+j-1, m (i,j));
++      convertFacCF2nmod_poly_t (fq_nmod_mat_entry(M, i-1, j-1), m (i,j));
+     }
+   }
+ }
+-- 
+2.43.0
