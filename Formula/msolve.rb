@@ -4,20 +4,13 @@ class Msolve < Formula
   url "https://github.com/algebraic-solving/msolve/archive/refs/tags/v0.8.0.tar.gz"
   sha256 "d84f0bdefe0e09b23721fbd3b7e2f626e3206602bd245456f4ebfab445f05eb3"
   license "GPL-2.0-or-later"
+  revision 1
 
   head "https://gitlab.lip6.fr/safey/msolve.git"
 
   livecheck do
     url :stable
     strategy :github_latest
-  end
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sequoia: "005867776909e7e5d90b70b7286ec82990e391cd96c08e730db38ea9e31292eb"
-    sha256 cellar: :any,                 arm64_sonoma:  "c50a5f52c534ee19ae9fa633bbdedb4cdc6b80e7610d40c5d2eaefa0bbc650a6"
-    sha256 cellar: :any,                 ventura:       "5c6d36863dd349ef08f70f992211aa35c0e64259ebbfa5ecc09eb4c3be531a90"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f9a11a783138dbd62902b6d50d51a5753aea46e5db2c4085972ac724616682b8"
   end
 
   depends_on "autoconf" => :build
