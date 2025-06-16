@@ -4,18 +4,9 @@ class Linbox < Formula
   url "https://github.com/linbox-team/linbox/releases/download/v1.7.0/linbox-1.7.0.tar.gz"
   sha256 "6d2159fd395be0298362dd37f6c696676237bc8e2757341fbc46520e3b466bcc"
   license "LGPL-2.1-or-later"
-  revision 1
+  revision 2
 
   head "https://github.com/linbox-team/linbox.git", using: :git, branch: "master"
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 2
-    sha256 cellar: :any,                 arm64_sequoia: "bd59ccc44cc7083524e28c2ce588fe9cca686669699731e2440a48f42576a941"
-    sha256 cellar: :any,                 arm64_sonoma:  "f5fe775b3ee4e71565850c72d9d5436bbc4672d8b57fe35f97d7dd5ad331b675"
-    sha256 cellar: :any,                 ventura:       "eeee49ee90c4529ef36effe4c15b842fda14613045094d6b64cfb0275231e3da"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "383751b5cd7fc88da15b7e17047ff1359cd1c454780138a1a1a7cef859f927bc"
-  end
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
