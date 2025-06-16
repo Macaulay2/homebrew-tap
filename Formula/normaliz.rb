@@ -4,15 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.4/normaliz-3.10.4.tar.gz"
   sha256 "9b424f966d553ae32e710b8ab674c7887ddcbf0e5ea08af7f8bc1b587bcbb2aa"
   license "GPL-3.0-only"
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 3
-    sha256 cellar: :any,                 arm64_sequoia: "34501eecf1acbc76e7c1db1af5629ef215285b9a0c7a257eef62dcfe20ff30cb"
-    sha256 cellar: :any,                 arm64_sonoma:  "a73e68e1fdec521b5922f886644846b9f592921dbd1b88d089958f7fcde75e42"
-    sha256 cellar: :any,                 ventura:       "685adfe71e31269893500a714e19df65b8ea3853d1f403bb7ac7d1f6388eb250"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a6e8d9ad03d5c381aa0bfb8acba8c42166645812a6d18bd28a65bf1a27d01a89"
-  end
+  revision 1
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
