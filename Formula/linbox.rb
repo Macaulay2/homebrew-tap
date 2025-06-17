@@ -8,6 +8,14 @@ class Linbox < Formula
 
   head "https://github.com/linbox-team/linbox.git", using: :git, branch: "master"
 
+  bottle do
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any,                 arm64_sequoia: "c8128bc3326f4ecd6c3dccf368710652eb5b9cca296774a616a9bae40b10ecb9"
+    sha256 cellar: :any,                 arm64_sonoma:  "e6cacf1db93748d753288fa0ecf943388e6b14f094430a915942ee45e2c40ff6"
+    sha256 cellar: :any,                 ventura:       "4b648e2c82b935a2bc3ea5aedb66cfe1f9bb60b150477f94a665966491409d36"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0c65195e1b33e7a202622c462869947ef39c58b9d21ecae005c5752987924475"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
