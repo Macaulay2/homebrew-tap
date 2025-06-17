@@ -5,6 +5,15 @@ class Factory < Formula
   sha256 "345ec8ab2481135d18244e2a2ff6bc16e812a39a9eb5ac5d578956d8e0526e6e"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
+  bottle do
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    rebuild 3
+    sha256 cellar: :any,                 arm64_sequoia: "560498068a8fa84419618f37a69ab1d6f8beea65ce8d13f4c99ead86d3c46025"
+    sha256 cellar: :any,                 arm64_sonoma:  "3d83f2407f0f67f99913c26ab9cf03dac0b8db390ca11442260fb92128fe9c08"
+    sha256 cellar: :any,                 ventura:       "f85facec898317ab57e787d567555b59f172f54c4de5846d0600a92c64c74cd9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fe037c6beaf46b94766cc955cf8dd251e53fce29b4a9c089c44c9da0c5391a8e"
+  end
+
   keg_only "it conflicts with singular"
 
   depends_on "autoconf" => :build
