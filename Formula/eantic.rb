@@ -6,6 +6,14 @@ class Eantic < Formula
   license any_of: ["LGPL-3.0-only", "GPL-3.0-only"]
   revision 1
 
+  bottle do
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3bb03feb4be7598bdc83e0472342b505da97bf9ec55f8681043e045ada57b121"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "91b4f39cdfe358e8fb3fec6f68c3feb171c3a365a58a6fdeed56d46460fc19f2"
+    sha256 cellar: :any_skip_relocation, ventura:       "bbd99942bdacf0ac4e0fa07c5e9639a1a442cd42a277e4b791f8531aed047b34"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "483d2ed4cb5946d7220df8a29102bc022ffa1ad9ce6727adc4e9cc78ef727468"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
