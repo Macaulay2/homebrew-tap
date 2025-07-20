@@ -5,17 +5,9 @@ class Macaulay2 < Formula
   url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.06.tar.gz"
   sha256 "d5cef0196ac98cd31259cfc210c6804c390ab25f081a1d116c14a1932c2e0b4a"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
+  revision 3
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sequoia: "90e45f07415baaaedcd4674f32c2e67f1aa0bfd79cecfa8e71f188c129406b2c"
-    sha256 cellar: :any, arm64_sonoma:  "7817e294479323e5b5baa3a4daf3217214dd3d99c1deb5399f7f152f410a1463"
-    sha256 cellar: :any, ventura:       "dae44ddaf0cfd510f2bf68675297552f1fd7c44b2b124326165fe28861da485a"
-    sha256               x86_64_linux:  "06fd2155046a970f865c600e66c3f25e42795d3dd8d1a816326e6386c0079661"
-  end
 
   depends_on "bison" => :build
   depends_on "cmake" => :build
