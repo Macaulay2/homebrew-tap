@@ -7,10 +7,10 @@ class Fourtitwo < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sequoia: "3fdadf46b911cd014a9221d2447af0ae19ae1687a1477b89fa25f3f50b931e9c"
-    sha256 cellar: :any,                 arm64_sonoma:  "9558d6ee6a212890cc6256df362ef6478161484e4bd07220b7a3513ce63fa2d3"
-    sha256 cellar: :any,                 ventura:       "66c465ce694bd27994f925667fb9354906837e92c6fb15334bca385bc7ac185f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0ed17cbc8f60676717e8af67730bbc092f4b4fe8dbbe3d3f91eafedea3d993c8"
+    sha256 cellar: :any,                 arm64_sequoia: "1bd6153e3e218cdd2ab39c333e7bc175a22d7dfbcd94b33adac7c08010fa341c"
+    sha256 cellar: :any,                 arm64_sonoma:  "84317759a6785fc2385b6eeb4c098eea3f60738affebcd423f8980a774c4f74f"
+    sha256 cellar: :any,                 ventura:       "1d82ea4ee97d3e351f2694c3691cfd49a4327177bd3317b03e98caea59eec037"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e071a8b56a2ff881e9ac3e39dcb6e29e0cafcc4df2dc525cb6d2a1b3b1448a1e"
   end
 
   depends_on "autoconf" => :build
