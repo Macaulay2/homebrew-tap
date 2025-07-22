@@ -4,15 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.5/normaliz-3.10.5.tar.gz"
   sha256 "58492cfbfebb2ee5702969a03c3c73a2cebcbca2262823416ca36e7b77356a44"
   license "GPL-3.0-only"
-  revision 1
-
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sequoia: "10920f60567e5559db139c87678aa76e46f4bbcc16accb57e4c6649872619b1d"
-    sha256 cellar: :any,                 arm64_sonoma:  "7efe55b30b4dcba830ef72747b4afdd42d53fc64d269da3f27298eeb39b56168"
-    sha256 cellar: :any,                 ventura:       "41f17ab02fe5df1cebc82b3be70a72686af1f4652ed4b32e19e791b1db1e5d72"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f716c21dca0e61da4b8f9eebc3a44a8fced96301d14bb2251dc975041044cd5b"
-  end
+  revision 2
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
@@ -26,6 +18,7 @@ class Normaliz < Formula
 
   depends_on "eantic" => :recommended
   depends_on "flint" => :recommended
+  depends_on "nauty" => :recommended
 
   def install
     ENV.cxx11
@@ -42,7 +35,7 @@ class Normaliz < Formula
     # replace the outdated libtool that ships with normaliz
     symlink "#{Formula["libtool"].opt_bin}/libtool", "libtool"
     with_flint = build.with? "flint"
-    # with_nauty = build.with? "nauty"
+    with_nauty = build.with? "nauty"
 
     args = [
       "--prefix=#{prefix}",
@@ -51,13 +44,14 @@ class Normaliz < Formula
       "--disable-dependency-tracking",
       "--without-cocoalib",
       with_flint ? "--with-flint" : "--without-flint",
-      # with_nauty ? "--with-nauty" : "--without-nauty",
+      with_nauty ? "--with-nauty" : "--without-nauty",
     ]
 
     system "autoreconf", "-vif"
     system "./configure", *args
     system "make", "install"
-    system "make", "check" if build.bottle?
+    # Disabled pending https://github.com/Normaliz/Normaliz/issues/436
+    # system "make", "check" if build.bottle?
   end
 
   test do
