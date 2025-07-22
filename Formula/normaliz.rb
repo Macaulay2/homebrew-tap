@@ -6,6 +6,14 @@ class Normaliz < Formula
   license "GPL-3.0-only"
   revision 2
 
+  bottle do
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any,                 arm64_sequoia: "1ea03da6f6019437a4e75304b855c5220a3e2def84075c913f8a3a25188a29ac"
+    sha256 cellar: :any,                 arm64_sonoma:  "e325289c133bec65a4efee39f487bb7b3f6266b04dc9dd04332875cb7d5a48d0"
+    sha256 cellar: :any,                 ventura:       "b33ace7f33d0e08cee04a1f2eb1cf1ad0f171261b17e2630dfa5815ec4f2ade1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "52686acfaa004e415ec068acac1b6d9d64a93ec2728a1048d2882ec599268116"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "diffutils" => :build
