@@ -1,13 +1,13 @@
 [![#Macaulay2/tap](https://raw.githubusercontent.com/Macaulay2/homebrew-tap/main/.github/banner.png)](https://github.com/Macaulay2/homebrew-tap)
 
-This is the Homebrew repository for software in algebra and geometry, particularly Macaulay2 and its dependencies.
+This is a repository of Homebrew formulae[^*] for software in algebra and geometry, especially Macaulay2 and its dependencies.
 Additional contributions in other areas of mathematics are welcome.
 
 ## How do I install Homebrew?
 See [brew.sh](https://brew.sh).
 
 ## How do I install these formulae?
-To add this Homebrew tap and install Macaulay2 from a bottle, run:
+To add this Homebrew tap[^*] and install Macaulay2 from a bottle[^*], run:
 ```
 brew tap Macaulay2/tap
 brew install M2
@@ -64,3 +64,5 @@ The formula from which the Macaulay2 bottle on this tap is built uses the
 For issues concerning Macaulay2 itself, file an issue on the
 [upstream repository](https://github.com/Macaulay2/M2/issues).
 If the problem is specific to this build, please open an issue here and include the output of `brew config` and `brew doctor`. You can also try visiting the [wiki](https://github.com/Macaulay2/homebrew-tap/wiki) for debugging information and workarounds for common problems.
+
+[^*]: in [Homebrew terminology](https://docs.brew.sh/Formula-Cookbook#homebrew-terminology), instructions for building programs from source are called _formulae_, the resulting packages are _bottles_, and the depository for distributed packages is a _tap_.
