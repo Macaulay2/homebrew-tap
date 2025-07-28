@@ -1,6 +1,7 @@
-# Macaulay2 Tap
+[![#Macaulay2/tap](https://raw.githubusercontent.com/Macaulay2/homebrew-tap/main/.github/banner.png)](https://github.com/Macaulay2/homebrew-tap)
 
-This is the Homebrew repository for Macaulay2 and its dependencies.
+This is the Homebrew repository for software in algebra and geometry, particularly Macaulay2 and its dependencies.
+Additional contributions in other areas of mathematics are welcome.
 
 ## How do I install Homebrew?
 See [brew.sh](https://brew.sh).
