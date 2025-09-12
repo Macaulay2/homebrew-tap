@@ -4,7 +4,7 @@ class Normaliz < Formula
   url "https://github.com/Normaliz/Normaliz/releases/download/v3.10.5/normaliz-3.10.5.tar.gz"
   sha256 "58492cfbfebb2ee5702969a03c3c73a2cebcbca2262823416ca36e7b77356a44"
   license "GPL-3.0-only"
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
