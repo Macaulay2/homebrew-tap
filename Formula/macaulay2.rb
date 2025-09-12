@@ -5,7 +5,7 @@ class Macaulay2 < Formula
   url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.06.tar.gz"
   sha256 "d5cef0196ac98cd31259cfc210c6804c390ab25f081a1d116c14a1932c2e0b4a"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 3
+  revision 4
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
