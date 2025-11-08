@@ -33,6 +33,7 @@ jobs:
 
       - run: brew test-bot --only-cleanup-before
 
+      # clean up any uncommitted files so "brew doctor" doesn't fail
       - run: git -C "$(brew --repository homebrew/core)" clean -fdx || true
 
       - run: brew test-bot --only-setup
