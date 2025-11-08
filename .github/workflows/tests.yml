@@ -33,6 +33,8 @@ jobs:
 
       - run: brew test-bot --only-cleanup-before
 
+      - run: git -C "$(brew --repository homebrew/core)" clean -fdx || true
+
       - run: brew test-bot --only-setup
 
       - run: brew test-bot --only-tap-syntax
