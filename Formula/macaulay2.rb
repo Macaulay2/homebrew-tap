@@ -19,7 +19,7 @@ class Macaulay2 < Formula
 
   depends_on "bison" => :build
   depends_on "cmake" => :build
-  depends_on "eigen" => :build
+  depends_on "eigen@3" => :build # TODO: drop the "@3"
   depends_on "ninja" => :build
   depends_on "node" => :build
   depends_on "pkg-config" => :build
