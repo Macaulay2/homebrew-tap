@@ -2,10 +2,9 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.06.tar.gz"
-  sha256 "d5cef0196ac98cd31259cfc210c6804c390ab25f081a1d116c14a1932c2e0b4a"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.11.tar.gz"
+  sha256 "9700005196e4368af52156efaff081a4771fd21545a3cd8c2ee3b0571aeaa17f"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 5
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
@@ -21,7 +20,7 @@ class Macaulay2 < Formula
   depends_on "eigen@3" => :build # TODO: drop the "@3"
   depends_on "ninja" => :build
   depends_on "node" => :build
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "bdw-gc"
   depends_on "boost"
