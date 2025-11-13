@@ -7,10 +7,10 @@ class Normaliz < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sequoia: "f3d9ab0cd737e522fbfe17d73381aac8dca167d4a23afb56ee82422383f41dcc"
-    sha256 cellar: :any,                 arm64_sonoma:  "0e5df5236aee39d3c54edd31588275ea3e2c2290de64b59a5fcbf2b543a94a62"
-    sha256 cellar: :any,                 ventura:       "5ee7b5844f5443b43891c9631c0ba756072603232f118028a7c4d9702637d10c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1cea29a5ab273e37c58646ff6dc5eac99dac91bc16021932e3a0b97e010bbd4b"
+    sha256 cellar: :any,                 arm64_tahoe:   "b399766e36631c355e2d3f07907554de4734b615e91e0c3838bcbcd902670d6d"
+    sha256 cellar: :any,                 arm64_sequoia: "ba67db952ed5c33d22b99cc89c5caf3e16f23e9c23f9733cc887ed53634a0840"
+    sha256 cellar: :any,                 arm64_sonoma:  "5d458c0c41d68e14c2db5c0e1297e6142a12b70e2a8931d823ea480f2e8aab34"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "08500ebb959fad85431cabeb4a8bdf6f3261de4a383cc9fcc7db3e59739c7584"
   end
 
   depends_on "autoconf" => :build
