@@ -1,10 +1,9 @@
 class Mpsolve < Formula
   desc "Multiprecision Polynomial SOLVEr"
   homepage "https://numpi.dm.unipi.it/software/mpsolve"
-  url "https://numpi.dm.unipi.it/_media/software/mpsolve/mpsolve-3.2.1.tar.gz"
-  sha256 "3d11428ae9ab2e020f24cabfbcd9e4d9b22ec572cf70af0d44fe8dae1d51e78e"
+  url "https://numpi.dm.unipi.it/wp-content/uploads/2025/08/mpsolve-3.2.3.tar.bz2"
+  sha256 "1f2e239c698c783b63a5e6903e76316c0335a01d71c466a8551e8a3f790b3971"
   license "GPL-3.0-only"
-  revision 4
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -17,29 +16,21 @@ class Mpsolve < Formula
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
+  depends_on "bison" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
 
   depends_on "gmp"
   depends_on "mpfr"
 
-  patch do
-    url "https://raw.githubusercontent.com/Macaulay2/M2/35c3e5e5f03cb2e60baa8e69f8109afcdb5fdc7b/M2/libraries/mpsolve/patch-3.2.1"
-    sha256 "ba5b6064c8a3e9d1894d764aacebe5a623daf1487c7cc44207599df1759036d7"
-  end
-
-  # remove on next release; see https://github.com/robol/MPSolve/issues/27
-  patch do
-    url "https://github.com/robol/MPSolve/commit/3a890878239717e1d5d23f574e4c0073a7249f7a.patch?full_index=1"
-    sha256 "b2c5e037bed14568d3692cf7270428614f2766bcaf0b2fb06a7f178497671efa"
-  end
-
-  # see https://github.com/robol/MPSolve/issues/38
-  patch :DATA
-
   def install
     ENV.cxx11
     system "autoreconf", "-vif"
+    # yacc-generated files shipped in 3.2.3 tarball result in
+    # errors when using newer compilers, so we remove them so
+    # bison can regenerate them
+    rm "src/libmps/monomial/yacc-parser.c"
+    rm "src/libmps/monomial/yacc-parser.h"
     system "./configure",
            "--disable-debug",
            "--disable-dependency-tracking",
@@ -57,21 +48,3 @@ class Mpsolve < Formula
     system "true"
   end
 end
-
-__END__
-
-diff --git a/include/mps/private/system/memory-file-stream.h b/include/mps/private/system/memory-file-stream.h
-index 0029bc9..a11b998 100644
---- a/include/mps/private/system/memory-file-stream.h
-+++ b/include/mps/private/system/memory-file-stream.h
-@@ -47,6 +47,8 @@ MPS_END_DECLS
- 
- #ifdef __cplusplus
- 
-+#undef isnan
-+#undef isinf
- #include <iostream>
- #include <sstream>
-
---
-2.40.1
