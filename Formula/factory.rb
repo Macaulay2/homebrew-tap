@@ -6,13 +6,6 @@ class Factory < Formula
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
   revision 2
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_sequoia: "6f57ae01eed9fc70720c8f3cf5753ac33f5c0810de1144853255d95968bc0d76"
-    sha256 cellar: :any,                 arm64_sonoma:  "31a30926297f58bab477e790e91b71a8594d684af9101842143b333caa3f83e5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3354cceb8411d3cb0e93952e826b9d14d89bbecd712ff5ae4c047e49c1beb3e6"
-  end
-
   keg_only "it conflicts with singular"
 
   depends_on "autoconf" => :build
