@@ -5,14 +5,6 @@ class Gfan < Formula
   sha256 "ab833757e1e4d4a98662f4aa691394013ea9a226f6416b8f8565356d6fcc989e"
   license "GPL-2.0-or-later"
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_sequoia: "3b60fbf6920c7ac4c595d654f2c80b42e75cca4bc0e3fd6fd246fdcb9c6b902e"
-    sha256 cellar: :any, arm64_sonoma:  "9b2d817cd6af701ebdb9d39827e3b1a81637763fe61e63b00c86e1db4c1ce7b8"
-    sha256 cellar: :any, ventura:       "1a9e4cb89ae301e28c242babffb3f3e214670058902ff9e44930163c8a2bf685"
-    sha256               x86_64_linux:  "21af3091c78d42a34c8324461febbe54b5dff34173024b6f52d2bff9a7172c9e"
-  end
-
   depends_on "gcc@14" => :build
 
   depends_on "cddlib"

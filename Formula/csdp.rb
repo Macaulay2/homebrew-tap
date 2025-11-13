@@ -6,15 +6,6 @@ class Csdp < Formula
   license "EPL-2.0"
   revision 10
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 1
-    sha256 cellar: :any,                 arm64_sequoia: "e6b76a606628f3b8f84f8577d69bb46b57ad90168d3c13873b920228d1666e3a"
-    sha256 cellar: :any,                 arm64_sonoma:  "aa620aca33806e6a3ecdbbd8cc61dcb20b2a2500d236373ac15211382ef824cf"
-    sha256 cellar: :any,                 ventura:       "2fe5297019b55955c8eec379889cf74640f9f8980dfd4b6467d44e4178bb6f54"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "294df2cff652bfd6f1af91a35a3e02397c9392508a4e64223256509baad9e2f6"
-  end
-
   depends_on "libomp" if OS.mac?
   depends_on "openblas" unless OS.mac?
 
