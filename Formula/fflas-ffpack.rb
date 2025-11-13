@@ -7,6 +7,15 @@ class FflasFfpack < Formula
 
   head "https://github.com/linbox-team/fflas-ffpack.git", using: :git, branch: "master"
 
+  bottle do
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "1c8eaf4b6df9eb77de2bdf440074c5f66637daa7ddfed268769544db60f1e867"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a1280e2d7cb7fb0a144dfcc2af29023d861bde51bb198b246bfa03793ad7aabc"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "276f1bc934328c848c25812fa5dc0308deb4eff70e9bd89dce2f6630ddabf67f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6f08ed61fcd8b4511512887fea26d4fe17906e083159e058109574a0b66450d7"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
