@@ -1,10 +1,9 @@
 class Eantic < Formula
   desc "Computing with Real Embedded Number Fields"
   homepage "https://flatsurf.github.io/e-antic/"
-  url "https://github.com/flatsurf/e-antic/releases/download/2.0.2/e-antic-2.0.2.tar.gz"
-  sha256 "8328e6490129dfec7f4aa478ebd54dc07686bd5e5e7f5f30dcf20c0f11b67f60"
+  url "https://github.com/flatsurf/e-antic/releases/download/2.1.0/e-antic-2.1.0.tar.gz"
+  sha256 "e3e78701d054b441f95d83b6fb55cd84bfd931f5d4a61a2822dc977a20c46f80"
   license any_of: ["LGPL-3.0-only", "GPL-3.0-only"]
-  revision 1
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -20,11 +19,6 @@ class Eantic < Formula
 
   depends_on "boost"
   depends_on "flint"
-
-  patch do
-    url "https://github.com/flatsurf/e-antic/commit/66ecdffd7e83611e1c3df5049634d88f089b0104.patch?full_index=1"
-    sha256 "bdfbb3b846017bee68a53a13c974e76958f5aa5c0a50929dc3957560d616f1ec"
-  end
 
   # skipping pyeantic due to https://github.com/flatsurf/e-antic/issues/283
   patch :DATA
@@ -57,18 +51,17 @@ end
 __END__
 
 diff --git a/pyeantic/src/Makefile.am b/pyeantic/src/Makefile.am
-index 2dac471..129d40c 100644
+index 35577c2..ce719ac 100644
 --- a/pyeantic/src/Makefile.am
 +++ b/pyeantic/src/Makefile.am
 @@ -3,7 +3,7 @@ all-local:
-	cd $(srcdir) && $(PYTHON) $(abs_top_builddir)/src/setup.py build --verbose --build-base $(abs_top_builddir)/src/build
-
+ 	cd $(abs_srcdir) && $(PYTHON) $(abs_srcdir)/setup.py build --verbose --build-base $(abs_builddir)/build
+ 
  install-exec-local:
--	$(PYTHON) setup.py install --prefix $(DESTDIR)$(prefix) --single-version-externally-managed --record $(DESTDIR)$(pythondir)/pyeantic/install_files.txt --verbose
-+	echo "warning: skipping pyeantic due to https://github.com/flatsurf/e-antic/issues/283" #$(PYTHON) setup.py install --prefix $(DESTDIR)$(prefix) --single-version-externally-managed --record $(DESTDIR)$(pythondir)/pyeantic/install_files.txt --verbose
-
+-	$(PYTHON) $(abs_srcdir)/setup.py install --prefix $(DESTDIR)$(prefix) --single-version-externally-managed --record $(DESTDIR)$(pythondir)/pyeantic/install_files.txt --verbose
++	echo "warning: skipping pyeantic due to https://github.com/flatsurf/e-antic/issues/283"  #$(PYTHON) $(abs_srcdir)/setup.py install --prefix $(DESTDIR)$(prefix) --single-version-externally-managed --record $(DESTDIR)$(pythondir)/pyeantic/install_files.txt --verbose
+ 
  uninstall-local:
-	cat $(DESTDIR)$(pythondir)/pyeantic/install_files.txt | xargs rm -rf
-  
+ 	cat $(DESTDIR)$(pythondir)/pyeantic/install_files.txt | xargs rm -rf
 -- 
-2.48.1
+2.34.1
