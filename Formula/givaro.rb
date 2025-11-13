@@ -4,8 +4,9 @@ class Givaro < Formula
   url "https://github.com/linbox-team/givaro/releases/download/v4.2.1/givaro-4.2.1.tar.gz"
   sha256 "feefb7445842ceb756f8bb13900d975b530551e488a2ae174bda7b636251de43"
   license "CECILL-B"
+  revision 1
 
-  head "https://github.com/linbox-team/givaro.git", using: :git
+  head "https://github.com/linbox-team/givaro.git", using: :git, branch: "master"
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
