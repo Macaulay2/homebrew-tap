@@ -4,7 +4,7 @@ class Frobby < Formula
   url "https://github.com/Macaulay2/frobby.git", using: :git, branch: "master"
   version "0.9.5"
   license "GPL-2.0-only"
-  revision 4
+  revision 5
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"

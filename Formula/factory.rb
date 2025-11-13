@@ -4,7 +4,7 @@ class Factory < Formula
   url "https://macaulay2.com/Downloads/OtherSourceCode/factory-4.4.1.tar.gz"
   sha256 "345ec8ab2481135d18244e2a2ff6bc16e812a39a9eb5ac5d578956d8e0526e6e"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"

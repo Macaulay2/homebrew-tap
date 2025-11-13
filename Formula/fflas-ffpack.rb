@@ -4,6 +4,7 @@ class FflasFfpack < Formula
   url "https://github.com/linbox-team/fflas-ffpack/releases/download/v2.5.0/fflas-ffpack-2.5.0.tar.gz"
   sha256 "dafb4c0835824d28e4f823748579be6e4c8889c9570c6ce9cce1e186c3ebbb23"
   license "LGPL-2.1-or-later"
+  revision 1
 
   head "https://github.com/linbox-team/fflas-ffpack.git", using: :git
 
