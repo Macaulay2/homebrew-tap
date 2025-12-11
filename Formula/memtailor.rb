@@ -1,10 +1,9 @@
 class Memtailor < Formula
   desc "C++ library of special purpose memory allocators"
   homepage "https://github.com/Macaulay2/memtailor"
-  url "https://github.com/Macaulay2/memtailor.git", using: :git, branch: "master"
-  version "1.0"
+  url "https://github.com/Macaulay2/memtailor/archive/refs/tags/v1.1.tar.gz"
+  sha256 "804582cf12e3651c18ce6a7d981dcf736b1fa5b765e041ff0135e5ad1a3eb160"
   license "BSD-3-Clause"
-  revision 10
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/memtailor-1.0_10"
