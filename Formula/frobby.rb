@@ -1,10 +1,9 @@
 class Frobby < Formula
   desc "Computations With Monomial Ideals"
   homepage "https://github.com/Macaulay2/frobby"
-  url "https://github.com/Macaulay2/frobby.git", using: :git, branch: "master"
-  version "0.9.5"
+  url "https://github.com/Macaulay2/frobby/archive/refs/tags/v0.9.6.tar.gz"
+  sha256 "01d4439fd07e3a598be892f012babb0d60839cf03c905a869d7573a5a825a02a"
   license "GPL-2.0-only"
-  revision 5
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
