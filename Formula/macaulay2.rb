@@ -2,6 +2,7 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
+  # when bumping to a new release, also update the submodule commits below
   url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.11.tar.gz"
   sha256 "9700005196e4368af52156efaff081a4771fd21545a3cd8c2ee3b0571aeaa17f"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
@@ -57,6 +58,13 @@ class Macaulay2 < Formula
 
   patch :DATA
 
+  def git_clone_at_commit(url, dir, commit)
+    system "git", "clone", url, dir
+    cd dir do
+      system "git", "checkout", commit
+    end
+  end
+
   def install
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
@@ -68,10 +76,29 @@ class Macaulay2 < Formula
     inreplace "M2/Macaulay2/d/CMakeLists.txt", "M2-supervisor", "M2-supervisor quadmath" unless OS.mac?
 
     # Place the submodules, since the tarfile doesn't include them
-    system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs"
-    system "git", "clone", "https://github.com/Macaulay2/memtailor.git", "M2/submodules/memtailor"
-    system "git", "clone", "https://github.com/Macaulay2/mathic.git", "M2/submodules/mathic"
-    system "git", "clone", "https://github.com/Macaulay2/mathicgb.git", "M2/submodules/mathicgb"
+    git_clone_at_commit(
+      "https://github.com/Macaulay2/M2-emacs.git",
+      "M2/Macaulay2/editors/emacs",
+      "524968452e95d010769ece30092edaa09d1e814f",
+    )
+
+    git_clone_at_commit(
+      "https://github.com/Macaulay2/memtailor.git",
+      "M2/submodules/memtailor",
+      "07c84a6852212495182ec32c3bdb589579e342b5",
+    )
+
+    git_clone_at_commit(
+      "https://github.com/Macaulay2/mathic.git",
+      "M2/submodules/mathic",
+      "7abf77e4ce493b3830c7f8cc09722bbd6c03818e",
+    )
+
+    git_clone_at_commit(
+      "https://github.com/Macaulay2/mathicgb.git",
+      "M2/submodules/mathicgb",
+      "de139564927563afef383174fd3cf8c93ee18ab3",
+    )
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
