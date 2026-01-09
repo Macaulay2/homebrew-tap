@@ -1,8 +1,8 @@
 class Frobby < Formula
   desc "Computations With Monomial Ideals"
   homepage "https://github.com/Macaulay2/frobby"
-  url "https://github.com/Macaulay2/frobby/archive/refs/tags/v0.9.6.tar.gz"
-  sha256 "01d4439fd07e3a598be892f012babb0d60839cf03c905a869d7573a5a825a02a"
+  url "https://github.com/Macaulay2/frobby/releases/download/v0.9.7/frobby_v0.9.7.tar.gz"
+  sha256 "efd0a825b67731aa5fb4ea8d2e1004830cc11685be3e09f5401612c411214a96"
   license "GPL-2.0-only"
 
   bottle do
