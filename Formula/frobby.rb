@@ -7,10 +7,10 @@ class Frobby < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_tahoe:   "8751c00a38717555333d78716a878c3306e57dba007e564caad466b147fd8140"
-    sha256 cellar: :any,                 arm64_sequoia: "525bdf9f57d5d8cc57a6b2270ca1a41c2fe788e96fcf746697ea4e05ee5f557b"
-    sha256 cellar: :any,                 arm64_sonoma:  "711fdc348f52bc4283ecfe877b7ea13037a21243702523828c42960b921a9714"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7060d6ae41a3e95d9bfcd0cc4a3c8de6aaa9837c9e47680b9b5d4b4c47db65d7"
+    sha256 cellar: :any,                 arm64_tahoe:   "8f66b1e645e031bf4b514b0440b46d4ad1956e6892209d35491e4f0168e41f8f"
+    sha256 cellar: :any,                 arm64_sequoia: "672dcc29801da44d49cd1595e0edf2d045b11092e8200f09127e414e216719db"
+    sha256 cellar: :any,                 arm64_sonoma:  "36cca4b4789e84939f913404dc85dc86dea9a20900cccb633f98457695bdfc8f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "90a69efa9917d0b716a4ed08b533a15dfaba1dfccf53632cd6b770b2bcfa5aac"
   end
 
   unless OS.mac?
