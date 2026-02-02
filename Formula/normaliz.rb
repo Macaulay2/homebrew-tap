@@ -20,12 +20,12 @@ class Normaliz < Formula
   depends_on "pkgconf" => :build
 
   depends_on "boost"
+  depends_on "flint"
   depends_on "gmp"
   depends_on "libomp" if OS.mac?
+  depends_on "nauty"
 
   depends_on "eantic" => :recommended
-  depends_on "flint" => :recommended
-  depends_on "nauty" => :recommended
 
   def install
     ENV.cxx11
@@ -41,8 +41,6 @@ class Normaliz < Formula
 
     # replace the outdated libtool that ships with normaliz
     symlink "#{Formula["libtool"].opt_bin}/libtool", "libtool"
-    with_flint = build.with? "flint"
-    with_nauty = build.with? "nauty"
 
     args = [
       "--prefix=#{prefix}",
@@ -50,8 +48,8 @@ class Normaliz < Formula
       "--disable-silent-rules",
       "--disable-dependency-tracking",
       "--without-cocoalib",
-      with_flint ? "--with-flint" : "--without-flint",
-      with_nauty ? "--with-nauty" : "--without-nauty",
+      "--with-flint",
+      "--with-nauty",
     ]
 
     system "autoreconf", "-vif"
