@@ -6,7 +6,7 @@ class Macaulay2 < Formula
   url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.11.tar.gz"
   sha256 "9700005196e4368af52156efaff081a4771fd21545a3cd8c2ee3b0571aeaa17f"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
+  revision 3
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
@@ -35,13 +35,16 @@ class Macaulay2 < Formula
   depends_on "givaro"
   depends_on "gmp"
   depends_on "libffi"
+  depends_on "libomp" if OS.mac?
   depends_on "libxml2" unless OS.mac?
   depends_on "mpfi"
   depends_on "mpfr"
   depends_on "mpsolve"
+  depends_on "nauty"
   depends_on "normaliz"
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
+  depends_on "python@3.14" # brew linkage --test expects specific version
   depends_on "readline"
   depends_on "tbb"
 
@@ -49,11 +52,8 @@ class Macaulay2 < Formula
   depends_on "csdp" => :recommended
   depends_on "fourtitwo" => :recommended
   depends_on "gfan" => :recommended
-  depends_on "libomp" => :recommended if OS.mac?
   depends_on "lrs" => :recommended
   depends_on "msolve" => :recommended
-  depends_on "nauty" => :recommended
-  depends_on "python" => :recommended
   depends_on "topcom" => :recommended
 
   patch :DATA
