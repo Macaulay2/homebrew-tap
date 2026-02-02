@@ -55,8 +55,7 @@ class Normaliz < Formula
     system "autoreconf", "-vif"
     system "./configure", *args
     system "make", "install"
-    # Disabled pending https://github.com/Normaliz/Normaliz/issues/436
-    # system "make", "check" if build.bottle?
+    system "make", "check" if build.bottle?
   end
 
   test do
