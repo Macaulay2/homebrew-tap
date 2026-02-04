@@ -6,11 +6,11 @@ class Mathic < Formula
   license "LGPL-2.0-or-later"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathic-1.0_5"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma: "b5c1535522f276c53035d7f5418674df0de88edfc3589b4a9209fb381e38c111"
-    sha256 cellar: :any_skip_relocation, ventura:      "8dca8a49ac1ef9e70350a3e8c79cf53ae3b4510914edc8061ab61952531fc296"
-    sha256 cellar: :any_skip_relocation, monterey:     "3de8fc2811cfdea267d642378dcbd42afc90be289021a64ae22ae9e4f31f6a62"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "b798aaa001e7c54e73dd94e2363f13e1a28632f1d5e64b1f8ace45b01f472b55"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "12a9b4f7996b1f81d45c490d0c4231ef4941f7af8962897cb1a1d4cc799d7520"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "eaf81450e5577aa033ee4ed494741d6594d87de37f0fdc73e0147f88b4bf2dcd"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "19ab4a720cadf7338974677490703711f1628d7ece0444a6dc563b2fd04fd447"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f2de0de48f5d44c948b5019d401be39bf1a115318236b18808aed0f9a302c559"
   end
 
   unless OS.mac?
