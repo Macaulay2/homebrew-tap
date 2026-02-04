@@ -1,10 +1,9 @@
 class Mathicgb < Formula
   desc "Compute (signature) Groebner bases using the fast datastructures from mathic"
   homepage "https://github.com/Macaulay2/mathicgb"
-  url "https://github.com/Macaulay2/mathicgb.git", using: :git, branch: "master"
-  version "1.0"
+  url "https://github.com/Macaulay2/mathicgb/releases/download/v1.2/mathicgb-1.2.tar.gz"
+  sha256 "5052ea8b175658a018d51cecef6c8d31f103ca3a7254b3690b4dbf80cbf0322e"
   license "GPL-2.0-or-later"
-  revision 9
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathicgb-1.0_9"
