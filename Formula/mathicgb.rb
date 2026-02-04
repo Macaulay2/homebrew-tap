@@ -25,8 +25,7 @@ class Mathicgb < Formula
 
   depends_on "mathic"
   depends_on "memtailor"
-
-  depends_on "tbb" => :recommended
+  depends_on "tbb"
 
   def install
     ENV.cxx11
