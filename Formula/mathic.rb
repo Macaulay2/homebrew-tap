@@ -1,10 +1,9 @@
 class Mathic < Formula
   desc "Symbolic algebra data structures for use in Groebner basis computation"
   homepage "https://github.com/Macaulay2/mathic"
-  url "https://github.com/Macaulay2/mathic.git", using: :git, branch: "master"
-  version "1.0"
+  url "https://github.com/Macaulay2/mathic/releases/download/v1.2/mathic-1.2.tar.gz"
+  sha256 "1a7d459290e9183e0934a6dd2278db372b831b37fdb4a6f1db7e02e0f380fe1a"
   license "LGPL-2.0-or-later"
-  revision 5
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathic-1.0_5"
