@@ -6,11 +6,11 @@ class Mathicgb < Formula
   license "GPL-2.0-or-later"
 
   bottle do
-    root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/mathicgb-1.0_9"
-    sha256 cellar: :any,                 arm64_sonoma: "0070f02a1163c88397bc27a9e619b4a99cb6e8b07ccebb63e84b307d04fe209e"
-    sha256 cellar: :any,                 ventura:      "238ec77aa4623193376ccbe2ca52eab54eec7498f0dbe9d518f4f1401889c1c1"
-    sha256 cellar: :any,                 monterey:     "4e157a8ddc5f1ff704ec857e3b7a6783000cee08824f3e86115d966c70a4fa4f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "d3b6c0ea54f61c4aba3ce668a931781607edaf93913467f96814f641a901cb9b"
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "59389c67bfadb387d19a4967a7c18036409c97c7170a603746c15fd11f6f9a9a"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7bfdab3674cdeb019aba884ac3d980657958455089b04c4db02a250dc92a7e4b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7792188e5147e82e372fab44b6befa62c0d82b3c1aaf501a1a80de5eb603293e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "65fe752381acdd8413e87a5038e46db9d5fd3075bd15e31f5c110fbd36258b6f"
   end
 
   option "without-mgb", "don't build mgb"
