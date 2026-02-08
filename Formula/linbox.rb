@@ -4,6 +4,7 @@ class Linbox < Formula
   url "https://github.com/linbox-team/linbox/releases/download/v1.7.1/linbox-1.7.1.tar.gz"
   sha256 "a2b5f910a54a46fa75b03f38ad603cae1afa973c95455813d85cf72c27553bd8"
   license "LGPL-2.1-or-later"
+  revision 1
 
   head "https://github.com/linbox-team/linbox.git", using: :git, branch: "master"
 
@@ -27,6 +28,12 @@ class Linbox < Formula
   depends_on "libomp" if OS.mac?
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
+
+  # avoid type conversion errors
+  patch do
+    url "https://sources.debian.org/data/main/l/linbox/1.7.1-2/debian/patches/ntl-zz-px.patch"
+    sha256 "c1f727d373cef5340ad51b188642a89ffdecbd6bc03ed4318a7e1b829c0cce9f"
+  end
 
   def install
     ENV.cxx11
