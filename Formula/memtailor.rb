@@ -1,8 +1,8 @@
 class Memtailor < Formula
   desc "C++ library of special purpose memory allocators"
   homepage "https://github.com/Macaulay2/memtailor"
-  url "https://github.com/Macaulay2/memtailor/archive/refs/tags/v1.2.tar.gz"
-  sha256 "c8a353a349104fb9d984045ff1bb12b5ab108ba5dd4487e88a4166625f61227a"
+  url "https://github.com/Macaulay2/memtailor/releases/download/v1.3/memtailor-1.3.tar.gz"
+  sha256 "10f0c016e67912be1711a54b18c54d7024c8bfcaf0f279e11187402994150a20"
   license "BSD-3-Clause"
 
   bottle do
