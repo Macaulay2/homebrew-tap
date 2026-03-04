@@ -61,10 +61,10 @@ __END__
 
 
 diff --git a/build-aux/ltmain.sh b/build-aux/ltmain.sh
-index 2a50d7f..8c6a8d8 100644
+index 0cb7f90..1a42a33 100644
 --- a/build-aux/ltmain.sh
 +++ b/build-aux/ltmain.sh
-@@ -6864,6 +6864,16 @@ func_mode_link ()
+@@ -6699,6 +6699,16 @@ func_mode_link ()
      # See if our shared archives depend on static archives.
      test -n "$old_archive_from_new_cmds" && build_old_libs=yes
  
@@ -81,16 +81,16 @@ index 2a50d7f..8c6a8d8 100644
      # Go through the arguments, transforming them on the way.
      while test "$#" -gt 0; do
        arg=$1
-@@ -7347,7 +7357,7 @@ func_mode_link ()
- 	continue
+@@ -7163,7 +7173,7 @@ func_mode_link ()
  	;;
-       -mt|-mthreads|-kthread|-Kthread|-pthreads|--thread-safe \
+ 
+       -mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
 -      |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
 +      |-threads|$fopenmp_match|fopenmp=*|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
  	func_append compiler_flags " $arg"
  	func_append compile_command " $arg"
  	func_append finalize_command " $arg"
-@@ -7891,7 +7901,7 @@ func_mode_link ()
+@@ -7706,7 +7716,7 @@ func_mode_link ()
  	found=false
  	case $deplib in
  	-mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
