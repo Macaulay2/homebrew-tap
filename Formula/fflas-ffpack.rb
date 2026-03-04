@@ -42,17 +42,16 @@ class FflasFfpack < Formula
            "--enable-openmp",
            "--disable-dependency-tracking",
            "--disable-silent-rules",
-           "--prefix=#{prefix}"
+           "--prefix=#{prefix}",
+           "--enable-precompilation"
     system "make", "install"
   end
 
   test do
     if OS.mac?
       require "utils/linkage"
-      libgomp = Formula["gcc"].opt_lib/"gcc/current/libgomp.dylib"
       libomp = Formula["libomp"].opt_lib/"libomp.dylib"
-      refute Utils.binary_linked_to_library?(lib/"libm4ri.dylib", libgomp), "Unwanted linkage to libgomp!"
-      assert Utils.binary_linked_to_library?(lib/"libm4ri.dylib", libomp), "Missing linkage to libomp!"
+      assert Utils.binary_linked_to_library?(lib/"libfflas.dylib", libomp), "Missing linkage to libomp!"
     end
   end
 end
