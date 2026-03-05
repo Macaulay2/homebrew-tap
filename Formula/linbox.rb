@@ -39,7 +39,7 @@ class Linbox < Formula
     ENV.cxx11
     if OS.mac?
       libomp = Formula["libomp"]
-      ENV["OMPFLAGS"] = "-Xpreprocessor -fopenmp -I#{libomp.opt_include} #{libomp.opt_lib}/libomp.dylib"
+      ENV["OMPFLAGS"] = "-Xpreprocessor -fopenmp -I#{libomp.opt_include} -L#{libomp.opt_lib} -lomp"
     else
       ENV["OMPFLAGS"] = "-fopenmp"
     end
@@ -54,6 +54,53 @@ class Linbox < Formula
   end
 
   test do
-    system "true"
+    if OS.mac?
+      require "utils/linkage"
+      libomp = Formula["libomp"].opt_lib/"libomp.dylib"
+      assert Utils.binary_linked_to_library?(lib/"liblinbox.dylib", libomp), "Missing linkage to libomp!"
+    end
   end
 end
+
+__END__
+
+
+diff --git a/build-aux/ltmain.sh b/build-aux/ltmain.sh
+index 0cb7f90..1a42a33 100644
+--- a/build-aux/ltmain.sh
++++ b/build-aux/ltmain.sh
+@@ -6699,6 +6699,16 @@ func_mode_link ()
+     # See if our shared archives depend on static archives.
+     test -n "$old_archive_from_new_cmds" && build_old_libs=yes
+ 
++    # make sure "-Xpreprocessor -fopenmp" is processed as one token
++    case "$@" in
++    *-Xpreprocessor\ -fopenmp*)
++      fopenmp_match="-Xpreprocessor -fopenmp"
++      ;;
++    *)
++      fopenmp_match="-fopenmp"
++      ;;
++    esac
++
+     # Go through the arguments, transforming them on the way.
+     while test "$#" -gt 0; do
+       arg=$1
+@@ -7163,7 +7173,7 @@ func_mode_link ()
+ 	;;
+ 
+       -mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
+-      |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
++      |-threads|$fopenmp_match|fopenmp=*|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
+ 	func_append compiler_flags " $arg"
+ 	func_append compile_command " $arg"
+ 	func_append finalize_command " $arg"
+@@ -7706,7 +7716,7 @@ func_mode_link ()
+ 	found=false
+ 	case $deplib in
+ 	-mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
+-        |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
++        |-threads|$fopenmp_match|fopenmp=*|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
+ 	  if test prog,link = "$linkmode,$pass"; then
+ 	    compile_deplibs="$deplib $compile_deplibs"
+ 	    finalize_deplibs="$deplib $finalize_deplibs
