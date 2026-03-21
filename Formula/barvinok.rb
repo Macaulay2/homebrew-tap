@@ -1,8 +1,8 @@
 class Barvinok < Formula
   desc "Software for counting lattice points and integration over convex polytopes"
   homepage "https://barvinok.sourceforge.io/"
-  url "https://barvinok.sourceforge.io/barvinok-0.41.8.tar.xz"
-  sha256 "8b618450cd83aa1e1f25aef4765c6633634c25b980760aedce018e531b18e6fe"
+  url "https://github.com/mahrud/barvinok.git", branch: "main", using: :git
+  version "0.41.8-M2"
   license "GPL-2.0-only"
 
   bottle do
@@ -24,12 +24,13 @@ class Barvinok < Formula
 
   def install
     # Also install vector_partition_chambers executable
-    inreplace "Makefile.in", "bin_PROGRAMS = ", "bin_PROGRAMS = vector_partition_chambers$(EXEEXT) "
+    inreplace "Makefile.am", "bin_PROGRAMS = ", "bin_PROGRAMS = vector_partition_chambers "
 
     ENV.append "CPPFLAGS", "-fno-common -I#{Formula["gmp"].include} -I#{Formula["ntl"].include}"
     ENV.append "LDFLAGS", "-L#{Formula["gmp"].lib} -L#{Formula["ntl"].lib}"
     ENV.append "LDFLAGS", "-Wl,-twolevel_namespace" if OS.mac?
 
+    system "autoreconf", "-vif"
     system "./configure", *std_configure_args,
            "--disable-silent-rules",
            "--with-topcom=#{Formula["topcom"]}"
