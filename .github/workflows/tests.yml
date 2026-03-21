@@ -62,7 +62,8 @@ jobs:
           name: logs (${{ matrix.os }})
           path: |
             /home/runner/.cache/Homebrew/Logs/*/*
-            /Users/runner/Library/Logs/Homebrew/*/*
+            /Users/runner/Library/Logs/Homebrew/*/**
+            /Users/runner/work/homebrew-tap/homebrew-tap/logs/*/**
             /tmp/macaulay2-*/*/M2/BUILD/build-brew/build.ninja
             /tmp/macaulay2-*/*/M2/BUILD/build-brew/CMakeCache.txt
             /tmp/macaulay2-*/*/M2/BUILD/build-brew/CMakeFiles/CMakeConfigureLog.yaml
