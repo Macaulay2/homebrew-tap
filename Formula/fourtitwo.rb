@@ -27,8 +27,8 @@ class Fourtitwo < Formula
            "--disable-dependency-tracking",
            "--disable-silent-rules",
            "--with-glpk=#{Formula["glpk"].prefix}",
-           "CPPFLAGS=-I#{Formula["gmp"].include}",
-           "LDFLAGS=-L#{Formula["gmp"].lib}",
+           "CPPFLAGS=-I#{Formula["gmp"].include} -fPIC",
+           "LDFLAGS=-L#{Formula["gmp"].lib} -fPIC",
            "--prefix=#{prefix}"
     system "make", "install-strip"
   end
