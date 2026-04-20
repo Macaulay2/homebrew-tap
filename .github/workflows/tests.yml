@@ -32,8 +32,11 @@ jobs:
           key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
           restore-keys: ${{ runner.os }}-rubygems-
 
+      # this step is currently failing (2026-04-20):
+      #   Error: uninitialized constant #<Class:Requirement>::CaskDependent
+
       # query whether all dependencies are bottled
-      - run: brew unbottled Macaulay2
+      # - run: brew unbottled Macaulay2
 
       - run: brew test-bot --only-cleanup-before
 
