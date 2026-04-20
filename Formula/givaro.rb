@@ -8,19 +8,17 @@ class Givaro < Formula
 
   head "https://github.com/linbox-team/givaro.git", using: :git, branch: "master"
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_tahoe:   "29eec53334c920bc0b1f61e7410054535a95bc640816ad6718b88615dbf1a9c7"
-    sha256 cellar: :any,                 arm64_sequoia: "8a02dc5f4a96404f7b2bf835161c784758a078fe5e0468e82b19ded88af1ebc1"
-    sha256 cellar: :any,                 arm64_sonoma:  "e12ec93e4ec4bed5b074fbe1c9f21ce430a6504e4c30fce7c55c1acb269facab"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c2a646a44caacccfedb68ee034ccd5ce51c07da82c875aaa95c7d9f5d8a54007"
-  end
-
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
 
   depends_on "gmp"
+
+  # fix build w/ xcode clang 21 (https://github.com/linbox-team/givaro/pull/240)
+  patch do
+    url "https://github.com/linbox-team/givaro/commit/ed91ee0dc2d41f3ceb72abc375ad5c0fec62ed56.patch?full_index=1"
+    sha256 "55a2ba7356b0b44a2c7957c7b179c6f9f920220b56a9e4dcbc4f945ff3073a3c"
+  end
 
   def install
     ENV.cxx11
