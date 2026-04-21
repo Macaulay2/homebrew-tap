@@ -8,6 +8,15 @@ class Givaro < Formula
 
   head "https://github.com/linbox-team/givaro.git", using: :git, branch: "master"
 
+  bottle do
+    root_url "https://ghcr.io/v2/macaulay2/tap"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_tahoe:   "0045311cdf68e311387dd449ff0d20af1ed4e45d481932d976d095b90a0208e6"
+    sha256 cellar: :any,                 arm64_sequoia: "107fcabca0fd67f001cb1b1ea5b7c274c517af4d0aa86ace88474c3e25e717f1"
+    sha256 cellar: :any,                 arm64_sonoma:  "5678f719c7cda02888a524e0ce8941429215871105dbf1b04c76a4d34fae28f8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "695bb03526febd1a4ffa57caf26d00ad9598bdf4423d05cbf34d8edd85c674f6"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
