@@ -27,6 +27,8 @@ class Givaro < Formula
   patch do
     url "https://github.com/linbox-team/givaro/commit/ed91ee0dc2d41f3ceb72abc375ad5c0fec62ed56.patch?full_index=1"
     sha256 "55a2ba7356b0b44a2c7957c7b179c6f9f920220b56a9e4dcbc4f945ff3073a3c"
+    url "https://patch-diff.githubusercontent.com/raw/linbox-team/givaro/pull/240.patch?full_index=1"
+    sha256 "4fc0095e847edff38cee4dfd3eaee29bb72a4f15951a4de427a6085c44931f01"
   end
 
   def install
