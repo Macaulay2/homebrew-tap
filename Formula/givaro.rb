@@ -10,11 +10,11 @@ class Givaro < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 2
-    sha256 cellar: :any,                 arm64_tahoe:   "5e3740a64b821581773293243a5369fbd3154716b414c8ef941af2e2e2b5b989"
-    sha256 cellar: :any,                 arm64_sequoia: "4099c36680d0deae35613d679f642f6b27ac6345845075976016af956e536caa"
-    sha256 cellar: :any,                 arm64_sonoma:  "b73ccc7f666b835f25fe7ca935cedf555aa001b35f1205419c3c09e50372f07c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "085c07e5d65ba868b309e7254efaed46d980647b51f3467d3fb0a1f678d199f0"
+    rebuild 3
+    sha256 cellar: :any,                 arm64_tahoe:   "04657983c0764c4b03452afd50f035e4976cfce8f212aeb5939b981353427f4d"
+    sha256 cellar: :any,                 arm64_sequoia: "61feba11b5519b237d27fea82ba861047dfdfe288701996ec72d669395d93bbf"
+    sha256 cellar: :any,                 arm64_sonoma:  "9f4eb120b0d037d6f5136c7fcbbe2c41922c013f56e5dad2525625b6a39fe43b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "eee64ae9dbde581fa606950058c13f980562b12c1a9ed8cbe326e9ed465b5195"
   end
 
   depends_on "autoconf" => :build
