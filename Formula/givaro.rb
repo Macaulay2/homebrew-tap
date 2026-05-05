@@ -25,10 +25,8 @@ class Givaro < Formula
 
   # fix build w/ xcode clang 21 (https://github.com/linbox-team/givaro/pull/240)
   patch do
-    url "https://github.com/linbox-team/givaro/commit/ed91ee0dc2d41f3ceb72abc375ad5c0fec62ed56.patch?full_index=1"
-    sha256 "55a2ba7356b0b44a2c7957c7b179c6f9f920220b56a9e4dcbc4f945ff3073a3c"
-    url "https://patch-diff.githubusercontent.com/raw/linbox-team/givaro/pull/240.patch?full_index=1"
-    sha256 "4fc0095e847edff38cee4dfd3eaee29bb72a4f15951a4de427a6085c44931f01"
+    url "https://raw.githubusercontent.com/sagemath/sage/7c36f8500f2ba57e5413718af56f5741bdac8b69/build/pkgs/givaro/patches/240.patch?full_index=1"
+    sha256 "402445d165e88c8dd5dc69e810dab858bec351668911d7ff937f0e00ff0c25e0"
   end
 
   def install
