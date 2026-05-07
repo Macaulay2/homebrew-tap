@@ -7,10 +7,10 @@ class Mathic < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "12a9b4f7996b1f81d45c490d0c4231ef4941f7af8962897cb1a1d4cc799d7520"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "eaf81450e5577aa033ee4ed494741d6594d87de37f0fdc73e0147f88b4bf2dcd"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "19ab4a720cadf7338974677490703711f1628d7ece0444a6dc563b2fd04fd447"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f2de0de48f5d44c948b5019d401be39bf1a115318236b18808aed0f9a302c559"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "2d6a6464d30bea7023ef211693b17d7334592d83876119c48e9500210fa19863"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a4f4884f1da75fbbfb3a66a771728a890af2f4ae0870dff38c3aa3b085897f7b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "cfa81d11e0358978029b8574a8972d80051321480e681205435c2a496ca7bd54"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cc687cdc994c05c05e46052b1b5d7317cfae3204296569a77abd38a59db540af"
   end
 
   unless OS.mac?
