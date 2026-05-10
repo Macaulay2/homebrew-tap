@@ -3,10 +3,9 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   # when bumping to a new release, also update the submodule commits below
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.25.11.tar.gz"
-  sha256 "9700005196e4368af52156efaff081a4771fd21545a3cd8c2ee3b0571aeaa17f"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.26.05.tar.gz"
+  sha256 "ed3862b635bf6ea30b9de58890ed7024f576ba4014e3553949c1dcb2f46175d5"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 4
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
@@ -34,6 +33,7 @@ class Macaulay2 < Formula
   depends_on "gdbm"
   depends_on "givaro"
   depends_on "gmp"
+  depends_on "jansson"
   depends_on "libffi"
   depends_on "libomp" if OS.mac?
   depends_on "libxml2" unless OS.mac?
@@ -79,25 +79,25 @@ class Macaulay2 < Formula
     git_clone_at_commit(
       "https://github.com/Macaulay2/M2-emacs.git",
       "M2/Macaulay2/editors/emacs",
-      "524968452e95d010769ece30092edaa09d1e814f",
+      "a95ab17170bf6234b77fa8ccdb2431b7fb9e9dd9",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/memtailor.git",
       "M2/submodules/memtailor",
-      "07c84a6852212495182ec32c3bdb589579e342b5",
+      "c7ef44a5792631f5c7da200a7a2b06e053026efc",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/mathic.git",
       "M2/submodules/mathic",
-      "7abf77e4ce493b3830c7f8cc09722bbd6c03818e",
+      "08b3c715c12d6e3a4d6b596e3fa1d49a9ee77c40",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/mathicgb.git",
       "M2/submodules/mathicgb",
-      "de139564927563afef383174fd3cf8c93ee18ab3",
+      "fb6af156edc37c0563f0d98993496e43620a3f17",
     )
 
     # Prefix paths for dependencies
@@ -138,10 +138,10 @@ end
 __END__
 
 diff --git a/M2/Macaulay2/m2/packages.m2 b/M2/Macaulay2/m2/packages.m2
-index d5ddc33bc..92f700b5c 100644
+index 74cbf52367..8c8bb4f4f5 100644
 --- a/M2/Macaulay2/m2/packages.m2
 +++ b/M2/Macaulay2/m2/packages.m2
-@@ -188,7 +188,6 @@ needsPackage String  := opts -> pkgname -> (
+@@ -204,7 +204,6 @@ needsPackage String  := opts -> pkgname -> (
      and instance(pkg := value PackageDictionary#pkgname, Package)
      and (opts.FileName === null or
  	realpath opts.FileName == realpath pkg#"source file")
@@ -149,40 +149,14 @@ index d5ddc33bc..92f700b5c 100644
      then (
  	if any(packageFiles pkg, file -> fileTime file > filesLoaded#file)
  	then loadPackage(pkgname, opts ++ {Reload => true})
- 	else use pkg)
-     else loadPackage(pkgname, opts))
-
 -- 
-2.34.3
-
-diff --git a/M2/cmake/check-libraries.cmake b/M2/cmake/check-libraries.cmake
-index c39b27247d..0ab5d93f28 100644
---- a/M2/cmake/check-libraries.cmake
-+++ b/M2/cmake/check-libraries.cmake
-@@ -42,7 +42,14 @@ endif()
-
- find_package(Threads	REQUIRED QUIET)
- find_package(LAPACK	REQUIRED QUIET)
--find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_backtrace stacktrace_addr2line)
-+
-+set(Boost_USE_STATIC_LIBS ON)
-+if(UNIX)
-+  cmake_policy(SET CMP0167 OLD) # load CMake's FindBoost module
-+  find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_addr2line)
-+else()
-+  find_package(Boost	REQUIRED QUIET COMPONENTS regex OPTIONAL_COMPONENTS stacktrace_backtrace)
-+endif()
- if(Boost_STACKTRACE_BACKTRACE_FOUND)
-   set(Boost_stacktrace_lib "Boost::stacktrace_backtrace")
- elseif(Boost_STACKTRACE_ADDR2LINE_FOUND)
---
-2.49.0
+2.43.0
 
 diff --git a/M2/Macaulay2/packages/Topcom.m2 b/M2/Macaulay2/packages/Topcom.m2
-index 15832adfb1..e9af682733 100644
+index 118fa2acac..511a9ecab7 100644
 --- a/M2/Macaulay2/packages/Topcom.m2
 +++ b/M2/Macaulay2/packages/Topcom.m2
-@@ -317,7 +317,7 @@ topcomIsTriangulation(Matrix, List) := Boolean => opts -> (Vin, T) -> (
+@@ -319,7 +319,7 @@ topcomIsTriangulation(Matrix, List) := Boolean => opts -> (Vin, T) -> (
        << "Index sets do not correspond to full-dimensional simplices" << endl;
        return false;
     );
@@ -192,4 +166,4 @@ index 15832adfb1..e9af682733 100644
  )
  
 -- 
-2.38.1
+2.43.0
