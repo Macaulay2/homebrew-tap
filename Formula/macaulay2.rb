@@ -167,3 +167,46 @@ index 118fa2acac..511a9ecab7 100644
  
 -- 
 2.43.0
+
+diff --git a/M2/Macaulay2/packages/Varieties.m2 b/M2/Macaulay2/packages/Varieties.m2
+index 04c563ab16..b56531a0c3 100644
+--- a/M2/Macaulay2/packages/Varieties.m2
++++ b/M2/Macaulay2/packages/Varieties.m2
+@@ -497,15 +497,6 @@ checkVariety := (X, F) -> (
+ flattenModule   = liftModule
+ flattenMorphism = liftMorphism
+
+--- pushforward the complex to PP^n via S/I <-- S
+--- TODO: move to Complexes?
+-flattenComplex = C -> C.cache#"flattenComplex" ??= (
+-    if instance(ring C, PolynomialRing) then return C;
+-    (lo, hi) := C.concentration;
+-    if lo === hi
+-    then complex(flattenModule C_lo, Base => lo)
+-    else complex applyValues(C.dd.map, flattenMorphism))
+-
+ -- TODO: this is called twice
+ -- TODO: implement for multigraded ring
+ degreeList := M -> (
+diff --git a/M2/Macaulay2/packages/Varieties/SheafComplexes.m2 b/M2/Macaulay2/packages/Varieties/SheafComplexes.m2
+index 5a2b10121e..4c0b34e026 100644
+--- a/M2/Macaulay2/packages/Varieties/SheafComplexes.m2
++++ b/M2/Macaulay2/packages/Varieties/SheafComplexes.m2
+@@ -6,6 +6,15 @@ export {
+ -- Local utilities
+ -----------------------------------------------------------------------------
+
++-- pushforward the complex to PP^n via S/I <-- S
++-- TODO: move to Complexes?
++flattenComplex = C -> C.cache#"flattenComplex" ??= (
++    if instance(ring C, PolynomialRing) then return C;
++    (lo, hi) := C.concentration;
++    if lo === hi
++    then complex(flattenModule C_lo, Base => lo)
++    else complex applyValues(C.dd.map, flattenMorphism))
++
+ clearHom = (M, N) -> (
+     H := youngest(M.cache.cache, N.cache.cache);
+     apply(keys H, k -> remove(H, k)))
+--
+2.53.0
