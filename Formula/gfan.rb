@@ -1,8 +1,8 @@
 class Gfan < Formula
   desc "Grobner fans and tropical varieties"
   homepage "https://users-math.au.dk/~jensen/software/gfan/gfan.html"
-  url "https://users-math.au.dk/~jensen/software/gfan/gfan0.7.tar.gz"
-  sha256 "ab833757e1e4d4a98662f4aa691394013ea9a226f6416b8f8565356d6fcc989e"
+  url "https://users-math.au.dk/~jensen/software/gfan/gfan0.8beta.tar.gz"
+  sha256 "fa7884e5f317c50f8fb4f37bcf5d419f0fd5f7b90d6037349d1957ea73cebbee"
   license "GPL-2.0-or-later"
 
   bottle do
@@ -14,23 +14,32 @@ class Gfan < Formula
     sha256               x86_64_linux:  "8b0f30a69cf0fa2516a2bba00d2d6c0d76abeb8256bc932622d7ffc7332b0b26"
   end
 
-  depends_on "gcc@14" => :build
+  depends_on "gcc@15" => :build
 
   depends_on "cddlib"
   depends_on "gmp"
+  depends_on "tbb"
 
   patch :DATA
 
   def install
     linker_args = "-L#{Formula["cddlib"].lib} -static-libgcc -static-libstdc++"
+    platform_link_args = "-L#{Formula["tbb"].lib} -ltbb"
+    platform_link_args = "-rdynamic #{platform_link_args}" unless OS.mac?
     cxx_flags = "-I#{Formula["cddlib"].include}/cddlib"
     cxx_flags << " -D_64BITLONGINT" unless OS.mac?
 
-    system "make", "PREFIX=#{Formula["gcc@14"].bin}/", "cddnoprefix=yes",
+    system "make", "PREFIX=#{Formula["gcc@15"].opt_bin}/", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
+           "TBB_INCLUDEOPTIONS=-I#{Formula["tbb"].include}",
+           "PLATFORM_LINKOPTIONS=#{platform_link_args}",
            "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG #{cxx_flags}",
-           "CCLINKER=#{Formula["gcc@14"].bin}/g++-14 #{linker_args}"
+           "cddpath=#{Formula["cddlib"].prefix}",
+           "CC=#{Formula["gcc@15"].opt_bin}/gcc-15",
+           "CXX=#{Formula["gcc@15"].opt_bin}/g++-15",
+           "CLINKER=#{Formula["gcc@15"].opt_bin}/gcc-15",
+           "CCLINKER=#{Formula["gcc@15"].opt_bin}/g++-15 #{linker_args}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
@@ -45,10 +54,10 @@ end
 __END__
 
 diff --git a/Makefile b/Makefile
-index 67c8164..fe6e00b 100644
+index 1d5fad9..29fb0f1 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -113,13 +113,12 @@ MKDIR=mkdir -p
+@@ -138,13 +138,12 @@ MKDIR=mkdir -p
 
  # PREFIX = /usr/local/gcc/6.2.0/bin/
  # PREFIX = /usr/local/gcc-8.1/bin/
@@ -57,54 +66,57 @@ index 67c8164..fe6e00b 100644
  #ARCH        = LINUX
 
 -CC          = $(PREFIX)gcc
-+CC          = $(PREFIX)gcc-14
++#CC          = $(PREFIX)gcc-15
  CLINKER     = $(CC)
 -CXX         = $(PREFIX)g++
-+CXX         = $(PREFIX)g++-14
- CCLINKER    = $(CXX)
++#CXX         = $(PREFIX)g++-15
+-CCLINKER    = $(CXX)
++#CCLINKER    = $(CXX)
 
  #CC          = $(PREFIX)gcc-8.1
+diff --git a/src/field.h b/src/field.h
+index 866be22..bc50a12 100644
+--- a/src/field.h
++++ b/src/field.h
+@@ -208,6 +208,7 @@ class FieldElementImplementation
+   {
+ 	  fprintf(stderr,"*this is not in Z/pZ.\n");
+ 	  assert(0);
++	  return 0;
+   }
+   virtual bool isInteger()const
+   {
+@@ -223,6 +224,7 @@ class FieldElementImplementation
+   Field& operator=(const Field& a)
+     {
+       assert(0);
++      return const_cast<Field&>(a);
+     }//assignment
+ };
+
+@@ -271,6 +273,7 @@ class FieldImplementation
+   virtual FieldElement random()
+   {
+ 	  assert(0);
++	  return 0;
+   }
+     virtual int getCharacteristic()const=0;
+     virtual const char *name()=0;
 diff --git a/src/gfanlib_circuittableint.h b/src/gfanlib_circuittableint.h
-index 2b5ced4..b5bf6ed 100644
+index 6078a36..fdf4a36 100644
 --- a/src/gfanlib_circuittableint.h
 +++ b/src/gfanlib_circuittableint.h
-@@ -25,6 +25,7 @@ namespace gfan{
+@@ -27,7 +27,7 @@ namespace gfan{
    template<typename> struct MyMakeUnsigned;
-   template <> struct MyMakeUnsigned<int>{typedef unsigned int type;};
-   template <> struct MyMakeUnsigned<long int>{typedef unsigned long int type;};
-+  template <> struct MyMakeUnsigned<long long int>{typedef unsigned long long int type;};
-   template <> struct MyMakeUnsigned<__int128>{typedef unsigned __int128 type;};
+   template <> struct MyMakeUnsigned<int32_t>{typedef uint32_t type;};
+   template <> struct MyMakeUnsigned<int64_t>{typedef uint64_t type;};
+-  template <> struct MyMakeUnsigned<__int128>{typedef unsigned __int128 type;};
++  template <> struct MyMakeUnsigned<__int128_t>{typedef __uint128_t type;};
 
    class MVMachineIntegerOverflow: public std::exception
-@@ -92,6 +93,15 @@ static std::string toStr(__uint32_t b)
-        return s.str();
- }
-
-+#ifndef _64BITLONGINT
-+static std::string toStr(long int b)
-+{
-+       std::stringstream s;
-+       s<<b;
-+       return s.str();
-+}
-+#endif
-+
- class my256s{
- public:
-        __int128_t lo,hi;
-@@ -213,6 +221,10 @@ static __int128_t extMul(long int a, long int b)
- {
-        return ((__int128_t)a)*((__int128_t)b);
- }
-+static __int128_t extMul(long long int a, long long int b)
-+{
-+       return ((__int128_t)a)*((__int128_t)b);
-+}
-
- static __uint128_t unsignedProd64(uint64_t x,uint64_t y)
  {
 diff --git a/src/gfanlib_z.h b/src/gfanlib_z.h
-index f56597c..8c84ed1 100644
+index 2908d25..7e8c66f 100644
 --- a/src/gfanlib_z.h
 +++ b/src/gfanlib_z.h
 @@ -9,6 +9,7 @@
@@ -114,6 +126,6 @@ index f56597c..8c84ed1 100644
 +#include <cstdint>
  #include <ostream>
  #include <iostream>
- #define OLD 1
--- 
-2.46.0
+ #include <cstdint>
+--
+2.53.0
