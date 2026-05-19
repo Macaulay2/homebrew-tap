@@ -7,11 +7,10 @@ class Gfan < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 1
-    sha256 cellar: :any, arm64_tahoe:   "b7d9ec3054061ccb64f3a2d443e4813d7b62ef5c548a391620e5b4e35a1c56ff"
-    sha256 cellar: :any, arm64_sequoia: "16264ac7f91bb5a8a7d7fcaa200a070c735e824e312f56c792c68457627f1098"
-    sha256 cellar: :any, arm64_sonoma:  "1d14f34e47676a30a271dcd398b204f8e5eda67dedbbb9b56f97db978bd89ec8"
-    sha256               x86_64_linux:  "8b0f30a69cf0fa2516a2bba00d2d6c0d76abeb8256bc932622d7ffc7332b0b26"
+    sha256 cellar: :any, arm64_tahoe:   "f7cc12b6b91ff22fa812771f381b0ca12fde666eaa33fb2ee150cd46fa660993"
+    sha256 cellar: :any, arm64_sequoia: "1ecf2b6b58aa4a52b1da74c990f40362737d5426a5f806decc972a4d5eba36ee"
+    sha256 cellar: :any, arm64_sonoma:  "e6c73c2b595d9dcaeabf20b0de01d9cdd7530e2dbc443c43b5e23e4b009f98e1"
+    sha256               x86_64_linux:  "1ad3ca8d0134c2ff67e3e4c6310f8427ca6f07f295580109a0c7e8ddedf3e77b"
   end
 
   depends_on "gcc@15" => :build
