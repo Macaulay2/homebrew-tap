@@ -18,6 +18,7 @@ class Barvinok < Formula
   depends_on "libtool" => :build
 
   depends_on "cddlib"
+  depends_on "glpk"
   depends_on "gmp"
   depends_on "ntl"
   depends_on "topcom"
