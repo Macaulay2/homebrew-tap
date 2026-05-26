@@ -9,14 +9,6 @@ class Macaulay2 < Formula
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
-  bottle do
-    root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_tahoe:   "43be2a0d741b5f59df2dc19809dd7711453ad674d7556c54d181a5930d3f4bb7"
-    sha256 cellar: :any, arm64_sequoia: "22d3bfee005f70ddfa7f0c0f1c401155ccb52f3e90276bd7cb2f37908f85c2e7"
-    sha256 cellar: :any, arm64_sonoma:  "501281b9be592471a8dbc92cc1ac36b3100c2b3135623f8f12bbb605116deee9"
-    sha256               x86_64_linux:  "225bc635b8db4c6796ed7bcd035fab61038a00d74ec1c81ace70f5b3f8269305"
-  end
-
   depends_on "bison" => :build
   depends_on "cmake" => :build
   depends_on "eigen@3" => :build # TODO: drop the "@3"
