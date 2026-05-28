@@ -26,7 +26,6 @@ class Macaulay2 < Formula
 
   depends_on "bdw-gc"
   depends_on "boost"
-  depends_on "factory"
   depends_on "fflas-ffpack"
   depends_on "flint"
   depends_on "frobby"
@@ -36,6 +35,7 @@ class Macaulay2 < Formula
   depends_on "jansson"
   depends_on "libffi"
   depends_on "libomp" if OS.mac?
+  depends_on "macaulay2/tap/factory"
   depends_on "libxml2" unless OS.mac?
   depends_on "mpfi"
   depends_on "mpfr"
