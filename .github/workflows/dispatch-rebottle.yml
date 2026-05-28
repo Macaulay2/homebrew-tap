@@ -61,7 +61,7 @@ jobs:
     container:
       image: ghcr.io/homebrew/brew:main
     outputs:
-      runners: ${{steps.determine-runners.outputs.runners}}
+      runners: ${{steps.runner-matrix.outputs.result}}
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -73,6 +73,30 @@ jobs:
       - name: Determine runners
         id: determine-runners
         run: brew determine-rebottle-runners "${DISPATCH_REBOTTLE_FORMULA}" "${DISPATCH_REBOTTLE_TIMEOUT}"
+
+      - name: Prepare runner matrix
+        id: runner-matrix
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const macOSRunners = {
+              "14": "macos-14-large",
+              "14-arm64": "macos-14",
+              "15": "macos-15-intel",
+              "15-arm64": "macos-15",
+              "26": "macos-26-intel",
+              "26-arm64": "macos-26",
+            };
+            return JSON.parse(`${{ steps.determine-runners.outputs.runners }}`).map(entry => {
+              const match = /^(\d+(?:\.\d+)?)-(arm64|x86_64)-\d+-dispatch$/.exec(entry.runner);
+              if (match) {
+                const runner = macOSRunners[match[2] == "arm64" ? `${match[1]}-arm64` : match[1]];
+                if (runner)
+                  return {...entry, runner};
+                return null;
+              }
+              return entry;
+            }).filter(Boolean);
 
   bottle:
     permissions:

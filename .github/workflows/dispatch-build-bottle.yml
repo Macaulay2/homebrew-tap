@@ -70,15 +70,21 @@ jobs:
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
-            const macOSRegex = /^(\d+(?:\.\d+)?)(?:-(arm64|x86_64))?$/;
             const linuxRegex = /^(?:ubuntu-|linux-self-hosted-)/;
+            const macOSRunners = {
+              "14": "macos-14-large",
+              "14-arm64": "macos-14",
+              "15": "macos-15-intel",
+              "15-arm64": "macos-15",
+              "26": "macos-26-intel",
+              "26-arm64": "macos-26",
+            };
             return context.payload.inputs.runner.split(",")
                                                 .map(s => s.trim())
                                                 .filter(Boolean)
                                                 .map(s => {
-              const macOSMatch = macOSRegex.exec(s);
-              if (macOSMatch && s != "11-arm64") // Ephemeral runners
-                return {runner: `${macOSMatch[1]}-${macOSMatch[2] ?? "x86_64"}-${context.runId}-dispatch`, cleanup: false};
+              if (macOSRunners[s])
+                return {runner: macOSRunners[s], cleanup: true};
               else if (linuxRegex.test(s))
                 return {
                   runner:    s,
@@ -115,6 +121,11 @@ jobs:
               Utils::Bottles.tag(:arm64_linux)
             elsif runner.start_with?("ubuntu") || runner.start_with?("linux")
               Utils::Bottles.tag(:x86_64_linux)
+            elsif (match = runner.match(/^macos-(\d+(?:\.\d+)?)(?:-(large|intel))?$/))
+              system = MacOSVersion.new(match[1]).to_sym
+              arch = match[2].present? ? :x86_64 : :arm64
+
+              Utils::Bottles::Tag.new(system:, arch:)
             elsif runner.match?(/^\d+-/)
               os_version, arch, _ = *runner.split("-")
               system = MacOSVersion.new(os_version).to_sym
