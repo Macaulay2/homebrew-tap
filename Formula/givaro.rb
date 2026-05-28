@@ -1,20 +1,19 @@
 class Givaro < Formula
   desc "Prime field and algebraic computations"
   homepage "https://casys.gricad-pages.univ-grenoble-alpes.fr/givaro/"
-  url "https://github.com/linbox-team/givaro/releases/download/v4.2.1/givaro-4.2.1.tar.gz"
-  sha256 "feefb7445842ceb756f8bb13900d975b530551e488a2ae174bda7b636251de43"
+  url "https://github.com/linbox-team/givaro/releases/download/v4.2.2/givaro-4.2.2.tar.gz"
+  sha256 "53e9fb290deb0e20799c62d250d65c2226013d60b4cebe6b0b54c73000cb8fff"
   license "CECILL-B"
-  revision 1
 
   head "https://github.com/linbox-team/givaro.git", using: :git, branch: "master"
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 3
-    sha256 cellar: :any,                 arm64_tahoe:   "04657983c0764c4b03452afd50f035e4976cfce8f212aeb5939b981353427f4d"
-    sha256 cellar: :any,                 arm64_sequoia: "61feba11b5519b237d27fea82ba861047dfdfe288701996ec72d669395d93bbf"
-    sha256 cellar: :any,                 arm64_sonoma:  "9f4eb120b0d037d6f5136c7fcbbe2c41922c013f56e5dad2525625b6a39fe43b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "eee64ae9dbde581fa606950058c13f980562b12c1a9ed8cbe326e9ed465b5195"
+    sha256 cellar: :any,                 arm64_tahoe:   "f41a4c32e41fa93c2abdc7129b2f20b62ece60d8bf92bf1ab073b950f834e016"
+    sha256 cellar: :any,                 arm64_sequoia: "6bde2ddd56fdac27412094e108a3b735f370048a09a3e1a2f3c4c0e3722a085c"
+    sha256 cellar: :any,                 arm64_sonoma:  "75f1538ef24e4c6e221a2c6175bf3c9bf559ae51915bfb050e5b4439007142a0"
+    sha256 cellar: :any,                 sequoia:       "9152dce45e67bc7b51defb31bf17f03a25abbf9d3713a18f87283d15b7db6689"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5f8f557a896a7c05b2078bd8498d60e304e4fad74cdcdb73238ad04f3fcd6c6f"
   end
 
   depends_on "autoconf" => :build
@@ -22,12 +21,6 @@ class Givaro < Formula
   depends_on "libtool" => :build
 
   depends_on "gmp"
-
-  # fix build w/ xcode clang 21 (https://github.com/linbox-team/givaro/pull/240)
-  patch do
-    url "https://raw.githubusercontent.com/sagemath/sage/7c36f8500f2ba57e5413718af56f5741bdac8b69/build/pkgs/givaro/patches/240.patch?full_index=1"
-    sha256 "402445d165e88c8dd5dc69e810dab858bec351668911d7ff937f0e00ff0c25e0"
-  end
 
   def install
     ENV.cxx11
