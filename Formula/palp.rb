@@ -1,5 +1,5 @@
 class Palp < Formula
-  desc "Vertex enumeration/convex hull problems"
+  desc "a Package for Analyzing Lattice Polytopes"
   homepage "https://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html"
   url "https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-2.21.tar.gz"
   sha256 "7e4a7bf219998a844c0bcce0a176e49d0743cb4b505a0e195329bf2ec196ddd7"
