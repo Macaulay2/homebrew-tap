@@ -7,10 +7,11 @@ class Memtailor < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "471c517e9a50c91713f19f474f74edde82aab7c8125678cbe18d4cf3ec3de904"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "59fdfd1517c9c041389a71f9e2b3e562a7f2e51757aa92963339393a85976d54"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e0b4fabb7cd7584ac463422177f300c7238b2d8c0c0867937d2c7cc3821bd8bf"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0fcfd7f9900ab3c92849579799b7ca23288e6ddfbcb632cbcdeab463531f627f"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "386d2309193ae183e5d68c57226a492cdae5269148a79262ade4cee91fd9d9b5"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3be449f5b993fab76de7797d3816d0dc6cc24d43a6992ce7e2be62a9f4dd048b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0028df9e31ea6226f3d5c2d5e6c2919e9c652b6a39bd6bf6b95d2aa8c446a711"
+    sha256 cellar: :any_skip_relocation, sequoia:       "3b4f108c9d86a7a021b6a865020fc0127d11b8368887384c41c4977deb425bef"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6196bde5e78164e55e6f61dcfad305b31306c6cab290b5fdab39123bc00019e7"
   end
 
   unless OS.mac?
