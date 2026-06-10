@@ -3,8 +3,8 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   # when bumping to a new release, also update the submodule commits below
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.26.05.tar.gz"
-  sha256 "ed3862b635bf6ea30b9de58890ed7024f576ba4014e3553949c1dcb2f46175d5"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.26.06.tar.gz"
+  sha256 "54f9e892941b2b548b90656c2b6d84a6d14c6908d5569bd61e7bb36b8c71bb29"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
@@ -31,6 +31,7 @@ class Macaulay2 < Formula
   depends_on "frobby"
   depends_on "gdbm"
   depends_on "givaro"
+  depends_on "glpk"
   depends_on "gmp"
   depends_on "jansson"
   depends_on "libffi"
@@ -79,25 +80,25 @@ class Macaulay2 < Formula
     git_clone_at_commit(
       "https://github.com/Macaulay2/M2-emacs.git",
       "M2/Macaulay2/editors/emacs",
-      "a95ab17170bf6234b77fa8ccdb2431b7fb9e9dd9",
+      "ae882ab04da19f62c62462ef9604251a0b30a9f5",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/memtailor.git",
       "M2/submodules/memtailor",
-      "c7ef44a5792631f5c7da200a7a2b06e053026efc",
+      "a74747f70d5d4f2c79c9707b64c5086eb8c051b9",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/mathic.git",
       "M2/submodules/mathic",
-      "08b3c715c12d6e3a4d6b596e3fa1d49a9ee77c40",
+      "59238ddb4a18af81f464de3d4634c06478769c98",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/mathicgb.git",
       "M2/submodules/mathicgb",
-      "fb6af156edc37c0563f0d98993496e43620a3f17",
+      "eae920070f0e9f8b34c08148f4caab7f89195601",
     )
 
     # Prefix paths for dependencies
@@ -138,10 +139,10 @@ end
 __END__
 
 diff --git a/M2/Macaulay2/m2/packages.m2 b/M2/Macaulay2/m2/packages.m2
-index 74cbf52367..8c8bb4f4f5 100644
+index 617dac19fa..9d560febc6 100644
 --- a/M2/Macaulay2/m2/packages.m2
 +++ b/M2/Macaulay2/m2/packages.m2
-@@ -204,7 +204,6 @@ needsPackage String  := opts -> pkgname -> (
+@@ -225,7 +225,6 @@ needsPackage String  := opts -> pkgname -> (
      and instance(pkg := value PackageDictionary#pkgname, Package)
      and (opts.FileName === null or
  	realpath opts.FileName == realpath pkg#"source file")
@@ -153,10 +154,10 @@ index 74cbf52367..8c8bb4f4f5 100644
 2.43.0
 
 diff --git a/M2/Macaulay2/packages/Topcom.m2 b/M2/Macaulay2/packages/Topcom.m2
-index 118fa2acac..511a9ecab7 100644
+index 52af3a2c69..6ffbef38a6 100644
 --- a/M2/Macaulay2/packages/Topcom.m2
 +++ b/M2/Macaulay2/packages/Topcom.m2
-@@ -319,7 +319,7 @@ topcomIsTriangulation(Matrix, List) := Boolean => opts -> (Vin, T) -> (
+@@ -342,7 +342,7 @@ topcomIsTriangulation(Matrix, List) := Boolean => opts -> (Vin, T) -> (
        << "Index sets do not correspond to full-dimensional simplices" << endl;
        return false;
     );
@@ -167,46 +168,3 @@ index 118fa2acac..511a9ecab7 100644
  
 -- 
 2.43.0
-
-diff --git a/M2/Macaulay2/packages/Varieties.m2 b/M2/Macaulay2/packages/Varieties.m2
-index 04c563ab16..b56531a0c3 100644
---- a/M2/Macaulay2/packages/Varieties.m2
-+++ b/M2/Macaulay2/packages/Varieties.m2
-@@ -497,15 +497,6 @@ checkVariety := (X, F) -> (
- flattenModule   = liftModule
- flattenMorphism = liftMorphism
-
---- pushforward the complex to PP^n via S/I <-- S
---- TODO: move to Complexes?
--flattenComplex = C -> C.cache#"flattenComplex" ??= (
--    if instance(ring C, PolynomialRing) then return C;
--    (lo, hi) := C.concentration;
--    if lo === hi
--    then complex(flattenModule C_lo, Base => lo)
--    else complex applyValues(C.dd.map, flattenMorphism))
--
- -- TODO: this is called twice
- -- TODO: implement for multigraded ring
- degreeList := M -> (
-diff --git a/M2/Macaulay2/packages/Varieties/SheafComplexes.m2 b/M2/Macaulay2/packages/Varieties/SheafComplexes.m2
-index 5a2b10121e..4c0b34e026 100644
---- a/M2/Macaulay2/packages/Varieties/SheafComplexes.m2
-+++ b/M2/Macaulay2/packages/Varieties/SheafComplexes.m2
-@@ -6,6 +6,15 @@ export {
- -- Local utilities
- -----------------------------------------------------------------------------
-
-+-- pushforward the complex to PP^n via S/I <-- S
-+-- TODO: move to Complexes?
-+flattenComplex = C -> C.cache#"flattenComplex" ??= (
-+    if instance(ring C, PolynomialRing) then return C;
-+    (lo, hi) := C.concentration;
-+    if lo === hi
-+    then complex(flattenModule C_lo, Base => lo)
-+    else complex applyValues(C.dd.map, flattenMorphism))
-+
- clearHom = (M, N) -> (
-     H := youngest(M.cache.cache, N.cache.cache);
-     apply(keys H, k -> remove(H, k)))
---
-2.53.0
