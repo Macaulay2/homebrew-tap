@@ -10,11 +10,13 @@ See [brew.sh](https://brew.sh).
 To add this Homebrew tap[^*] and install Macaulay2 from a bottle[^*], run:
 ```
 brew tap Macaulay2/tap
+brew trust Macaulay2/tap
 brew install M2
 ```
 
 Alternatively, to install M2 directly, run:
 ```
+brew trust Macaulay2/tap
 brew install Macaulay2/tap/M2
 ```
 
