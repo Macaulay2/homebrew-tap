@@ -7,6 +7,11 @@ class Macaulay2Common < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a7688b5bb4e88de949648462fd26075f81f39c2246ebe772a6f76c0705439333"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "913a9023cee092688e49ec95c9599045e1d40cb57e43033af3f8038aef343c6c"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c011fe0574cfa2562db789a1465a4df295cc1328e7424c2d7c17540990ea1ba0"
+    sha256 cellar: :any_skip_relocation, sequoia:       "f66e3cdda2b587e950ca5931a1364171aaed9dafb46a5caab1befb1d066e3c5b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b72e3949064733767ad025375470f7c82fecba9e0b3c7fa727f578f2bf665c75"
   end
 
   keg_only "it only installs documentation for macaulay2/tap/M2"
