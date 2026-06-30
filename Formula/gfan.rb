@@ -28,17 +28,17 @@ class Gfan < Formula
     cxx_flags = "-I#{Formula["cddlib"].include}/cddlib"
     cxx_flags << " -D_64BITLONGINT" unless OS.mac?
 
-    system "make", "PREFIX=#{Formula["gcc@15"].opt_bin}/", "cddnoprefix=yes",
+    system "make", "PREFIX=#{formula_opt_bin("gcc@15")}/", "cddnoprefix=yes",
            "GMP_LINKOPTIONS=-L#{Formula["gmp"].lib} -lgmp",
            "GMP_INCLUDEOPTIONS=-I#{Formula["gmp"].include}",
            "TBB_INCLUDEOPTIONS=-I#{Formula["tbb"].include}",
            "PLATFORM_LINKOPTIONS=#{platform_link_args}",
            "OPTFLAGS=-O2 -DGMPRATIONAL -DNDEBUG #{cxx_flags}",
            "cddpath=#{Formula["cddlib"].prefix}",
-           "CC=#{Formula["gcc@15"].opt_bin}/gcc-15",
-           "CXX=#{Formula["gcc@15"].opt_bin}/g++-15",
-           "CLINKER=#{Formula["gcc@15"].opt_bin}/gcc-15",
-           "CCLINKER=#{Formula["gcc@15"].opt_bin}/g++-15 #{linker_args}"
+           "CC=#{formula_opt_bin("gcc@15")}/gcc-15",
+           "CXX=#{formula_opt_bin("gcc@15")}/g++-15",
+           "CLINKER=#{formula_opt_bin("gcc@15")}/gcc-15",
+           "CCLINKER=#{formula_opt_bin("gcc@15")}/g++-15 #{linker_args}"
     system "make", "PREFIX=#{prefix}", "install"
   end
 

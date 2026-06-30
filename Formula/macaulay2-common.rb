@@ -30,7 +30,7 @@ class Macaulay2Common < Formula
   end
 
   def post_install
-    if Formula["macaulay2"].any_version_installed?
+    if formula_any_version_installed?("macaulay2")
       cp_r share, Formula["macaulay2"].prefix, remove_destination: true
       cp_r lib,   Formula["macaulay2"].prefix, remove_destination: true
     else

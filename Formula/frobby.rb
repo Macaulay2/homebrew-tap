@@ -26,8 +26,8 @@ class Frobby < Formula
   def install
     ENV.cxx11
     unless OS.mac?
-      ENV["CC"] = Formula["llvm"].opt_bin/"clang"
-      ENV["CXX"] = Formula["llvm"].opt_bin/"clang++"
+      ENV["CC"] = formula_opt_bin("llvm")/"clang"
+      ENV["CXX"] = formula_opt_bin("llvm")/"clang++"
     end
     system "cmake", ".", "-DBUILD_TESTING=off",
            "-DCMAKE_PREFIX_PATH=#{Formula["gmp"].prefix}",

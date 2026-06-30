@@ -42,7 +42,7 @@ class Normaliz < Formula
     ENV["LDFLAGS"] = "-L#{Formula["gmp"].lib}"
 
     # replace the outdated libtool that ships with normaliz
-    symlink "#{Formula["libtool"].opt_bin}/libtool", "libtool"
+    symlink "#{formula_opt_bin("libtool")}/libtool", "libtool"
 
     args = [
       "--prefix=#{prefix}",
