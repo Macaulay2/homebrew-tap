@@ -10,11 +10,11 @@ class Linbox < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "2350b88180fb8fb6ac5154ed8580758caaea9525fea7ddc0731926fe5632df30"
-    sha256 cellar: :any,                 arm64_sequoia: "3daf44060f4d219c679a8934b09c60dd9c4019b58a082db94f3ee41ba1874c84"
-    sha256 cellar: :any,                 arm64_sonoma:  "77a4a440d73b2f4f7181323320e5140f2c9cbe5ce0cf7ce86c51bd2e49f121c7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ca389e5d58a594038e2672518963bb320b7d4914d72238d4fc72a141f629945a"
+    rebuild 2
+    sha256 cellar: :any, arm64_tahoe:   "1ae771deb679e6acca1fbfd522de6cdf34b2defdcb8b55ae71ac2966f5de753d"
+    sha256 cellar: :any, arm64_sequoia: "522f57c22dfe363400064a068918f6378279f1a1df055205f1ab99ac585f8d8e"
+    sha256 cellar: :any, arm64_sonoma:  "51a077402ccd55fcf08d90b02dbf42411d40e08923cbc2af6b72e228b3d517d4"
+    sha256 cellar: :any, x86_64_linux:  "e95adebb52365b4b10dc75887c4809ed08aeb727d70e5e9eb5bc4cd76d66a646"
   end
 
   depends_on "autoconf" => :build
