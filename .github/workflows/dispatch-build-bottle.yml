@@ -182,7 +182,9 @@ jobs:
           bottles-directory: ${{ env.BOTTLES_DIR }}
           cleanup: ${{ matrix.cleanup }}
 
-      - working-directory: ${{ env.BOTTLES_DIR }}
+      - name: Build bottle
+        if: matrix.runner != 'macos-15-intel'
+        working-directory: ${{ env.BOTTLES_DIR }}
         run: |
           brew test-bot \
             --only-formulae \
@@ -192,6 +194,57 @@ jobs:
             --skip-dependents \
             --root-url="https://ghcr.io/v2/macaulay2/tap" \
             "${DISPATCH_BUILD_BOTTLE_FORMULA}"
+
+      # "brew test-bot" refuses to bottle a formula unless every build and
+      # runtime dependency has a bottle for *this exact* OS tag -- see
+      # build_bottle? in homebrew-test-bot's lib/tests/formulae.rb. Since
+      # homebrew-core builds its x86_64 macOS bottles on Sonoma, almost nothing
+      # has a sequoia one, so on macos-15-intel that check skips nearly every
+      # formula we have (fflas-ffpack, for instance, on account of libomp).
+      #
+      # Homebrew is happy to pour an older-OS bottle at install time, and
+      # "brew bottle" has no such restriction, so going through brew directly
+      # skips the policy check. The result is a sequoia bottle built against
+      # the same sonoma dependencies every Intel Sequoia user already has
+      # installed -- and it serves Intel Tahoe users too, via the same
+      # older-bottle fallback.
+      - name: Build bottle (deps may be bottled for an older macOS)
+        if: matrix.runner == 'macos-15-intel'
+        working-directory: ${{ env.BOTTLES_DIR }}
+        env:
+          # test-bot redirects these into the bottles directory so that
+          # post-build can upload them; without it a failed build leaves its
+          # logs in ~/Library/Logs on an ephemeral runner and we learn nothing.
+          HOMEBREW_LOGS: ${{ env.BOTTLES_DIR }}/logs
+        run: |
+          brew install --only-dependencies --include-test --formula "${DISPATCH_BUILD_BOTTLE_FORMULA}"
+          brew install --build-bottle --verbose --formula "${DISPATCH_BUILD_BOTTLE_FORMULA}"
+          brew bottle \
+            --json \
+            --keep-old \
+            --only-json-tab \
+            --root-url="https://ghcr.io/v2/macaulay2/tap" \
+            "${DISPATCH_BUILD_BOTTLE_FORMULA}"
+
+          # Pour the bottle we just built and test *that*, the way test-bot
+          # does.  The --build-bottle tree still has literal /usr/local paths
+          # in it, so testing it directly would not catch relocation damage --
+          # and pouring is also what runs post_install.
+          brew bottle --merge --write --no-commit --no-all-checks --keep-old \
+            ./"${DISPATCH_BUILD_BOTTLE_FORMULA}"--*.bottle.json
+
+          # Note the tarball carries the rebuild number and the JSON tab does
+          # not, so this glob needs the extra "*": the file is called
+          # <name>--<version>.<tag>.bottle.<rebuild>.tar.gz.
+          bottle=$(ls ./"${DISPATCH_BUILD_BOTTLE_FORMULA}"--*.bottle*.tar.gz)
+
+          brew uninstall --formula --force --ignore-dependencies "${DISPATCH_BUILD_BOTTLE_FORMULA}"
+          # "brew uninstall" autoremoves the dependencies it just orphaned, so
+          # put them back before pouring, as test-bot does.
+          brew install --only-dependencies "$bottle"
+          brew install "$bottle"
+          brew linkage --test "${DISPATCH_BUILD_BOTTLE_FORMULA}"
+          brew test --verbose "${DISPATCH_BUILD_BOTTLE_FORMULA}"
 
       - name: Post-build steps
         if: always()
