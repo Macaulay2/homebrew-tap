@@ -246,6 +246,18 @@ jobs:
           brew linkage --test "${DISPATCH_BUILD_BOTTLE_FORMULA}"
           brew test --verbose "${DISPATCH_BUILD_BOTTLE_FORMULA}"
 
+      # "brew test-bot" exits 0 when it skips a formula -- a green build step
+      # does not mean a bottle exists.  Fail here rather than letting the
+      # upload job run "brew pr-upload" against an empty directory.
+      - name: Check that a bottle was actually built
+        working-directory: ${{ env.BOTTLES_DIR }}
+        run: |
+          if ! compgen -G "*.bottle.json" > /dev/null
+          then
+            echo "::error ::No bottle was produced for ${DISPATCH_BUILD_BOTTLE_FORMULA} on ${DISPATCH_BUILD_BOTTLE_RUNNER}."
+            exit 1
+          fi
+
       - name: Post-build steps
         if: always()
         uses: Homebrew/actions/post-build@main
