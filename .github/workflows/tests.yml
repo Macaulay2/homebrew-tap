@@ -50,6 +50,65 @@ jobs:
       - run: brew test-bot --only-formulae --verbose --root-url=https://ghcr.io/v2/macaulay2/tap
         if: github.event_name == 'pull_request'
 
+      # "brew test-bot" refuses to bottle a formula unless every build and
+      # runtime dependency has a bottle for *this exact* OS tag -- build_bottle?
+      # in homebrew-test-bot's lib/tests/formulae.rb.  homebrew-core builds its
+      # x86_64 macOS bottles on Sonoma, so on macos-15-intel most of this tap
+      # gets skipped, and test-bot exits 0 when it skips: the job goes green
+      # having built nothing.
+      #
+      # Homebrew pours an older-OS bottle happily at install time and "brew
+      # bottle" has no such restriction, so build those by hand.  test-bot
+      # records skipped and failed formulae in the same file, but this step
+      # only runs when test-bot itself succeeded, so every name here is a skip.
+      #
+      # Note there is no --keep-old: on a pull request every platform rebuilds
+      # together, so this bottle must take the same new rebuild number as the
+      # ones test-bot produced.
+      - name: Build formulae skipped for want of an x86_64 sequoia bottle
+        if: success() && matrix.os == 'macos-15-intel' && github.event_name == 'pull_request'
+        env:
+          # Installing a bottle from a path is forbidden unless this is set --
+          # see forbid_packages_from_paths? in Homebrew's env_config.rb, which
+          # defaults to true for non-developers.  The dispatch workflow sets it
+          # workflow-wide; this one does not, deliberately, so scope it here.
+          HOMEBREW_DEVELOPER: 1
+        run: |
+          # tests.yml does not set a tracing shell the way the dispatch
+          # workflow does, and this needs to be debuggable from the log.
+          set -x
+
+          skipped=$(cat skipped_or_failed_formulae-*.txt 2>/dev/null || true)
+          if [ -z "$skipped" ]
+          then
+            echo "test-bot skipped nothing; nothing to do."
+            exit 0
+          fi
+
+          for formula in ${skipped//,/ }
+          do
+            echo "::group::Building $formula"
+            short="${formula##*/}"
+
+            brew install --only-dependencies --include-test --formula "$formula"
+            brew install --build-bottle --verbose --formula "$formula"
+            brew bottle --json --root-url="https://ghcr.io/v2/macaulay2/tap" "$formula"
+
+            # Pour it and test that, as test-bot does for everything else: the
+            # --build-bottle tree still has literal /usr/local paths in it, so
+            # testing it directly would not catch relocation damage, and
+            # pouring is what runs post_install.
+            brew bottle --merge --write --no-commit --no-all-checks ./"$short"--*.bottle.json
+            # Absolute, so brew cannot mistake it for a formula name.
+            bottle=$(ls "$PWD"/"$short"--*.bottle*.tar.gz)
+            brew uninstall --formula --force --ignore-dependencies "$formula"
+            brew install --only-dependencies "$bottle"
+            brew install "$bottle"
+            brew linkage --test "$formula"
+            brew test --verbose "$formula"
+            echo "::endgroup::"
+          done
+
       - name: Upload bottles as artifact
         if: always() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v7
