@@ -190,6 +190,7 @@ jobs:
             --only-json-tab \
             --skip-online-checks \
             --skip-dependents \
+            --root-url="https://ghcr.io/v2/macaulay2/tap" \
             "${DISPATCH_BUILD_BOTTLE_FORMULA}"
 
       - name: Post-build steps
