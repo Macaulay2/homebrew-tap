@@ -26,6 +26,16 @@ class FflasFfpack < Formula
   depends_on "libomp" if OS.mac?
   depends_on "openblas" unless OS.mac?
 
+  # Link Givaro and BLAS directly into all precompiled libraries.  Only
+  # libfflas listed $(GIVARO_LIBS); libffpack, libfflas_c and libffpack_c
+  # relied on reaching Givaro through it, which libtool does not propagate,
+  # so libfflas_c fails to link on macOS.  Reported upstream as
+  # linbox-team/fflas-ffpack#391.
+  patch do
+    url "https://github.com/linbox-team/fflas-ffpack/commit/9391c9422424d47d6b6d0c02a1af72fd2ee97a0f.patch?full_index=1"
+    sha256 "067339896c4e99e5b47873caca5a952d28dae3068da48f9faa72697ba17ec0d3"
+  end
+
   patch :DATA
 
   def install
