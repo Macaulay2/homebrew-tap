@@ -10,11 +10,12 @@ class Linbox < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 2
-    sha256 cellar: :any, arm64_tahoe:   "1ae771deb679e6acca1fbfd522de6cdf34b2defdcb8b55ae71ac2966f5de753d"
-    sha256 cellar: :any, arm64_sequoia: "522f57c22dfe363400064a068918f6378279f1a1df055205f1ab99ac585f8d8e"
-    sha256 cellar: :any, arm64_sonoma:  "51a077402ccd55fcf08d90b02dbf42411d40e08923cbc2af6b72e228b3d517d4"
-    sha256 cellar: :any, x86_64_linux:  "e95adebb52365b4b10dc75887c4809ed08aeb727d70e5e9eb5bc4cd76d66a646"
+    rebuild 3
+    sha256 cellar: :any, arm64_tahoe:   "cc6bb008c96946fb0fe817543d5aded01bc0a78c44b6acc06435c0590d9fd2bb"
+    sha256 cellar: :any, arm64_sequoia: "8047e0c3eb6599cade4dd60a2f2bfb67a288b6d6158c444d9f6b6f21c557995d"
+    sha256 cellar: :any, arm64_sonoma:  "93fed412018f3927e92ef6d32d21f84f81caf9313cab0e81be77da0cedae2319"
+    sha256 cellar: :any, sequoia:       "c197831fcbffc5a37456de2b14e05807b6938601fe42e76ae850c2705dd28235"
+    sha256 cellar: :any, x86_64_linux:  "ccc1fa2a0183088b4772475b314bffd759da66bc86d8f73d3b243ddc0a54783e"
   end
 
   depends_on "autoconf" => :build
