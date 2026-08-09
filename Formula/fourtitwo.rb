@@ -10,6 +10,7 @@ class Fourtitwo < Formula
     sha256 cellar: :any,                 arm64_tahoe:   "66198bcf721898bf79d79f4120667a604b3828a09e96b844fe332657debd9662"
     sha256 cellar: :any,                 arm64_sequoia: "c1126a7b3ab6f2a5330e92d689e79aac61a560a6cf6b0cdb02ac2f1d41a3c360"
     sha256 cellar: :any,                 arm64_sonoma:  "767b13972d74f0e4d957cb2ad517d5011940acf4d3eff4ef1f1d7a8ebc627811"
+    sha256 cellar: :any,                 sequoia:       "484f893c1f72a6b74932a49d430886603c9755ab80bc4364e26d7cf77d9bce7c"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "c966a0fdf0d34ccae2336031286a900c6db043efba8a7ac7840cd353baebe7dd"
   end
 
