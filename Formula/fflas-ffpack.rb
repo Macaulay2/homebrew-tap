@@ -9,11 +9,12 @@ class FflasFfpack < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 4
-    sha256 cellar: :any, arm64_tahoe:   "b8cab9233fd536f6b4daed298b8b191df51af134804f74623eee43728fb37924"
-    sha256 cellar: :any, arm64_sequoia: "8389ab91e92c97ed04d9e3cf85fc438ce76269904cfb63644d5a01c66d12cb44"
-    sha256 cellar: :any, arm64_sonoma:  "65227271f1baefc8992b04524a22b87a7142e3e895416c3126dd499b9057b46e"
-    sha256 cellar: :any, x86_64_linux:  "5257337be39e449f9cf507a5701966adce0a61f716fc0f14715c07c848dd5ef2"
+    rebuild 5
+    sha256 cellar: :any, arm64_tahoe:   "10bfa1299d79783e4ea723e749d2d83d31e3b4e087784c4de0b167720ef30c3b"
+    sha256 cellar: :any, arm64_sequoia: "a78ed087effdfede1a3fbdfc67842edf4f35f00cd1e3c9ee6771581d12a33d18"
+    sha256 cellar: :any, arm64_sonoma:  "d73c52e7e381b07dc6422cd6cc61edf2532e955bb9e75a9294436da71de0ac50"
+    sha256 cellar: :any, sequoia:       "275b4175d0b17c62be56c509b7d33f959eea5f119d860df397c6c3c10a77fccf"
+    sha256 cellar: :any, x86_64_linux:  "c709ef017a277e5020adaa05b7b8fe96239f0f256a349e6e96a1dd70c0ffc05a"
   end
 
   depends_on "autoconf" => :build
