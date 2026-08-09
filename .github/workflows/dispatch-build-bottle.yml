@@ -343,8 +343,12 @@ jobs:
           body: Created by [`brew dispatch-build-bottle`](${{env.RUN_URL}})
           reviewers: ${{github.actor}}
 
+      # Deliberately success(), not always(): the text below asserts that the
+      # bottle reached ghcr, which is only true once "brew pr-upload" and the
+      # push have both succeeded.  A refused pull request does not skip this --
+      # that step is continue-on-error, so it leaves the job successful.
       - name: Summarise
-        if: always()
+        if: success()
         run: |
           {
             echo "### Bottle for \`${DISPATCH_BUILD_BOTTLE_FORMULA}\` on \`${DISPATCH_BUILD_BOTTLE_RUNNER}\`"
