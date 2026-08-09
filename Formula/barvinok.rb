@@ -10,6 +10,7 @@ class Barvinok < Formula
     sha256 cellar: :any,                 arm64_tahoe:   "03f684954e9ff6211a529df2bd9e388696b709b58f8d5c52e26a106662939ec3"
     sha256 cellar: :any,                 arm64_sequoia: "c81cb6f2ac7953d94cc37e69434ed7a61f889a963006756cbbc479ffe5b01510"
     sha256 cellar: :any,                 arm64_sonoma:  "74f8fc39e49246cc02d7015524826a88436bf1f1e85eb83a97899227d059823b"
+    sha256 cellar: :any,                 sequoia:       "50586277cc7187a51d1b65175a69a39d6639212c1c811042c212dec596011a17"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "1d0d7b1a00e4ba87f16736dd997ae43380b5938a51c2d1d676d4f31680fc0c82"
   end
 
