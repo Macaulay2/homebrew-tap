@@ -131,9 +131,13 @@ jobs:
         with:
           bottles-directory: ${{ env.BOTTLES_DIR }}
 
+      # Without it test-bot invents a root URL for a non-core tap -- our
+      # releases URL rather than ghcr -- and the bottle JSON then disagrees
+      # with what "brew pr-upload" publishes.
       - run: |
           brew test-bot --only-formulae --only-json-tab --skip-online-checks \
                         --skip-dependents \
+                        --root-url="https://ghcr.io/v2/macaulay2/tap" \
                         "${DISPATCH_REBOTTLE_FORMULA}"
         working-directory: ${{ env.BOTTLES_DIR }}
         env:
