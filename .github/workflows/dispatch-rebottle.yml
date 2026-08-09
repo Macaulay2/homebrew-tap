@@ -131,17 +131,85 @@ jobs:
         with:
           bottles-directory: ${{ env.BOTTLES_DIR }}
 
-      # Without it test-bot invents a root URL for a non-core tap -- our
-      # releases URL rather than ghcr -- and the bottle JSON then disagrees
-      # with what "brew pr-upload" publishes.
-      - run: |
+      # --root-url matters here for the same reason as in
+      # dispatch-build-bottle.yml: without it test-bot invents a root URL for a
+      # non-core tap -- our releases URL rather than ghcr -- and the bottle JSON
+      # then disagrees with what "brew pr-upload" publishes.
+      - name: Build bottle
+        if: ${{ !endsWith(matrix.runner, '-intel') }}
+        working-directory: ${{ env.BOTTLES_DIR }}
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
           brew test-bot --only-formulae --only-json-tab --skip-online-checks \
                         --skip-dependents \
                         --root-url="https://ghcr.io/v2/macaulay2/tap" \
                         "${DISPATCH_REBOTTLE_FORMULA}"
+
+      # "brew test-bot" refuses to bottle a formula unless every build and
+      # runtime dependency has a bottle for *this exact* OS tag -- see
+      # build_bottle? in homebrew-test-bot's lib/tests/formulae.rb.  Since
+      # homebrew-core builds its x86_64 macOS bottles on Sonoma, almost nothing
+      # has a sequoia one, so on an Intel runner that check skips nearly every
+      # formula we have -- and test-bot exits 0 when it skips.
+      #
+      # Homebrew pours an older-OS bottle happily at install time and "brew
+      # bottle" has no such restriction, so go through brew directly.
+      #
+      # Note there is no --keep-old, matching the test-bot call above: a
+      # rebottle rebuilds every currently-bottled tag together, so this bottle
+      # must take the same new rebuild number as the ones test-bot produced.
+      - name: Build bottle (deps may be bottled for an older macOS)
+        if: endsWith(matrix.runner, '-intel')
         working-directory: ${{ env.BOTTLES_DIR }}
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          # test-bot redirects these into the bottles directory so that
+          # post-build can upload them; without it a failed build leaves its
+          # logs in ~/Library/Logs on an ephemeral runner and we learn nothing.
+          HOMEBREW_LOGS: ${{ env.BOTTLES_DIR }}/logs
+        run: |
+          brew install --only-dependencies --include-test --formula "${DISPATCH_REBOTTLE_FORMULA}"
+          brew install --build-bottle --verbose --formula "${DISPATCH_REBOTTLE_FORMULA}"
+          brew bottle \
+            --json \
+            --only-json-tab \
+            --root-url="https://ghcr.io/v2/macaulay2/tap" \
+            "${DISPATCH_REBOTTLE_FORMULA}"
+
+          # Pour the bottle we just built and test *that*, the way test-bot
+          # does.  The --build-bottle tree still has literal /usr/local paths
+          # in it, so testing it directly would not catch relocation damage --
+          # and pouring is also what runs post_install.
+          brew bottle --merge --write --no-commit --no-all-checks \
+            ./"${DISPATCH_REBOTTLE_FORMULA}"--*.bottle.json
+
+          # Note the tarball carries the rebuild number and the JSON tab does
+          # not, so this glob needs the extra "*": the file is called
+          # <name>--<version>.<tag>.bottle.<rebuild>.tar.gz.
+          bottle=$(ls ./"${DISPATCH_REBOTTLE_FORMULA}"--*.bottle*.tar.gz)
+
+          brew uninstall --formula --force --ignore-dependencies "${DISPATCH_REBOTTLE_FORMULA}"
+          # "brew uninstall" autoremoves the dependencies it just orphaned, so
+          # put them back before pouring, as test-bot does.
+          brew install --only-dependencies "$bottle"
+          brew install "$bottle"
+          brew linkage --test "${DISPATCH_REBOTTLE_FORMULA}"
+          brew test --verbose "${DISPATCH_REBOTTLE_FORMULA}"
+
+      # "brew test-bot" exits 0 when it skips a formula -- a green build step
+      # does not mean a bottle exists.  Fail here rather than letting the
+      # upload job run "brew pr-upload" against an empty directory.
+      - name: Check that a bottle was actually built
+        working-directory: ${{ env.BOTTLES_DIR }}
+        env:
+          MATRIX_RUNNER: ${{ matrix.runner }}
+        run: |
+          if ! compgen -G "*.bottle.json" > /dev/null
+          then
+            echo "::error ::No bottle was produced for ${DISPATCH_REBOTTLE_FORMULA} on ${MATRIX_RUNNER}."
+            exit 1
+          fi
 
       - name: Post-build steps
         if: always()
