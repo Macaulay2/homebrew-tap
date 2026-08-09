@@ -11,6 +11,7 @@ class Gfan < Formula
     sha256 cellar: :any, arm64_tahoe:   "7a1d12e2d94fa99bbe08f1c70d026583bd1274c8f51e2bec11092bb1f2f385f6"
     sha256 cellar: :any, arm64_sequoia: "75121d6052afcf59a535696e15bc744e164728bf8145a9f8c87c85428c0abe21"
     sha256 cellar: :any, arm64_sonoma:  "553f3ba82871a1194ea35a4f0df3ed9da177e9d1dfb725265b4887eb49c9543d"
+    sha256 cellar: :any, sequoia:       "39f15ad76f8f9f3964e041ab45222b81b12bae95d4e4a3b5dc998f0111db7545"
     sha256               x86_64_linux:  "84a666ace1eff6100eb41ea059994638941874e174e4644747b2d5090703fdb4"
   end
 
