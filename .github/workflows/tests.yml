@@ -47,6 +47,14 @@ jobs:
 
       - run: brew test-bot --only-tap-syntax
 
+      # Records testing_formulae, added_formulae and deleted_formulae as step
+      # outputs.  We only want the first, to tell "this pull request builds
+      # nothing" apart from "this pull request should have built something".
+      - name: Detect formulae under test
+        id: detect
+        if: github.event_name == 'pull_request'
+        run: brew test-bot --only-formulae-detect
+
       - run: brew test-bot --only-formulae --verbose --root-url=https://ghcr.io/v2/macaulay2/tap
         if: github.event_name == 'pull_request'
 
@@ -109,13 +117,31 @@ jobs:
             echo "::endgroup::"
           done
 
+      # test-bot exits 0 when it skips a formula, so a green run does not mean
+      # anything was built.  Check for ourselves -- but only when test-bot had
+      # something to build in the first place, so that a pull request touching
+      # only workflows or documentation stays green.
+      - name: Check that bottles were built
+        if: success() && github.event_name == 'pull_request' && steps.detect.outputs.testing_formulae != ''
+        env:
+          TESTING_FORMULAE: ${{ steps.detect.outputs.testing_formulae }}
+        run: |
+          if ! compgen -G "*.bottle.json" > /dev/null
+          then
+            echo "::error ::${TESTING_FORMULAE} was tested but produced no bottle."
+            exit 1
+          fi
+
       - name: Upload bottles as artifact
         if: always() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v7
         with:
           name: bottles_${{ matrix.os }}
           path: '*.bottle.*'
-          if-no-files-found: error
+          # Silent: the step above is what decides whether missing bottles are
+          # a problem, and a pull request that touches no formula legitimately
+          # builds nothing.
+          if-no-files-found: ignore
 
       - name: Upload logs as artifact
         if: failure() && github.event_name == 'pull_request'
