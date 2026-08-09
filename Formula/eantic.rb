@@ -1,8 +1,8 @@
 class Eantic < Formula
   desc "Computing with Real Embedded Number Fields"
   homepage "https://flatsurf.github.io/e-antic/"
-  url "https://github.com/flatsurf/e-antic/releases/download/2.1.0/e-antic-2.1.0.tar.gz"
-  sha256 "e3e78701d054b441f95d83b6fb55cd84bfd931f5d4a61a2822dc977a20c46f80"
+  url "https://github.com/flatsurf/e-antic/releases/download/2.1.1/e-antic-2.1.1.tar.gz"
+  sha256 "e3287fa603b44d9a43c4cac5d883e65e90aedc35821061c1dc5b8d9c94a01cd8"
   license any_of: ["LGPL-3.0-only", "GPL-3.0-only"]
 
   bottle do
@@ -19,6 +19,15 @@ class Eantic < Formula
 
   depends_on "boost"
   depends_on "flint"
+
+  # FLINT 3.6.0 declares the real root isolation functions that e-antic also
+  # declares, so building against it fails with conflicting types.  Reported
+  # upstream as https://github.com/flatsurf/e-antic/issues/308; patch taken
+  # from Debian.
+  patch do
+    url "https://sources.debian.org/data/main/e/e-antic/2.1.1%2Bds-2/debian/patches/isolate-real-roots.patch"
+    sha256 "0ecec1fb773e9a1a39bba1751e90cd32de7ce579126439facb3263ed1709bf4d"
+  end
 
   # skipping pyeantic due to https://github.com/flatsurf/e-antic/issues/283
   patch :DATA
