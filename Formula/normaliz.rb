@@ -11,6 +11,7 @@ class Normaliz < Formula
     sha256 cellar: :any, arm64_tahoe:   "e589c87d95364b4ee1bef9b4427944d3e1f6dad2d582e213a1a33c5161262ce1"
     sha256 cellar: :any, arm64_sequoia: "15175f4a6a8471fe8299b3ff0ea6f3e1554b0c44dc6bd503fa3c2a5a15ccd831"
     sha256 cellar: :any, arm64_sonoma:  "c6276d5009be0b1bba601756a8a0540cfd4eb542ab33228bb6c7de70cb7d43c1"
+    sha256 cellar: :any, sequoia:       "12917dca00ab6365969ea973fe9b960857b785c92f438ea10ad270b015c4cf55"
     sha256 cellar: :any, x86_64_linux:  "1635e91c6824a5501fb052c4c860d8a357a2d8d07c487def9c74a9f047024827"
   end
 
