@@ -48,6 +48,9 @@ class Linbox < Formula
     system "autoreconf", "-vif"
     system "./configure",
            "--enable-openmp",
+           # LinBox uses no MPFR symbols; if found, it only adds "-lmpfr" to
+           # the link, which breaks "brew linkage --test".
+           "--without-mpfr",
            "--disable-dependency-tracking",
            "--disable-silent-rules",
            "--prefix=#{prefix}"
