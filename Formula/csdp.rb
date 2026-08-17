@@ -8,12 +8,11 @@ class Csdp < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 2
-    sha256 cellar: :any,                 arm64_tahoe:   "3d858355e2be61bef2798eead217ee37a77ac4788b2aecfa014d0e6a5b160681"
-    sha256 cellar: :any,                 arm64_sequoia: "6ff4935bcab1468599ba2c78d26a2106a9f7565254632a0e13c344a8766ae3bb"
-    sha256 cellar: :any,                 arm64_sonoma:  "fe20ca55ec5c5318451454fcf09e066182abf5285619e5a6435317f660b37d4d"
-    sha256 cellar: :any,                 sequoia:       "7fb062b8abd91ca2baa793a53be804f3ca6e6a5392fa349c61777327682a9052"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cc6fa3b8891f6764fd02129edc547b124d034ed9e89bad00c042b6fd3ac69eea"
+    sha256 cellar: :any, arm64_tahoe:   "1c7122fdb8b4224f0da4e3e42c025ce8c691dab9c0c2273c18aa6fdb9c5b77b6"
+    sha256 cellar: :any, arm64_sequoia: "b1be5d61eb70ff16b6b00df06268f333d71080bc94f5ae38062fd6dbc39e3fda"
+    sha256 cellar: :any, arm64_sonoma:  "04c78cf57105fe90734e3e190b86ef6b82ab8e6ebd8ca9257745f4eadc83d4a6"
+    sha256 cellar: :any, sequoia:       "b167664a60547e1adc6b69f891b4c5a9f2c186a295e4c8835901c8eaa1942cf6"
+    sha256 cellar: :any, x86_64_linux:  "a2c9680e4de5fa5418052b0742cb4f66254dddbb3280b56417260a31784b44ea"
   end
 
   depends_on "libomp" if OS.mac?
