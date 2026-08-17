@@ -3,8 +3,8 @@ class Csdp < Formula
   homepage "https://github.com/coin-or/Csdp"
   url "https://github.com/coin-or/Csdp/archive/refs/tags/releases/6.2.0.tar.gz"
   sha256 "3d341974af1f8ed70e1a37cc896e7ae4a513375875e5b46db8e8f38b7680b32f"
-  license "EPL-2.0"
-  revision 10
+  license "CPL-1.0"
+  revision 11
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -19,35 +19,51 @@ class Csdp < Formula
   depends_on "libomp" if OS.mac?
   depends_on "openblas" unless OS.mac?
 
-  # patch for compatibility with macOS
+  # include <stdio.h> to avoid declaring printf implicitly
   patch do
-    url "https://raw.githubusercontent.com/Macaulay2/M2/1f99f71a1308318679412de7f20e940b05f80be6/M2/libraries/csdp/patch-6.2.0"
-    sha256 "e836252c67056e5bc755d24d7a43ccad653139fe8b0b1d2dba064f68da41791c"
+    url "https://salsa.debian.org/math-team/csdp/-/raw/d95bdd34978926971e8b3fcf6622f3086d3b2401/debian/patches/include-stdio.patch"
+    sha256 "fcd9b1ba04d20a6f150fc56a918f9bcd6ee1681203a9a0bc2aace385694fd54f"
+  end
+
+  # more configurable makefile
+  patch do
+    url "https://salsa.debian.org/math-team/csdp/-/raw/d95bdd34978926971e8b3fcf6622f3086d3b2401/debian/patches/makefile.patch"
+    sha256 "8d51be78e50708085a8749fcac1b23a5dd24d404cee32a388d7c0c40ba474d5c"
   end
 
   def install
-    # see https://github.com/Macaulay2/homebrew-tap/issues/103#issuecomment-944225248
-    inreplace "Makefile", /-ansi/, ""
-    if OS.mac?
-      libomp = Formula["libomp"]
-      ENV["OpenMP_C_FLAGS"] = "-Xpreprocessor -fopenmp -I#{libomp.opt_include}"
-      ENV["OpenMP_C_LDLIBS"] = "-L#{libomp.opt_lib} -lomp"
-      ENV["LA_LIBRARIES"] = "-framework Accelerate"
+    make_args = if OS.mac?
+      ["BLAS_LIBS=-framework Accelerate",
+       "OPENMP_CFLAGS=-Xpreprocessor -fopenmp -I#{formula_opt_include("libomp")}",
+       "OPENMP_LIBS=-L#{formula_opt_lib("libomp")} -lomp"]
     else
-      ENV["OpenMP_C_FLAGS"] = "-fopenmp"
-      ENV["LA_LIBRARIES"] = "-lopenblas"
+      ["BLAS_LIBS=-L#{formula_opt_lib("openblas")} -lopenblas"]
     end
 
-    mkdir bin
-    mv "INSTALL", "INSTALL.txt" # the filename confuses `make install`
-    system "make",
-           "CC=#{ENV.cc} ${OpenMP_C_FLAGS} ${CFLAGS}",
-           "LDLIBS=${OpenMP_C_LDLIBS}",
-           "LIBS=-L../lib -lsdp ${LA_LIBRARIES} -lm"
-    system "make", "prefix=#{prefix}", "install"
+    system "make", *make_args
+    system "make", "install", "prefix=#{prefix}", *make_args
   end
 
   test do
-    system "true"
+    # The 5-cycle is self-complementary, with Lovasz theta number sqrt(5).
+    # Upstream asks for six digits or more (test/Makefile).
+    (testpath/"c5.graph").write <<~EOS
+      5
+      5
+      1 2
+      2 3
+      3 4
+      4 5
+      1 5
+    EOS
+
+    system bin/"complement", "c5.graph", "c5-complement.graph"
+    system bin/"graphtoprob", "c5-complement.graph", "c5.dat-s"
+    csdp_output = shell_output("#{bin}/csdp c5.dat-s")
+    assert_match "Success: SDP solved", csdp_output
+    assert_in_delta Math.sqrt(5), csdp_output[/Primal objective value: (\S+)/, 1].to_f, 1e-6
+
+    theta_output = shell_output("#{bin}/theta c5.graph")
+    assert_in_delta Math.sqrt(5), theta_output[/Lovasz Theta Number is (\S+)/, 1].to_f, 1e-6
   end
 end
