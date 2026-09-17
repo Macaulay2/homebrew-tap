@@ -23,7 +23,7 @@ class Memtailor < Formula
 
   def install
     ENV.cxx11
-    system "cmake", ".", "-DBUILD_TESTING=off", *std_cmake_args
+    system "cmake", "-S", ".", "-B", ".", "-DBUILD_TESTING=off", *std_cmake_args
     system "make", "install"
   end
 

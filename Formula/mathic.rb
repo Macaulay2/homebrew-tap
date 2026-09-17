@@ -25,7 +25,7 @@ class Mathic < Formula
 
   def install
     ENV.cxx11
-    system "cmake", ".", "-DBUILD_TESTING=off",
+    system "cmake", "-S", ".", "-B", ".", "-DBUILD_TESTING=off",
            "-DCMAKE_PREFIX_PATH=#{Formula["memtailor"].prefix}",
            *std_cmake_args
     system "make", "install"

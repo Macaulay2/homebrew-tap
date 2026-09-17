@@ -34,7 +34,7 @@ class Mathicgb < Formula
     args << "-DCMAKE_PREFIX_PATH=#{Formula["memtailor"].prefix};#{Formula["mathic"].prefix}"
     args << "-Denable_mgb=off" if build.without?("mgb")
     args << "-Dwith_tbb=on" << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}" if build.with?("tbb")
-    system "cmake", ".", *args
+    system "cmake", "-S", ".", "-B", ".", *args
     system "make", "install"
   end
 

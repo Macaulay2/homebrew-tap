@@ -31,7 +31,7 @@ class Frobby < Formula
       ENV["CC"] = formula_opt_bin("llvm")/"clang"
       ENV["CXX"] = formula_opt_bin("llvm")/"clang++"
     end
-    system "cmake", ".", "-DBUILD_TESTING=off",
+    system "cmake", "-S", ".", "-B", ".", "-DBUILD_TESTING=off",
            "-DCMAKE_PREFIX_PATH=#{Formula["gmp"].prefix}",
            *std_cmake_args
     system "make", "install"
