@@ -7,12 +7,12 @@ class Frobby < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 1
-    sha256 cellar: :any, arm64_tahoe:   "9f4d7b7c644f395f1d31281d746e1ffd72f0de92d8e43f11bb94054330236067"
-    sha256 cellar: :any, arm64_sequoia: "29ec5400122b01d304c539aaa1b676ad02b7ef7498b232a396e92f3b94a9058f"
-    sha256 cellar: :any, arm64_sonoma:  "fc283073fbab6202994e1dce7043dab47864f48a978103d87b98a45916f1a095"
-    sha256 cellar: :any, sequoia:       "a7878758d526a9e7497d84de4f12cecf3c58321575887199deb0eff311ac2f24"
-    sha256 cellar: :any, x86_64_linux:  "412135b63784e92aca45b0a687e30718792efad3175bff2a673013054819915e"
+    rebuild 2
+    sha256 cellar: :any, arm64_tahoe:   "d3ce87efc9a9485a5f895015b711b67f091a09db29c8fccefd535f17b7784b01"
+    sha256 cellar: :any, arm64_sequoia: "a4f4f8cfb3ed334a839fa85afc91235f8c41114bbeae591cc2ad57a52e2d2913"
+    sha256 cellar: :any, arm64_sonoma:  "777c02a28eda28857fb7f28d6962a4642d06116cfa5931127686f57e715db4b0"
+    sha256 cellar: :any, sequoia:       "72a3599dcc6a46039e75b72f01f5371471a3bab74bf2b396c837de1f022e25be"
+    sha256 cellar: :any, x86_64_linux:  "ea7aadec221c0ad6bc12fa75ecd3548f04d26b43c9561b71787d50ed1416cbfa"
   end
 
   unless OS.mac?
