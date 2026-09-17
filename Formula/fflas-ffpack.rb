@@ -4,7 +4,7 @@ class FflasFfpack < Formula
   url "https://github.com/linbox-team/fflas-ffpack/releases/download/v2.5.0/fflas-ffpack-2.5.0.tar.gz"
   sha256 "dafb4c0835824d28e4f823748579be6e4c8889c9570c6ce9cce1e186c3ebbb23"
   license "LGPL-2.1-or-later"
-  revision 1
+  revision 2
 
   head "https://github.com/linbox-team/fflas-ffpack.git", using: :git, branch: "master"
 
@@ -35,6 +35,12 @@ class FflasFfpack < Formula
   patch do
     url "https://github.com/linbox-team/fflas-ffpack/commit/9391c9422424d47d6b6d0c02a1af72fd2ee97a0f.patch?full_index=1"
     sha256 "067339896c4e99e5b47873caca5a952d28dae3068da48f9faa72697ba17ec0d3"
+  end
+
+  # Fix build w/ clang 23 (https://github.com/linbox-team/fflas-ffpack/pull/422)
+  patch do
+    url "https://github.com/d-torrance/fflas-ffpack/commit/50d4dd82c6e16990acfaff97ed219bd47711138e.patch?full_index=1"
+    sha256 "6731fe25e1f0cdbe554489c28170f442e8ddf9192822eb4d27fbe0bbb5449104"
   end
 
   patch :DATA
