@@ -30,18 +30,18 @@ class Macaulay2Common < Formula
     rm_r share/"emacs"
   end
 
-  def post_install
-    if formula_any_version_installed?("macaulay2")
-      cp_r share, Formula["macaulay2"].prefix, remove_destination: true
-      cp_r lib,   Formula["macaulay2"].prefix, remove_destination: true
-    else
-      missing_warn = <<~EOS
+  post_install_steps do
+    if_path_exists "{{HOMEBREW_PREFIX}}/opt/macaulay2" do
+      copy "share", "{{HOMEBREW_PREFIX}}/opt/macaulay2", recursive: true
+      copy "lib", "{{HOMEBREW_PREFIX}}/opt/macaulay2", recursive: true
+    end
+    unless_path_exists "{{HOMEBREW_PREFIX}}/opt/macaulay2" do
+      warn <<~EOS
         No version of Macaulay2 was found; run:
           brew install macaulay2 --HEAD
         to build Macaulay2 from source, then add the common documentation files with:
           brew postinstall macaulay2-common
       EOS
-      opoo missing_warn
     end
   end
 
