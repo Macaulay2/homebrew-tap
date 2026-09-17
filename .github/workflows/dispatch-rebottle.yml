@@ -136,7 +136,7 @@ jobs:
       # non-core tap -- our releases URL rather than ghcr -- and the bottle JSON
       # then disagrees with what "brew pr-upload" publishes.
       - name: Build bottle
-        if: ${{ !endsWith(matrix.runner, '-intel') }}
+        if: ${{ !endsWith(matrix.runner, '-intel') && matrix.runner != 'macos-14' }}
         working-directory: ${{ env.BOTTLES_DIR }}
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -148,19 +148,21 @@ jobs:
 
       # "brew test-bot" refuses to bottle a formula unless every build and
       # runtime dependency has a bottle for *this exact* OS tag -- see
-      # build_bottle? in homebrew-test-bot's lib/tests/formulae.rb.  Since
-      # homebrew-core builds its x86_64 macOS bottles on Sonoma, almost nothing
-      # has a sequoia one, so on an Intel runner that check skips nearly every
-      # formula we have -- and test-bot exits 0 when it skips.
+      # build_bottle? in homebrew-test-bot's lib/tests/formulae.rb -- and it
+      # exits 0 when it skips.  Two runners cannot satisfy that: the Intel ones,
+      # because homebrew-core builds its x86_64 macOS bottles on Sonoma so
+      # almost nothing has a sequoia one, and macos-14, because it has stopped
+      # building arm64_sonoma ones at all now that Sonoma is tier 3.
       #
-      # Homebrew pours an older-OS bottle happily at install time and "brew
-      # bottle" has no such restriction, so go through brew directly.
+      # Homebrew pours an older-OS bottle happily at install time, and builds
+      # from source when there is no bottle; "brew bottle" has no such
+      # restriction either, so go through brew directly.
       #
       # Note there is no --keep-old, matching the test-bot call above: a
       # rebottle rebuilds every currently-bottled tag together, so this bottle
       # must take the same new rebuild number as the ones test-bot produced.
-      - name: Build bottle (deps may be bottled for an older macOS)
-        if: endsWith(matrix.runner, '-intel')
+      - name: Build bottle (deps may be unbottled, or bottled for an older macOS)
+        if: endsWith(matrix.runner, '-intel') || matrix.runner == 'macos-14'
         working-directory: ${{ env.BOTTLES_DIR }}
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -170,6 +172,17 @@ jobs:
           HOMEBREW_LOGS: ${{ env.BOTTLES_DIR }}/logs
         run: |
           brew install --only-dependencies --include-test --formula "${DISPATCH_REBOTTLE_FORMULA}"
+
+          # Build dependencies too: the run above prunes them, having seen a
+          # pourable bottle, and --build-bottle then refuses to install an
+          # unbottled dependency (unbottled_dependencies in Homebrew's
+          # formula_installer.rb) but skips already-installed ones.  Unquoted
+          # for word splitting, and guarded because some formulae here have no
+          # dependencies at all.
+          build_deps=$(brew deps --include-build --formula "${DISPATCH_REBOTTLE_FORMULA}")
+          # shellcheck disable=SC2086
+          [ -z "$build_deps" ] || brew install --formula $build_deps
+
           brew install --build-bottle --verbose --formula "${DISPATCH_REBOTTLE_FORMULA}"
           brew bottle \
             --json \
