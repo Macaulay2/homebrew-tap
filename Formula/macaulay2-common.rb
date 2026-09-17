@@ -17,7 +17,8 @@ class Macaulay2Common < Formula
   keg_only "it only installs documentation for macaulay2/tap/M2"
 
   resource "v1.26.06" do
-    url "https://ghcr.io/v2/macaulay2/tap/macaulay2/blobs/sha256:10c7e99660344f82945ad450bdef35b9665bffef15c986f24b805a7ea8d78dee"
+    url "https://ghcr.io/v2/macaulay2/tap/macaulay2/blobs/sha256:10c7e99660344f82945ad450bdef35b9665bffef15c986f24b805a7ea8d78dee",
+        header: "Authorization: Bearer QQ=="
     sha256 "10c7e99660344f82945ad450bdef35b9665bffef15c986f24b805a7ea8d78dee"
   end
 
