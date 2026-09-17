@@ -7,11 +7,12 @@ class Mathic < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e573086c1919807cfc49fcf1da1003c42a20de21d17f7f0d200270955b09c31a"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "661a25450216eeb86ab4e60410d81b3f6c187b50cd7e197f662272890bd170d5"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6d2c068da2f993a5fd001eed7939449b2d0ab2618c0cf3c4d3c09ed1928ea1a6"
-    sha256 cellar: :any_skip_relocation, sequoia:       "f18ba70e4355eff9cd7f87b80732b424f17f04a0c3007c956dac2b895b3019c5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ec167504d4240956c2f1b54c7b447053de8817ab49f21f93539d5dba1b30e9e3"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "b0ffff5e5bbde4661882219b7530d2d02b1dbf3892a669cb2928c7690fca8e44"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6e4ff53c41eba85bbbccb651daded6b88e7c53973bbaa387f80067fb679007d2"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "59e9d817602c6ecf2a717c04e9e81d970ced2139204cfdcd715ce3aaabcdd0a9"
+    sha256 cellar: :any_skip_relocation, sequoia:       "33d996f9b5e87f646fadd67de9b1b1887b335b1a121d6b703f88074df4fa93ee"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "76a39c70e92d4008cb37b3c11b04c1286ad472ca3eeb369467d1baf342606993"
   end
 
   unless OS.mac?
