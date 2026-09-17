@@ -58,21 +58,20 @@ jobs:
 
       # "brew test-bot" refuses to bottle a formula unless every build and
       # runtime dependency has a bottle for *this exact* OS tag -- build_bottle?
-      # in homebrew-test-bot's lib/tests/formulae.rb.  homebrew-core builds its
-      # x86_64 macOS bottles on Sonoma, so on macos-15-intel most of this tap
-      # gets skipped, and test-bot exits 0 when it skips: the job goes green
-      # having built nothing.
-      #
-      # Homebrew pours an older-OS bottle happily at install time and "brew
-      # bottle" has no such restriction, so build those by hand.  test-bot
-      # records skipped and failed formulae in the same file, but this step
-      # only runs when test-bot itself succeeded, so every name here is a skip.
+      # in homebrew-test-bot's lib/tests/formulae.rb -- and it exits 0 when it
+      # skips, so the job goes green having built nothing.  macos-15-intel goes
+      # short because homebrew-core builds its x86_64 macOS bottles on Sonoma,
+      # macos-14 because it has stopped building arm64_sonoma ones at all.
+      # Neither matters at install time, and "brew bottle" has no such policy,
+      # so build those by hand.  No OS condition: the step no-ops when test-bot
+      # skipped nothing.  Skipped and failed formulae share a file, but this
+      # runs only on success, so every name here is a skip.
       #
       # Note there is no --keep-old: on a pull request every platform rebuilds
       # together, so this bottle must take the same new rebuild number as the
       # ones test-bot produced.
-      - name: Build formulae skipped for want of an x86_64 sequoia bottle
-        if: success() && matrix.os == 'macos-15-intel' && github.event_name == 'pull_request'
+      - name: Build formulae test-bot skipped for want of bottled dependencies
+        if: success() && github.event_name == 'pull_request'
         env:
           # Installing a bottle from a path is forbidden unless this is set --
           # see forbid_packages_from_paths? in Homebrew's env_config.rb, which
@@ -97,6 +96,17 @@ jobs:
             short="${formula##*/}"
 
             brew install --only-dependencies --include-test --formula "$formula"
+
+            # Build dependencies too: the run above prunes them, having seen a
+            # pourable old bottle, and --build-bottle then refuses to install an
+            # unbottled dependency (unbottled_dependencies in Homebrew's
+            # formula_installer.rb) but skips already-installed ones.  Unquoted
+            # for word splitting, and guarded because some formulae here have no
+            # dependencies at all.
+            build_deps=$(brew deps --include-build --formula "$formula")
+            # shellcheck disable=SC2086
+            [ -z "$build_deps" ] || brew install --formula $build_deps
+
             brew install --build-bottle --verbose --formula "$formula"
             brew bottle --json --root-url="https://ghcr.io/v2/macaulay2/tap" "$formula"
 
