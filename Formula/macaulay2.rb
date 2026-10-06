@@ -75,8 +75,11 @@ class Macaulay2 < Formula
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/ForeignFunctions.m2", "get \"!brew --prefix\"", "getenv \"HOMEBREW_PREFIX\""
 
-    # c.f. https://github.com/Macaulay2/M2/issues/2682
-    inreplace "M2/Macaulay2/d/CMakeLists.txt", "M2-supervisor", "M2-supervisor quadmath" unless OS.mac?
+    # Upstream links quadmath on non-macOS systems, but ARM64 Linux has no libquadmath.
+    if OS.linux? && Hardware::CPU.arm?
+      inreplace "M2/Macaulay2/d/CMakeLists.txt",
+                "target_link_libraries(M2-interpreter PRIVATE quadmath)", ""
+    end
 
     # Place the submodules, since the tarfile doesn't include them
     git_clone_at_commit(
