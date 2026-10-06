@@ -16,9 +16,8 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - macos-14
+          - ubuntu-24.04-arm
           - macos-15
-          - macos-15-intel
           - macos-26
     runs-on: ${{ matrix.os }}
     steps:
@@ -30,8 +29,8 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ${{ steps.set-up-homebrew.outputs.gems-path }}
-          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
-          restore-keys: ${{ runner.os }}-rubygems-
+          key: ${{ matrix.os }}-${{ runner.arch }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ matrix.os }}-${{ runner.arch }}-rubygems-
 
       # query whether all dependencies are bottled
       - run: brew unbottled Macaulay2
@@ -59,11 +58,10 @@ jobs:
       # "brew test-bot" refuses to bottle a formula unless every build and
       # runtime dependency has a bottle for *this exact* OS tag -- build_bottle?
       # in homebrew-test-bot's lib/tests/formulae.rb -- and it exits 0 when it
-      # skips, so the job goes green having built nothing.  macos-15-intel goes
-      # short because homebrew-core builds its x86_64 macOS bottles on Sonoma,
-      # macos-14 because it has stopped building arm64_sonoma ones at all.
-      # Neither matters at install time, and "brew bottle" has no such policy,
-      # so build those by hand.  No OS condition: the step no-ops when test-bot
+      # skips, so the job goes green having built nothing. Homebrew may still
+      # pour an older-OS bottle or build a dependency from source at install
+      # time, and "brew bottle" has no such policy, so build those by hand.
+      # No OS condition: the step no-ops when test-bot
       # skipped nothing.  Skipped and failed formulae share a file, but this
       # runs only on success, so every name here is a skip.
       #
