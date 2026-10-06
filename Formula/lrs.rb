@@ -7,12 +7,11 @@ class Lrs < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "a7eab80124183b373959b9cc33b8136bc53ad64fa76dc115e5c78a8f7bfc0850"
-    sha256 cellar: :any,                 arm64_sequoia: "f8502cc7eb5a043aa6e8f7d5f74492b13711ef22be3746b45cd42480f7e1213d"
-    sha256 cellar: :any,                 arm64_sonoma:  "7b53a3c03235584752ed1ddb559cf9210cffa62f9a968d9303aecb7b001c3d3f"
-    sha256 cellar: :any,                 sequoia:       "d7d4668ed82e1008833ac13caacb6da447113e72561319cbc89bcaae1bb9b296"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c83a56060560a21b2caa3dbe127101e2b96689d40fa83963bbf6061904ce5b22"
+    rebuild 2
+    sha256 cellar: :any, arm64_tahoe:   "6429a452aa15a9c791f9671fa47ea871ecb6ae0feccafd62e334edaf255f1823"
+    sha256 cellar: :any, arm64_sequoia: "694725874b58ab1bbc7ae1017be72b7c2f81385342777b1f8d3d51f473a29130"
+    sha256 cellar: :any, arm64_linux:   "7abebf7ccf5264fa5a8125bfadb7c258c01951302aafc2cb0551ccd8dd990598"
+    sha256 cellar: :any, x86_64_linux:  "577028404a9d4d17b30dad0cfe4b609f69676231d9b767ce61ab9cae01c23420"
   end
 
   depends_on "gmp"
