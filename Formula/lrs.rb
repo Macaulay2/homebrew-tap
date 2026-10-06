@@ -18,7 +18,7 @@ class Lrs < Formula
   depends_on "gmp"
 
   def install
-    system "make", "lrs", "prefix=#{prefix}", "CC=#{ENV.cc}",
+    system "make", "lrs", "prefix=#{prefix}", "CC=#{ENV.cc} -std=gnu17",
            "INCLUDEDIR=#{Formula["gmp"].include}",
            "LIBDIR=#{Formula["gmp"].lib}"
     bin.install "lrs"
