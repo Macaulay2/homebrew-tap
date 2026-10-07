@@ -13,6 +13,7 @@ class Topcom < Formula
     sha256 cellar: :any,                 arm64_sequoia: "5aa8c1b2b0639980cb70a12822912d45f0db39daa90c17fb05aa0e03807306f6"
     sha256 cellar: :any,                 arm64_sonoma:  "2a8884f32f3a1c50f5a2a664b840418083d9e1af7e1f0fff19eab1f442df5daa"
     sha256 cellar: :any,                 sequoia:       "ec2934db74603d59fc81d94519025e7c7b6ac20cae2f17de79a876a5733c7d9d"
+    sha256 cellar: :any,                 arm64_linux:   "b5bd962bdeaaf17ea5b91de6acc61f69668cbb0bcc69cbd23e3dc03f439ee8fd"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "07b73acda37b0b7d21a1fa621559688d462e5e2566de31ec98ceab1eaf49089c"
   end
 
