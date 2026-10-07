@@ -12,6 +12,7 @@ class Memtailor < Formula
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "187bd97e92aafec2b86ae1c9332eeadee3df3be727a2a2404c6de5f87a883e60"
     sha256 cellar: :any_skip_relocation, arm64_sonoma:  "999956f40b3b7b47858fa5bc775d266120234c6ccb1cae9960d6f794ba462e2a"
     sha256 cellar: :any_skip_relocation, sequoia:       "e5377891fc927bc9e72607b17d39c4d1fdebac80258918120bda7c97621a34a0"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d9f59f43576dae96f7c836a5b7992634c3caf35d3f3133ab80974652da7b0ce0"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "d901b5c70a017c78d88c12dd080ffbc25199ec6eb38f627294ba2bf34c636815"
   end
 
