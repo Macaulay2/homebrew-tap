@@ -218,20 +218,15 @@ jobs:
           echo "title=$(git -C "$HOMEBREW_CORE_PATH" log -1 --format='%s' "$BOTTLE_BRANCH")" >> "$GITHUB_OUTPUT"
 
       - name: Push commits
+        id: push
         uses: Homebrew/actions/git-try-push@main
         with:
           token: ${{ github.token }}
           directory: ${{steps.set-up-homebrew.outputs.repository-path}}
           branch: ${{env.BOTTLE_BRANCH}}
 
-      # Opening a PR with GITHUB_TOKEN needs the organisation's "Allow GitHub
-      # Actions to create and approve pull requests" setting, which is off by
-      # default and needs an org admin.  The branch has already been pushed by
-      # this point, so if PR creation is refused just carry on -- the summary
-      # below links straight to the compare view.
       - name: Open PR with bottle commit
         id: create-pr
-        continue-on-error: true
         uses: Homebrew/actions/create-pull-request@main
         with:
           token: ${{ github.token }}
@@ -246,12 +241,11 @@ jobs:
             ${{env.DISPATCH_REBOTTLE_REASON}}
           reviewers: ${{github.actor}}
 
-      # Deliberately success(), not always(): the text below asserts that the
-      # bottles reached ghcr, which is only true once "brew pr-upload" and the
-      # push have both succeeded.  A refused pull request does not skip this --
-      # that step is continue-on-error, so it leaves the job successful.
+      # Runs once the bottles reached ghcr and the branch is pushed, even if
+      # opening the pull request failed: the text below asserts nothing more
+      # than that, and the compare link is then the way to open one by hand.
       - name: Summarise
-        if: success()
+        if: ${{ !cancelled() && steps.push.outcome == 'success' }}
         run: |
           {
             echo "### Rebottled \`${DISPATCH_REBOTTLE_FORMULA}\`"
