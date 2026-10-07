@@ -11,6 +11,7 @@ class Eantic < Formula
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "132c7d3fe3d24fd762c09c4c4426f43085981753b3d48c9ad46d26f22956d21f"
     sha256 cellar: :any_skip_relocation, arm64_sonoma:  "55db41dae61da8e1aceca2c60417701f779c8d863c8cb8b895238b73316ebfd5"
     sha256 cellar: :any_skip_relocation, sequoia:       "a4fb9314393bb4685f30f423f525aca1612bff5c051f5b46ed1140e2ed7f8ad6"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7ae915dc0cd63e2c8ff75b662a35c82e8912311c304ebaa9938623d405695bb6"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "48aeeb16fb31874160b23bfd663e2a1f63081ae2d72e7b0f84536ff6d9a86a1f"
   end
 
