@@ -72,10 +72,7 @@ jobs:
           script: |
             const linuxRegex = /^(?:ubuntu-|linux-self-hosted-)/;
             const macOSRunners = {
-              "14-arm64": "macos-14",
-              "15": "macos-15-intel",
               "15-arm64": "macos-15",
-              "26": "macos-26-intel",
               "26-arm64": "macos-26",
             };
             return context.payload.inputs.runner.split(",")
@@ -120,11 +117,10 @@ jobs:
               Utils::Bottles.tag(:arm64_linux)
             elsif runner.start_with?("ubuntu") || runner.start_with?("linux")
               Utils::Bottles.tag(:x86_64_linux)
-            elsif (match = runner.match(/^macos-(\d+(?:\.\d+)?)(?:-(large|intel))?$/))
+            elsif (match = runner.match(/^macos-(\d+(?:\.\d+)?)$/))
               system = MacOSVersion.new(match[1]).to_sym
-              arch = match[2].present? ? :x86_64 : :arm64
 
-              Utils::Bottles::Tag.new(system:, arch:)
+              Utils::Bottles::Tag.new(system:, arch: :arm64)
             elsif runner.match?(/^\d+-/)
               os_version, arch, _ = *runner.split("-")
               system = MacOSVersion.new(os_version).to_sym
@@ -182,7 +178,6 @@ jobs:
           cleanup: ${{ matrix.cleanup }}
 
       - name: Build bottle
-        if: matrix.runner != 'macos-15-intel' && matrix.runner != 'macos-14'
         working-directory: ${{ env.BOTTLES_DIR }}
         run: |
           brew test-bot \
@@ -193,70 +188,6 @@ jobs:
             --skip-dependents \
             --root-url="https://ghcr.io/v2/macaulay2/tap" \
             "${DISPATCH_BUILD_BOTTLE_FORMULA}"
-
-      # "brew test-bot" refuses to bottle a formula unless every build and
-      # runtime dependency has a bottle for *this exact* OS tag -- see
-      # build_bottle? in homebrew-test-bot's lib/tests/formulae.rb. Two runners
-      # cannot satisfy that: macos-15-intel, because homebrew-core builds its
-      # x86_64 macOS bottles on Sonoma so almost nothing has a sequoia one, and
-      # macos-14, because it has stopped building arm64_sonoma ones at all now
-      # that Sonoma is tier 3.
-      #
-      # Homebrew pours an older-OS bottle happily at install time, and builds
-      # from source when there is no bottle; "brew bottle" has no such
-      # restriction either, so going through brew directly skips the policy
-      # check. The macos-15-intel bottle is built against the same sonoma
-      # dependencies every Intel Sequoia user already has installed, and serves
-      # Intel Tahoe users too via the same fallback; the macos-14 one is
-      # ordinary, just with some build dependencies compiled rather than poured.
-      - name: Build bottle (deps may be unbottled, or bottled for an older macOS)
-        if: matrix.runner == 'macos-15-intel' || matrix.runner == 'macos-14'
-        working-directory: ${{ env.BOTTLES_DIR }}
-        env:
-          # test-bot redirects these into the bottles directory so that
-          # post-build can upload them; without it a failed build leaves its
-          # logs in ~/Library/Logs on an ephemeral runner and we learn nothing.
-          HOMEBREW_LOGS: ${{ env.BOTTLES_DIR }}/logs
-        run: |
-          brew install --only-dependencies --include-test --formula "${DISPATCH_BUILD_BOTTLE_FORMULA}"
-
-          # Build dependencies too: the run above prunes them, having seen a
-          # pourable bottle, and --build-bottle then refuses to install an
-          # unbottled dependency (unbottled_dependencies in Homebrew's
-          # formula_installer.rb) but skips already-installed ones. Unquoted for
-          # word splitting, and guarded because some formulae here have no
-          # dependencies at all.
-          build_deps=$(brew deps --include-build --formula "${DISPATCH_BUILD_BOTTLE_FORMULA}")
-          # shellcheck disable=SC2086
-          [ -z "$build_deps" ] || brew install --formula $build_deps
-
-          brew install --build-bottle --verbose --formula "${DISPATCH_BUILD_BOTTLE_FORMULA}"
-          brew bottle \
-            --json \
-            --keep-old \
-            --only-json-tab \
-            --root-url="https://ghcr.io/v2/macaulay2/tap" \
-            "${DISPATCH_BUILD_BOTTLE_FORMULA}"
-
-          # Pour the bottle we just built and test *that*, the way test-bot
-          # does.  The --build-bottle tree still has literal /usr/local paths
-          # in it, so testing it directly would not catch relocation damage --
-          # and pouring is also what runs post_install.
-          brew bottle --merge --write --no-commit --no-all-checks --keep-old \
-            ./"${DISPATCH_BUILD_BOTTLE_FORMULA}"--*.bottle.json
-
-          # Note the tarball carries the rebuild number and the JSON tab does
-          # not, so this glob needs the extra "*": the file is called
-          # <name>--<version>.<tag>.bottle.<rebuild>.tar.gz.
-          bottle=$(ls ./"${DISPATCH_BUILD_BOTTLE_FORMULA}"--*.bottle*.tar.gz)
-
-          brew uninstall --formula --force --ignore-dependencies "${DISPATCH_BUILD_BOTTLE_FORMULA}"
-          # "brew uninstall" autoremoves the dependencies it just orphaned, so
-          # put them back before pouring, as test-bot does.
-          brew install --only-dependencies "$bottle"
-          brew install "$bottle"
-          brew linkage --test "${DISPATCH_BUILD_BOTTLE_FORMULA}"
-          brew test --verbose "${DISPATCH_BUILD_BOTTLE_FORMULA}"
 
       # "brew test-bot" exits 0 when it skips a formula -- a green build step
       # does not mean a bottle exists.  Fail here rather than letting the
