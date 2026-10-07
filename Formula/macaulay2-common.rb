@@ -12,6 +12,7 @@ class Macaulay2Common < Formula
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "79a1e15b26bc21d360e1f33e697d01e9ea38552659a044e10b93a89b4c1dc351"
     sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c5495ad7ea5d7daaaac17ba5dc94e037e187c563c11516b042bafffec27ac2de"
     sha256 cellar: :any_skip_relocation, sequoia:       "17a2e82b6096cb7dc2b18d796f5a2d28d96b2cfdf8dae30965ef4c03a6cb1daf"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "8f15b56f30f22b447a5d5d6fded77970238d1541ff255b8e7cdd3fb2cfe33340"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "b08419987878c2d0aafa69d85620af0b1f76342d25c39d98f1a583a5d6deeba1"
   end
 
