@@ -13,6 +13,7 @@ class Givaro < Formula
     sha256 cellar: :any,                 arm64_sequoia: "6bde2ddd56fdac27412094e108a3b735f370048a09a3e1a2f3c4c0e3722a085c"
     sha256 cellar: :any,                 arm64_sonoma:  "75f1538ef24e4c6e221a2c6175bf3c9bf559ae51915bfb050e5b4439007142a0"
     sha256 cellar: :any,                 sequoia:       "9152dce45e67bc7b51defb31bf17f03a25abbf9d3713a18f87283d15b7db6689"
+    sha256 cellar: :any,                 arm64_linux:   "a7e0d59446caec04ee2ac69d2140aa94e99c913eeeb0454dea31deb68c16642e"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "5f8f557a896a7c05b2078bd8498d60e304e4fad74cdcdb73238ad04f3fcd6c6f"
   end
 
