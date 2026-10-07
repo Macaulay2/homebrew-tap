@@ -12,6 +12,7 @@ class Mathicgb < Formula
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "36062362b6506b1450bcc91ed210f8a79ce39fbb9424a9a5a34fc915da42480f"
     sha256 cellar: :any_skip_relocation, arm64_sonoma:  "11a91f887730a6e96f91f909ee95fa37069a7423b2a6258b9cfdecd07a4aa96a"
     sha256 cellar: :any_skip_relocation, sequoia:       "3137dc3bbdf4c01557c9f7ec1069221b2896075f940a81eb3776fba2bf4f04e6"
+    sha256 cellar: :any,                 arm64_linux:   "5490ba6cc0ac6529ce1a1d2c58e05b06976dfb0194b5bd2586d710007b501b21"
     sha256 cellar: :any,                 x86_64_linux:  "22455eeebd057476c23c3a212836b50dae1961205060bfd4d18c9b2bcc00d0c9"
   end
 
