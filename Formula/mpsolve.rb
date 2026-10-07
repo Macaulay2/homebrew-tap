@@ -11,6 +11,7 @@ class Mpsolve < Formula
     sha256 cellar: :any,                 arm64_sequoia: "cc0017f9824d8ec1fe2924b7a7361c9ee7458da49e3fcd29ee6793c8b4c2323f"
     sha256 cellar: :any,                 arm64_sonoma:  "465be6630b8a2b163f4637c12b64920a1213cf29bcaddef3872655133317cafc"
     sha256 cellar: :any,                 sequoia:       "6c944be01823b405392b8b19ab3886dcf99d4e92f9304b27f03047e927de9d16"
+    sha256 cellar: :any,                 arm64_linux:   "29e817d7bb9c53f74e31a478965ce076c11e72bdb01c94f9dd2e4f69cb789890"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "00db12f3737f717e921d511ea8d744173ba79fcc8c7c6931b4be001eefb26a39"
   end
 
