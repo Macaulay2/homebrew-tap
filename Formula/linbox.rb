@@ -15,6 +15,7 @@ class Linbox < Formula
     sha256 cellar: :any, arm64_sequoia: "8047e0c3eb6599cade4dd60a2f2bfb67a288b6d6158c444d9f6b6f21c557995d"
     sha256 cellar: :any, arm64_sonoma:  "93fed412018f3927e92ef6d32d21f84f81caf9313cab0e81be77da0cedae2319"
     sha256 cellar: :any, sequoia:       "c197831fcbffc5a37456de2b14e05807b6938601fe42e76ae850c2705dd28235"
+    sha256 cellar: :any, arm64_linux:   "7022f266aa9cd623d9d7b6bf8bea2c0c86868b4ebc324dfd6e28f94c6abed596"
     sha256 cellar: :any, x86_64_linux:  "ccc1fa2a0183088b4772475b314bffd759da66bc86d8f73d3b243ddc0a54783e"
   end
 
