@@ -12,6 +12,7 @@ class Csdp < Formula
     sha256 cellar: :any, arm64_sequoia: "b1be5d61eb70ff16b6b00df06268f333d71080bc94f5ae38062fd6dbc39e3fda"
     sha256 cellar: :any, arm64_sonoma:  "04c78cf57105fe90734e3e190b86ef6b82ab8e6ebd8ca9257745f4eadc83d4a6"
     sha256 cellar: :any, sequoia:       "b167664a60547e1adc6b69f891b4c5a9f2c186a295e4c8835901c8eaa1942cf6"
+    sha256 cellar: :any, arm64_linux:   "e40d6a2d51ede6406151d6d2d71347e1ce8d7ac5c27055d3ad6c647973762a9f"
     sha256 cellar: :any, x86_64_linux:  "a2c9680e4de5fa5418052b0742cb4f66254dddbb3280b56417260a31784b44ea"
   end
 
