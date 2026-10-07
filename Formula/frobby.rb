@@ -12,6 +12,7 @@ class Frobby < Formula
     sha256 cellar: :any, arm64_sequoia: "a4f4f8cfb3ed334a839fa85afc91235f8c41114bbeae591cc2ad57a52e2d2913"
     sha256 cellar: :any, arm64_sonoma:  "777c02a28eda28857fb7f28d6962a4642d06116cfa5931127686f57e715db4b0"
     sha256 cellar: :any, sequoia:       "72a3599dcc6a46039e75b72f01f5371471a3bab74bf2b396c837de1f022e25be"
+    sha256 cellar: :any, arm64_linux:   "88b1f4bde98fc0799b31f1d5adab4d7b7797a8cf9d251b7c9635275a789f500e"
     sha256 cellar: :any, x86_64_linux:  "ea7aadec221c0ad6bc12fa75ecd3548f04d26b43c9561b71787d50ed1416cbfa"
   end
 
