@@ -11,6 +11,7 @@ class Palp < Formula
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "a2b775d198e6fa89d9943cf06a9ba1d0a6e471be4817b0006a268fd2773bc78e"
     sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0771e5c3105db65c838e0e13636d533063e1601c510dd9f9c5c9a531cea92eab"
     sha256 cellar: :any_skip_relocation, sequoia:       "530bc0ad74c2b024072652ac0ae4a9511905f5a6f4cbbaf1cc69fce210317a9b"
+    sha256 cellar: :any,                 arm64_linux:   "ca5db6da7f5e5b40d3b9a7a869a354aa1d1a1bc4e940655007cea937dae664d8"
     sha256 cellar: :any,                 x86_64_linux:  "5749867b7caae155dba2700bd02a83cf1787a48bc439f978f70446a947f29cf8"
   end
 
