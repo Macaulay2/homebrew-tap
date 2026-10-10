@@ -69,6 +69,9 @@ class Macaulay2 < Formula
   end
 
   def install
+    # Build documentation without launching X11 programs such as xterm.
+    ENV.delete("DISPLAY")
+
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
