@@ -4,6 +4,7 @@ class Barvinok < Formula
   url "https://github.com/mahrud/barvinok.git", using: :git, revision: "e68bc088aefdd6d36172fa4cfb090de7874f8edf"
   version "0.41.8-M2"
   license "GPL-2.0-only"
+  revision 1
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
@@ -18,10 +19,12 @@ class Barvinok < Formula
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "cddlib"
   depends_on "glpk"
   depends_on "gmp"
+  depends_on "isl"
   depends_on "ntl"
   depends_on "topcom"
 
@@ -36,11 +39,9 @@ class Barvinok < Formula
     system "autoreconf", "-vif"
     system "./configure", *std_configure_args,
            "--disable-silent-rules",
-           "--with-topcom=#{Formula["topcom"]}"
+           "--with-topcom=#{Formula["topcom"]}",
+           "--with-isl=system"
     system "make", "install-strip"
-
-    # Brew is offended by non-library files in the lib directory
-    rm lib/"libisl.23.dylib-gdb.py" if OS.mac?
   end
 
   test do
