@@ -9,12 +9,13 @@ class Cohomcalg < Formula
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
     rebuild 2
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c436f6922dcd20a18a6ef10d38595b4266737725ddfe158eebe30f1d920871d1"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "df917df886605342a3b62f831dc60c6ebb4257c478fcaa3dd3e327696d1ca694"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ea1f8e946ab3f17dce6c77e56db8df744995e3f4c4ef229ef071c850430c17ff"
-    sha256 cellar: :any_skip_relocation, sequoia:       "0b07918965da5d1b67a92dde0fc60ae12cd80e2fbed144d384b18e008a143a09"
-    sha256 cellar: :any,                 arm64_linux:   "3cba01a4fce9e993ed9cbd4ed7fb93c19eecc1625ee096f5203acb45e4224d2e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a43ff2306819366ead3ca33d19271fe490acab04f4d72d20a85dc17b2d4a1bde"
+    sha256 cellar: :any_skip_relocation, arm64_golden_gate: "10960a3c80de95abed91a41c7a06a34c44de93ddb74a6e6857a0d4b21d1c1a0d"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:       "c436f6922dcd20a18a6ef10d38595b4266737725ddfe158eebe30f1d920871d1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia:     "df917df886605342a3b62f831dc60c6ebb4257c478fcaa3dd3e327696d1ca694"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:      "ea1f8e946ab3f17dce6c77e56db8df744995e3f4c4ef229ef071c850430c17ff"
+    sha256 cellar: :any_skip_relocation, sequoia:           "0b07918965da5d1b67a92dde0fc60ae12cd80e2fbed144d384b18e008a143a09"
+    sha256 cellar: :any,                 arm64_linux:       "3cba01a4fce9e993ed9cbd4ed7fb93c19eecc1625ee096f5203acb45e4224d2e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:      "a43ff2306819366ead3ca33d19271fe490acab04f4d72d20a85dc17b2d4a1bde"
   end
 
   def install
