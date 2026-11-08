@@ -74,6 +74,7 @@ jobs:
             const macOSRunners = {
               "15-arm64": "macos-15",
               "26-arm64": "macos-26",
+              "27-arm64": "xcode-27",
             };
             return context.payload.inputs.runner.split(",")
                                                 .map(s => s.trim())
@@ -117,7 +118,7 @@ jobs:
               Utils::Bottles.tag(:arm64_linux)
             elsif runner.start_with?("ubuntu") || runner.start_with?("linux")
               Utils::Bottles.tag(:x86_64_linux)
-            elsif (match = runner.match(/^macos-(\d+(?:\.\d+)?)$/))
+            elsif (match = runner.match(/^(?:macos|xcode)-(\d+(?:\.\d+)?)$/))
               system = MacOSVersion.new(match[1]).to_sym
 
               Utils::Bottles::Tag.new(system:, arch: :arm64)

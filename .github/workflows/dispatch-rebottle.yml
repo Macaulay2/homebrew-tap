@@ -82,6 +82,7 @@ jobs:
             const macOSRunners = {
               "15-arm64": "macos-15",
               "26-arm64": "macos-26",
+              "27-arm64": "xcode-27",
             };
             return JSON.parse(`${{ steps.determine-runners.outputs.runners }}`).map(entry => {
               const match = /^(\d+(?:\.\d+)?)-(arm64|x86_64)-\d+-dispatch$/.exec(entry.runner);
