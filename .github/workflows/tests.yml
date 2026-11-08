@@ -25,6 +25,7 @@ jobs:
               options: --privileged
           - os: macos-15
           - os: macos-26
+          - os: xcode-27
     runs-on: ${{ matrix.os }}
     container: ${{ fromJSON(toJSON(matrix.container)) }}
     steps:
