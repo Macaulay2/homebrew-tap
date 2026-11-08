@@ -1,8 +1,8 @@
 class Fourtitwo < Formula
   desc "Software for algebraic, geometric and combinatorial problems on linear spaces"
   homepage "https://4ti2.github.io/"
-  url "https://github.com/4ti2/4ti2/releases/download/Release_1_6_15/4ti2-1.6.15.tar.gz"
-  sha256 "070e639398fda1a4665b3291e5ea80f2ba280d9bffd50656ad8482d471b96965"
+  url "https://github.com/4ti2/4ti2/releases/download/Release_1_6_16/4ti2-1.6.16.tar.gz"
+  sha256 "a45629835ac138bb17896c509278b956c11917ec58e57165a2ee0c54ed0307cb"
   license "GPL-2.0-or-later"
 
   bottle do
