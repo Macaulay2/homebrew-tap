@@ -8,12 +8,13 @@ class Factory < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_tahoe:   "e2a09adbc952e4df641cc03cc4e2f0096f75b89a7ed0ab2939180f21ba95ec25"
-    sha256 cellar: :any, arm64_sequoia: "e1d62489ab779644d4e097bb0ca19914583a5d065db55e851f2f3c375dc48dcd"
-    sha256 cellar: :any, arm64_sonoma:  "5da198a258efc0ee56e0a78e39b06932e4cfac10f569cc15f458ebb29a717dd6"
-    sha256 cellar: :any, sequoia:       "fcbfdc83c8affbe87a7abb61ff08f6df539ecc780e8e929795cbb990fd82da8f"
-    sha256 cellar: :any, arm64_linux:   "aa5ccea57dfe0eaac095b7b8f1a4b852a82510d9ac3cece2d5582558ca2e89f0"
-    sha256 cellar: :any, x86_64_linux:  "cd267a51e09a1b00139b9b63e175046c7e6ab96f088abda352e09a94127fccef"
+    sha256 cellar: :any, arm64_golden_gate: "11db44ba8229ba80944d9b5120eca10f91f5aca10566b748f4feeb13ea691e16"
+    sha256 cellar: :any, arm64_tahoe:       "e2a09adbc952e4df641cc03cc4e2f0096f75b89a7ed0ab2939180f21ba95ec25"
+    sha256 cellar: :any, arm64_sequoia:     "e1d62489ab779644d4e097bb0ca19914583a5d065db55e851f2f3c375dc48dcd"
+    sha256 cellar: :any, arm64_sonoma:      "5da198a258efc0ee56e0a78e39b06932e4cfac10f569cc15f458ebb29a717dd6"
+    sha256 cellar: :any, sequoia:           "fcbfdc83c8affbe87a7abb61ff08f6df539ecc780e8e929795cbb990fd82da8f"
+    sha256 cellar: :any, arm64_linux:       "aa5ccea57dfe0eaac095b7b8f1a4b852a82510d9ac3cece2d5582558ca2e89f0"
+    sha256 cellar: :any, x86_64_linux:      "cd267a51e09a1b00139b9b63e175046c7e6ab96f088abda352e09a94127fccef"
   end
 
   keg_only "it conflicts with singular"
