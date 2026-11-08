@@ -8,12 +8,13 @@ class Macaulay2Common < Formula
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
     rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "7331e51cbac2923904e0b640c8a3fe075dff95c1756f8479d581b277f1254d23"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "79a1e15b26bc21d360e1f33e697d01e9ea38552659a044e10b93a89b4c1dc351"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c5495ad7ea5d7daaaac17ba5dc94e037e187c563c11516b042bafffec27ac2de"
-    sha256 cellar: :any_skip_relocation, sequoia:       "17a2e82b6096cb7dc2b18d796f5a2d28d96b2cfdf8dae30965ef4c03a6cb1daf"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8f15b56f30f22b447a5d5d6fded77970238d1541ff255b8e7cdd3fb2cfe33340"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b08419987878c2d0aafa69d85620af0b1f76342d25c39d98f1a583a5d6deeba1"
+    sha256 cellar: :any_skip_relocation, arm64_golden_gate: "a2876c8c6c791db38b65b5c3d356662a8ec421dcbf71d508951ded34e2c921fc"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:       "7331e51cbac2923904e0b640c8a3fe075dff95c1756f8479d581b277f1254d23"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia:     "79a1e15b26bc21d360e1f33e697d01e9ea38552659a044e10b93a89b4c1dc351"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:      "c5495ad7ea5d7daaaac17ba5dc94e037e187c563c11516b042bafffec27ac2de"
+    sha256 cellar: :any_skip_relocation, sequoia:           "17a2e82b6096cb7dc2b18d796f5a2d28d96b2cfdf8dae30965ef4c03a6cb1daf"
+    sha256 cellar: :any_skip_relocation, arm64_linux:       "8f15b56f30f22b447a5d5d6fded77970238d1541ff255b8e7cdd3fb2cfe33340"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:      "b08419987878c2d0aafa69d85620af0b1f76342d25c39d98f1a583a5d6deeba1"
   end
 
   keg_only "it only installs documentation for macaulay2/tap/M2"
