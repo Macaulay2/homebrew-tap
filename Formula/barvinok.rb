@@ -1,7 +1,7 @@
 class Barvinok < Formula
   desc "Software for counting lattice points and integration over convex polytopes"
   homepage "https://barvinok.sourceforge.io/"
-  url "https://github.com/mahrud/barvinok.git", branch: "main", using: :git
+  url "https://github.com/mahrud/barvinok.git", using: :git, revision: "e68bc088aefdd6d36172fa4cfb090de7874f8edf"
   version "0.41.8-M2"
   license "GPL-2.0-only"
 
