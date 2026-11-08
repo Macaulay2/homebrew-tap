@@ -8,12 +8,10 @@ class Barvinok < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any,                 arm64_tahoe:   "03f684954e9ff6211a529df2bd9e388696b709b58f8d5c52e26a106662939ec3"
-    sha256 cellar: :any,                 arm64_sequoia: "c81cb6f2ac7953d94cc37e69434ed7a61f889a963006756cbbc479ffe5b01510"
-    sha256 cellar: :any,                 arm64_sonoma:  "74f8fc39e49246cc02d7015524826a88436bf1f1e85eb83a97899227d059823b"
-    sha256 cellar: :any,                 sequoia:       "50586277cc7187a51d1b65175a69a39d6639212c1c811042c212dec596011a17"
-    sha256 cellar: :any,                 arm64_linux:   "3cd0178e26d36592b1994420a7a8d4db383397dccb43cfa337184e2b89b671a9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1d0d7b1a00e4ba87f16736dd997ae43380b5938a51c2d1d676d4f31680fc0c82"
+    sha256 cellar: :any, arm64_tahoe:   "18845b08f7aca814c4178cc36e6ab27f27ebc14d564320bbd78cbd066336c610"
+    sha256 cellar: :any, arm64_sequoia: "780bb8bed57dded64f982c0a78a84becdbdd941891dd918b55300f432f110212"
+    sha256 cellar: :any, arm64_linux:   "b4b16592b77eda7702907f8777cffe0718d0a4f9dd87673b29d63b050cc74324"
+    sha256 cellar: :any, x86_64_linux:  "d891fee1bdf30e6f211722a0a4b7b41b8f4a5d36c8d2dd5fee66ac27e937bb07"
   end
 
   depends_on "autoconf" => :build
