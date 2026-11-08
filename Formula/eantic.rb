@@ -7,12 +7,13 @@ class Eantic < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3f768c2ab0e2a1a87ecb4bf6a2db5f9dee62a08d6e66f965973975048a242783"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "132c7d3fe3d24fd762c09c4c4426f43085981753b3d48c9ad46d26f22956d21f"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "55db41dae61da8e1aceca2c60417701f779c8d863c8cb8b895238b73316ebfd5"
-    sha256 cellar: :any_skip_relocation, sequoia:       "a4fb9314393bb4685f30f423f525aca1612bff5c051f5b46ed1140e2ed7f8ad6"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "7ae915dc0cd63e2c8ff75b662a35c82e8912311c304ebaa9938623d405695bb6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "48aeeb16fb31874160b23bfd663e2a1f63081ae2d72e7b0f84536ff6d9a86a1f"
+    sha256 cellar: :any_skip_relocation, arm64_golden_gate: "84369af6ba56cf5dbeecced5b70cfab89da37056801d26a602734fccd8b2e4de"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:       "3f768c2ab0e2a1a87ecb4bf6a2db5f9dee62a08d6e66f965973975048a242783"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia:     "132c7d3fe3d24fd762c09c4c4426f43085981753b3d48c9ad46d26f22956d21f"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:      "55db41dae61da8e1aceca2c60417701f779c8d863c8cb8b895238b73316ebfd5"
+    sha256 cellar: :any_skip_relocation, sequoia:           "a4fb9314393bb4685f30f423f525aca1612bff5c051f5b46ed1140e2ed7f8ad6"
+    sha256 cellar: :any_skip_relocation, arm64_linux:       "7ae915dc0cd63e2c8ff75b662a35c82e8912311c304ebaa9938623d405695bb6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:      "48aeeb16fb31874160b23bfd663e2a1f63081ae2d72e7b0f84536ff6d9a86a1f"
   end
 
   depends_on "autoconf" => :build
