@@ -71,6 +71,7 @@ jobs:
         if: success() && github.event_name == 'pull_request' && steps.detect.outputs.testing_formulae != ''
         env:
           TESTING_FORMULAE: ${{ steps.detect.outputs.testing_formulae }}
+        shell: bash
         run: |
           if ! compgen -G "*.bottle.json" > /dev/null
           then
