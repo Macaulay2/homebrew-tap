@@ -38,7 +38,8 @@ class Mathicgb < Formula
     args << "-Denable_mgb=off" if build.without?("mgb")
     args << "-Dwith_tbb=on" << "-DTBB_ROOT_DIR=#{Formula["tbb"].prefix}" if build.with?("tbb")
     system "cmake", "-S", ".", "-B", "build", *args
-    system "make", "install"
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
