@@ -1,8 +1,8 @@
 class Mathicgb < Formula
   desc "Compute (signature) Groebner bases using the fast datastructures from mathic"
   homepage "https://github.com/Macaulay2/mathicgb"
-  url "https://github.com/Macaulay2/mathicgb/releases/download/v1.5/mathicgb-1.5.tar.gz"
-  sha256 "07fc9683153430d137c239d57120e1dc8a2288e100002440298093dc12984624"
+  url "https://github.com/Macaulay2/mathicgb/releases/download/v1.6/mathicgb-1.6.tar.gz"
+  sha256 "722fd1c13e0643e2e68ac04bfeec07926ed479f8c32652d4992ac5aeef3157cf"
   license "GPL-2.0-or-later"
 
   bottle do
