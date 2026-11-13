@@ -7,11 +7,11 @@ class Mathicgb < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/macaulay2/tap"
-    sha256 cellar: :any, arm64_golden_gate: "09845c7ad0e9d8e8cb88c51e09d0f4f81fa156864a49115138cb6d293db0825a"
-    sha256 cellar: :any, arm64_tahoe:       "c0a294481a5ed848e8c512f355df0c59c6b0bd71d4b7f9c151c67d1db0e159b1"
-    sha256 cellar: :any, arm64_sequoia:     "df8f2f8b53c32ecd5e7d8bfb7101daaf5f34e0d5ac36bcaacb5f7635a18e54b9"
-    sha256 cellar: :any, arm64_linux:       "6f98337d9d7710aa0c4c74a4a822fcfa882af45384c8815d991df2233ab88fbb"
-    sha256 cellar: :any, x86_64_linux:      "f048a6524d9a89fbfbe5f26f47bf24249d6ecfebc054b96f0fafc2ac504f3339"
+    sha256 cellar: :any, arm64_golden_gate: "8c0d3b65fba4b272820ebc65034f57f9ecb63a6b3b2dd156dc2788bf358f1522"
+    sha256 cellar: :any, arm64_tahoe:       "e5316dbabae235d9eb95b67144743762f02a3141af7c3d5c3956c5d9dc88fce5"
+    sha256 cellar: :any, arm64_sequoia:     "cbde7efc077aefd7dac73fbb2f9e049832ed6f2b9149662d4d9bdc8f74e209d7"
+    sha256 cellar: :any, arm64_linux:       "1991d71182a686a81527dd710f982e347b5a826c4c8d7b65db8caa73eaa81e0e"
+    sha256 cellar: :any, x86_64_linux:      "b0d9012005e5366657cf3805ba455333a7d17a5a3328a1f063820c39404dbdff"
   end
 
   option "without-mgb", "don't build mgb"
