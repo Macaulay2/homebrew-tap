@@ -1,8 +1,8 @@
 class Mathic < Formula
   desc "Symbolic algebra data structures for use in Groebner basis computation"
   homepage "https://github.com/Macaulay2/mathic"
-  url "https://github.com/Macaulay2/mathic/releases/download/v1.6/mathic-1.6.tar.gz"
-  sha256 "337f303eeab2f834ee21973fc69ab862f9d6b8976887e4b5e2371759298abe2c"
+  url "https://github.com/Macaulay2/mathic/releases/download/v1.7/mathic-1.7.tar.gz"
+  sha256 "99e55dba14db57e327abcac02c2c495cf7b02411eb85dc0d58b514fbaa358d8b"
   license "LGPL-2.0-or-later"
 
   bottle do
