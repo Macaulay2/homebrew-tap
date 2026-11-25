@@ -3,10 +3,9 @@ class Macaulay2 < Formula
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
   # when bumping to a new release, also update the submodule commits below
-  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.26.06.tar.gz"
-  sha256 "54f9e892941b2b548b90656c2b6d84a6d14c6908d5569bd61e7bb36b8c71bb29"
+  url "https://github.com/Macaulay2/M2/archive/refs/tags/release-1.26.11.tar.gz"
+  sha256 "fdb1a2e7b675de9baa8f2cb0851d156d96b9bca9e6362ba094b30c5d911bce3e"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 1
 
   head "https://github.com/Macaulay2/M2/archive/refs/heads/development.tar.gz"
 
@@ -22,7 +21,7 @@ class Macaulay2 < Formula
 
   depends_on "bison" => :build
   depends_on "cmake" => :build
-  depends_on "eigen@3" => :build # TODO: drop the "@3"
+  depends_on "eigen" => :build
   depends_on "ninja" => :build
   depends_on "node" => :build
   depends_on "pkgconf" => :build
@@ -48,7 +47,8 @@ class Macaulay2 < Formula
   depends_on "normaliz"
   depends_on "ntl"
   depends_on "openblas" unless OS.mac?
-  depends_on "python@3.14" # brew linkage --test expects specific version
+  depends_on "palp"
+  depends_on "python@3.15" # brew linkage --test expects specific version
   depends_on "readline"
   depends_on "tbb"
 
@@ -76,8 +76,8 @@ class Macaulay2 < Formula
     # Don't print the shims prefix path
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
-    # Don't print the shims prefix path
-    inreplace "M2/Macaulay2/packages/ForeignFunctions.m2", "get \"!brew --prefix\"", "getenv \"HOMEBREW_PREFIX\""
+    # Don't rely on brew being in PATH (not during build or in Emacs on macOS)
+    inreplace "M2/Macaulay2/packages/ForeignFunctions.m2", "get \"!brew --prefix\"", "\"#{HOMEBREW_PREFIX}\""
 
     # Upstream links quadmath on non-macOS systems, but ARM64 Linux has no libquadmath.
     if OS.linux? && Hardware::CPU.arm?
@@ -89,25 +89,25 @@ class Macaulay2 < Formula
     git_clone_at_commit(
       "https://github.com/Macaulay2/M2-emacs.git",
       "M2/Macaulay2/editors/emacs",
-      "ae882ab04da19f62c62462ef9604251a0b30a9f5",
+      "aeac7105993337648eae572d2f8fbec3d4aeeaca",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/memtailor.git",
       "M2/submodules/memtailor",
-      "a74747f70d5d4f2c79c9707b64c5086eb8c051b9",
+      "6d7da631b50eeb20218d701f5ebad7bbeb54e71a",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/mathic.git",
       "M2/submodules/mathic",
-      "59238ddb4a18af81f464de3d4634c06478769c98",
+      "62fe3187b25d3d9bfcf54530c74797db8d2c238a",
     )
 
     git_clone_at_commit(
       "https://github.com/Macaulay2/mathicgb.git",
       "M2/submodules/mathicgb",
-      "eae920070f0e9f8b34c08148f4caab7f89195601",
+      "31cec23f892389bcbb8c15b821764b8b61963824",
     )
 
     # Prefix paths for dependencies
